@@ -1,0 +1,13 @@
+<ion-navbar *navbar>
+  <ion-title>Main Page</ion-title>
+</ion-navbar>
+
+<ion-content padding class="page1">
+  <h1>Stages</h1>
+  <h4>Click each stage for details</h4>
+  <div *ngFor="let stage of stages">
+    <img class="img-responsive" src="wp-content/uploads/stage/{{stage.nombre}}.png" (click)="stageClick(stage.stage_id)">
+    <a href="#" (click)="stageClick(stage.stage_id)">{{stage.nombre}}</a>
+  </div>
+
+</ion-content>
