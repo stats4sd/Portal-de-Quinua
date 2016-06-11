@@ -2,7 +2,6 @@ import {Component} from "@angular/core";
 import {Platform, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {StartPage} from './pages/start-page/start-page';
-import {MainPage} from './pages/main-page/main-page';
 import {SqLiteService} from './providers/sq-lite-service/sq-lite-service'
 
 

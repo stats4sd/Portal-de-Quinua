@@ -21,11 +21,23 @@ export class StartPage {
   constructor(public nav: NavController, sql: SqLiteService, platform:Platform) {
     this.sql=sql;
     this.stages=[];
+    //initial page can be turned into multiple page swipes if wanted (add more slides to array)
+    this.slides = [
+      {
+        title: "<b>Proinpa Informacion Servicio</b>",
+        description: "Esta applicacion...",
+        image: "wp-content/proinpa-logo.jpg",
+      },
+    ];
     //when platform is ready load database. sets dbLoaded variable true which shows enter button
     platform.ready().then(() => {
       sql.loadDatabase().then((result)=> {
-        console.log(result)
-        this.dbLoaded = result;
+        //prepare data for next page for smoother transitions. Start button only appears after complete
+        //in future may want to actually cache these results in a local db
+        this.sql.query('SELECT * FROM stage').then((result)=> {
+          this.sql.setValue('stages', result)
+          this.dbLoaded = result;
+        })
       });
     })
   }
