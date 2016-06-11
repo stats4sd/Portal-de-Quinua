@@ -1,44 +1,22 @@
-<!--
-  Generated template for the StartPagePage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-navbar *navbar>
-  <ion-title>startPage</ion-title>
-</ion-navbar>
-
 <ion-content padding class="start-page">
 
-  <div class="site-wrapper">
-    <div class="site-wrapper-inner">
-      <div class="cover-container">
-        <div class="masthead clearfix">
-          <div class="inner">
-            <h3 class="masthead-brand"></h3>
-            <nav>
-              <ul class="nav masthead-nav">
-                <li class="active"><a href="stages.php">Stages</a></li>
-                <li><a href="#">Catalogues</a></li>
-                <li><a href="#">Search database</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-
-        <div class="inner cover">
-          <h1 class="cover-heading">Proinpa Farmer's Cylce</h1>
-          <p class="lead">Proper title pending... This is the cover page for the front-end to the Proinpa database, currently under development.</p>
-          <p class="lead">
-            <a href="#" *ngIf="!dbLoaded">Loading data</a>
-            <a href="#" (click)="startButtonClick()" class="btn btn-lg btn-default" *ngIf="dbLoaded">Enter</a>
-          </p>
-        </div>
-
+  <ion-slides pager (slideChangeStart)="onSlideChangeStart($event)">
+    <ion-slide *ngFor="let slide of slides">
+      <img [src]="slide.image" class="slide-image"/>
+      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+      <p [innerHTML]="slide.description"></p>
+      <div *ngIf="!dbLoaded">
+        Loading Data
       </div>
-
-    </div>
-
-  </div>
-  
+      <button large proinpa-green (click)="startButtonClick()" *ngIf="dbLoaded">
+        Empieza
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-slide>
+    <!--Can include addtional slide here is we want more slides and custom last screen (e.g. only start button appears on last screen)-->
+    <!--<ion-slide>
+      <ion-toolbar>
+      </ion-toolbar>
+    </ion-slide>-->
+  </ion-slides>
 </ion-content>
