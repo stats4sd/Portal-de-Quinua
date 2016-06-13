@@ -17,7 +17,7 @@ export class StartPage {
   constructor(public nav: NavController, sql: SqLiteService, platform:Platform, ) {
     this.sql=sql;
     this.stages=[];
-    var q=sql.getQueries('simpleQuery');
+    var q=sql.getQueries('initialStages');
     //initial page can be turned into multiple page swipes if wanted (add more slides to array)
     this.slides = [
       {

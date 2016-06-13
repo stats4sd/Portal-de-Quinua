@@ -122,8 +122,7 @@ var masterQueries=
         ) c
         ON a.\`stage_id\` = b.\`stage_id\`
         AND b.\`file_url\` = c.\`firstfile\`
-        ORDER BY a.\`stage_id\`,
-  `,
+        ORDER BY a.\`stage_id\``,
   simpleQuery: `
     SELECT * from stage
     `,
