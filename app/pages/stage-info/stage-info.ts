@@ -1,12 +1,15 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
+import {AbioticosPage} from '../../pages/abioticos/abioticos';
 
 @Component({
   templateUrl: 'build/pages/stage-info/stage-info.html',
 })
 export class StageInfoPage {
   sql:any
+  destination:any
+
   constructor(public nav: NavController, sql:SqLiteService) {
     this.nav=nav;
     this.sql=sql;
@@ -25,6 +28,11 @@ export class StageInfoPage {
 
   imageClick(imageInfo){
     console.log(imageInfo)
+  }
+
+  abioticosClick(){
+    console.log('stage id: '+this.sql.stageArrayIndex);
+    this.nav.push(AbioticosPage);
   }
 
 }
