@@ -18,9 +18,8 @@ export class MainPage {
     this.stages=sql.getValue('stages');
   }
 
-  stageClick(stageId) {
-    this.sql.setValue('activeStage',stageId);
-    console.log(stageId);
+  stageClick(i) {
+    this.sql.setValue('stageArrayIndex',i);
     this.nav.push(StageInfoPage);
   }
 
@@ -36,7 +35,6 @@ export class MainPage {
     var invalidCount:number=0;
     for (var char:string of currentUrl){
       if(char.charCodeAt(0)>127){
-        console.log(char);
         newUrl = newUrl.replace(char,'_')
         invalidCount++
       }

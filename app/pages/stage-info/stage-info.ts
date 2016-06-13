@@ -10,7 +10,7 @@ export class StageInfoPage {
   constructor(public nav: NavController, sql:SqLiteService) {
     this.nav=nav;
     this.sql=sql;
-    this.stage=this.sql.getValue('stages')[this.sql.getValue('activeStage')-1];
+    this.stage=this.sql.getValue('stages')[this.sql.getValue('stageArrayIndex')];
     this.imageTest=[
       {number:1},
       {number:1},
