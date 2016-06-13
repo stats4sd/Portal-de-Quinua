@@ -10,10 +10,9 @@ import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
   Ionic pages and navigation.
 */
 @Component({
-  templateUrl: 'build/pages/abioticos/abioticos.html',
+  templateUrl: 'build/pages/abiotic/abiotic.html',
 })
-export class AbioticosPage {
-
+export class Abiotic{
   stages:any;
   sql:any;
   nav:any;
@@ -21,5 +20,6 @@ export class AbioticosPage {
   constructor(public sql:SqLiteService, nav: NavController) {
     this.sql = sql;
     this.nav = nav;
+    this.abioticos=[]
   }
 }
