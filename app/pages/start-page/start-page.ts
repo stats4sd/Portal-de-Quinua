@@ -11,12 +11,13 @@ export class StartPage {
   stages:any;
   sql:any;
   queries:any;
+  dbLoaded:boolean;
   q:any;
 
   constructor(public nav: NavController, sql: SqLiteService, platform:Platform, ) {
     this.sql=sql;
     this.stages=[];
-    var q=sql.getQueries();
+    var q=sql.getQueries('simpleQuery');
     //initial page can be turned into multiple page swipes if wanted (add more slides to array)
     this.slides = [
       {
@@ -31,7 +32,7 @@ export class StartPage {
         //prepare data for next page for smoother transitions. Start button only appears after complete
         //in future may want to actually cache these results in a local db
         this.sql.query(q).then((result)=> {
-          this.sql.setValue('stages', result)
+          this.sql.setValue('stages', result);
           this.dbLoaded = result;
         })
       });
