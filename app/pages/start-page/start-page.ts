@@ -17,7 +17,6 @@ export class StartPage {
   constructor(public nav: NavController, sql: SqLiteService, platform:Platform, ) {
     this.sql=sql;
     this.stages=[];
-    var q=sql.getQueries('initialStages');
     //initial page can be turned into multiple page swipes if wanted (add more slides to array)
     this.slides = [
       {
@@ -31,6 +30,7 @@ export class StartPage {
       sql.loadDatabase().then((result)=> {
         //prepare data for next page for smoother transitions. Start button only appears after complete
         //in future may want to actually cache these results in a local db
+        var q=sql.getQueries('initialStages');
         this.sql.query(q).then((result)=> {
           this.sql.setValue('stages', result);
           this.dbLoaded = result;

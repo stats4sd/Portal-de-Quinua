@@ -16,7 +16,6 @@ export class MainPage {
     this.sql = sql;
     this.nav = nav;
     this.stages=sql.getValue('stages');
-    console.log(this.stages)
   }
 
   stageClick(stageId) {

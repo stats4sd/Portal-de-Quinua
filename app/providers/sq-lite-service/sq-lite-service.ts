@@ -5,8 +5,6 @@ import 'rxjs/add/operator/map';
 
 //declare outside modules to keep typescript happy
 declare var sql:any;
-//declare var fs:any;
-declare var require:any;
 
 @Injectable()
 export class SqLiteService {
@@ -27,13 +25,13 @@ export class SqLiteService {
       //use sql.js package if working in browser
       var sql = window.SQL;
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'proinpa.db', true)
+      xhr.open('GET', 'proinpa.db', true);
       xhr.responseType = 'arraybuffer';
       xhr.onload = function (e) {
         var uInt8Array = new Uint8Array(this.response);
         this.db = new sql.Database(uInt8Array);
-        console.log('db loaded successfully')
-        resolve(true)
+        console.log('db loaded successfully');
+        resolve(true);
         // contents is now [{columns:['col1','col2',...], values:[[first row], [second row], ...]}]
       };
       xhr.send();
@@ -43,20 +41,16 @@ export class SqLiteService {
   /*sql query async so using promises*/
   query(queryText) {
     return new Promise((resolve, reject) => {
-      var queryResults = [];
-      console.log('query: ' + queryText);
       var sql = window.SQL;
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'proinpa.db', true)
+      xhr.open('GET', 'proinpa.db', true);
       xhr.responseType = 'arraybuffer';
-      xhr.onload = function (e) {
+      xhr.onload = function () {
         var uInt8Array = new Uint8Array(this.response);
         this.db = new sql.Database(uInt8Array);
         var contents = this.db.exec(queryText);
         var rowContents = convertToRowFormat(contents[0]);
-        console.log(rowContents)
-        this['tset'] = rowContents
-        console.log(this)
+        console.log(rowContents);
         resolve(rowContents)
       };
       xhr.send();
@@ -71,36 +65,17 @@ export class SqLiteService {
     return this[key]
   }
 
-
-// Set of queries.  Put here until I figure out how to throw them into a completely seperate file...
   getQueries(name) {
-    console.log('getting query by name: ' + name)
-    console.log(masterQueries[name]);
-    return masterQueries[name]
-    // console.log("qName = "
-
-    /*var q = `SELECT \`a\`.*, \`b\`.\`file_url\`
-     FROM \`stage\` a LEFT JOIN \`media_stage\` b
-     ON a.\`stage_id\` = b.\`stage_id\`
-     INNER JOIN (
-     SELECT \`stage_id\`, MIN(\`file_url\`) 'firstfile', \`file_type\`
-     FROM \`media_stage\`
-     GROUP BY \`stage_id\`
-     ) c
-     ON a.\`stage_id\` = b.\`stage_id\`
-     AND b.\`file_url\` = c.\`firstfile\`
-     ORDER BY a.\`stage_id\``;
-     return q;
-     }*/
+    console.log('getting query by name: ' + name);
+    return masterQueries[name];
   }
 }
 
 function convertToRowFormat(contents) {
-  var rowArray = []
-  console.log(contents)
-  var columns = contents.columns
+  var rowArray = [];
+  var columns = contents.columns;
   for (var value of contents.values) {
-    var temp = {}
+    var temp = {};
     for (var i = 0; i < columns.length; i++) {
       temp[columns[i]] = value[i]
     }
@@ -109,6 +84,7 @@ function convertToRowFormat(contents) {
   return rowArray
 }
 
+//queries to be executed within the app
 var masterQueries=
 {
   initialStages: `
