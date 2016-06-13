@@ -10,10 +10,13 @@ import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 export class StartPage {
   stages:any;
   sql:any;
+  queries:any;
+  q:any;
 
-  constructor(public nav: NavController, sql: SqLiteService, platform:Platform) {
+  constructor(public nav: NavController, sql: SqLiteService, platform:Platform, ) {
     this.sql=sql;
     this.stages=[];
+    var q=sql.getQueries();
     //initial page can be turned into multiple page swipes if wanted (add more slides to array)
     this.slides = [
       {
@@ -27,7 +30,7 @@ export class StartPage {
       sql.loadDatabase().then((result)=> {
         //prepare data for next page for smoother transitions. Start button only appears after complete
         //in future may want to actually cache these results in a local db
-        this.sql.query('SELECT * FROM stage').then((result)=> {
+        this.sql.query(q).then((result)=> {
           this.sql.setValue('stages', result)
           this.dbLoaded = result;
         })
