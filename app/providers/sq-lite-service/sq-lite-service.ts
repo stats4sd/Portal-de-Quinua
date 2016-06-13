@@ -89,16 +89,17 @@ var masterQueries=
 {
   initialStages: `
   SELECT \`a\`.*, \`b\`.\`file_url\`
-    FROM \`stage\` a LEFT JOIN \`media_stage\` b
-    ON a.\`stage_id\` = b.\`stage_id\`
-    INNER JOIN (
-      SELECT \`stage_id\`, MIN(\`file_url\`) 'firstfile', \`file_type\`
-      FROM \`media_stage\`
-      GROUP BY \`stage_id\`
-        ) c
-        ON a.\`stage_id\` = b.\`stage_id\`
-        AND b.\`file_url\` = c.\`firstfile\`
-        ORDER BY a.\`stage_id\``,
+  FROM \`stage\` a
+  LEFT JOIN \`media_stage\` b
+  ON a.\`stage_id\` = b.\`stage_id\`
+  INNER JOIN (
+    SELECT \`stage_id\`, MIN(\`file_url\`) 'firstfile', \`file_type\`
+    FROM \`media_stage\`
+    GROUP BY \`stage_id\`
+      ) c
+      ON a.\`stage_id\` = b.\`stage_id\`
+      AND b.\`file_url\` = c.\`firstfile\`
+      ORDER BY a.\`stage_id\``,
   simpleQuery: `
     SELECT * from stage
     `,

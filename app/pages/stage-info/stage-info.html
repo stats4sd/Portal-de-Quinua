@@ -19,5 +19,32 @@
     </ion-scroll>
 </div>
 
-  
+<div class='cards-bg'>
+  <ion-card>
+    <ion-card-header>View Data Associated with {{stage.nombre}}</ion-card-header>
+    <ion-list>
+      <button ion-item>
+
+        <!--might eventually use thumbnails here, but probably without the card format-->
+
+      <!-- <ion-thumbnail item-left>
+        <img src="img/thumbnail-puppy-1.jpg">
+      </ion-thumbnail> -->
+
+      
+      Management Possibilities
+      <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
+      </button>
+      <button ion-item>Abioticos
+        <ion-icon name="arrow-round-forward" clear item-right></ion-icon></button>
+      <button ion-item>Diseases
+        <ion-icon name="arrow-round-forward" clear item-right></ion-icon></button>
+      <button ion-item>Pests
+        <ion-icon name="arrow-round-forward" clear item-right></ion-icon></button>
+      <!-- <button *ngIf="{{stage.stage_id}}==1">Varieties</button> -->
+    </ion-list>
+  </ion-card>
+</div>
+
+
 </ion-content>
