@@ -103,7 +103,17 @@ var masterQueries=
   simpleQuery: `
     SELECT * from stage
     `,
-  query3: `
-
-    `
+  initialAbioticos: `
+  SELECT \`a\`.*, \`b\`.\`file_url\`
+  FROM \`abioticos\` a
+  LEFT JOIN \`media_abioticos\` b
+  ON a.\`abioticos_id\` = b.\`abioticos_id\`
+  INNER JOIN (
+    SELECT \`abioticos_id\`, MIN(\`file_url\`) 'firstfile', \`file_type\`
+    FROM \`media_abioticos\`
+    GROUP BY \`abioticos_id\`
+      ) c
+      ON a.\`abioticos_id\` = b.\`abioticos_id\`
+      AND b.\`file_url\` = c.\`firstfile\`
+      ORDER BY a.\`abioticos_id\``
 };

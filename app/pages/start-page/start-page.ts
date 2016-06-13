@@ -11,12 +11,14 @@ export class StartPage {
   stages:any;
   sql:any;
   queries:any;
-  dbLoaded:boolean;
+  dbLoaded:number;
   q:any;
 
   constructor(public nav: NavController, sql: SqLiteService, platform:Platform, ) {
     this.sql=sql;
     this.stages=[];
+    //dbLoaded tracks number of queries successfully run.
+    this.dbLoaded=0;
     //initial page can be turned into multiple page swipes if wanted (add more slides to array)
     this.slides = [
       {
@@ -33,7 +35,14 @@ export class StartPage {
         var q=sql.getQueries('initialStages');
         this.sql.query(q).then((result)=> {
           this.sql.setValue('stages', result);
-          this.dbLoaded = result;
+          this.dbLoaded++;
+        });
+
+        //second call to getQueries.  This should probably be redone as get full array of queries, then run them all!
+        var r=sql.getQueries('initialAbioticos');
+        this.sql.query(r).then((result)=> {
+          this.sql.setValue('Abioticos', result);
+          this.dbLoaded++;
         })
       });
     })

@@ -1,0 +1,22 @@
+<!--
+  Generated template for the AbioticosPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-navbar *navbar>
+  <ion-title>Abioticos</ion-title>
+</ion-navbar>
+
+<ion-content padding class="page1 card-background-image">
+  <h1>Abioticos</h1>
+  <h4>Abioticos associated with {{abioticos.ab_nombre}}</h4>
+  <div *ngFor="let abiotic of abioticos; let i=index">
+    <ion-card (click)="abioticosClick(abioticos.abioticos_id)">
+      <img src="{{abiotic.file_url}}" (error)="updateUrl(i)">
+      <div class="card-title">{{abioticos.nombre}}</div>
+    </ion-card>
+  </div>
+
+
+</ion-content>
