@@ -29,4 +29,16 @@ export class MainPage {
     //might be good to run all potential queries and cache results whilst user is idle
     //wait, we don't need anymore at this stage
   }
+
+  updateUrl(stageIndex){
+    var currentUrl=this.stages[stageIndex].file_url;
+    var newUrl:string = currentUrl;
+    for (var char:string of currentUrl){
+      if(char.charCodeAt(0)>127){
+        console.log(char);
+        newUrl = newUrl.replace(char,'_')
+      }
+    }
+    this.stages[stageIndex].file_url=newUrl;
+  }
 }
