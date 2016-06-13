@@ -4,13 +4,6 @@ import {Platform} from 'ionic-angular';
 import {MainPage} from '../main-page/main-page'
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 
-
-/*
-  Generated class for the StartPagePage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   templateUrl: 'build/pages/start-page/start-page.html',
 })
