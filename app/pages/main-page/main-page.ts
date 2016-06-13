@@ -33,12 +33,16 @@ export class MainPage {
   updateUrl(stageIndex){
     var currentUrl=this.stages[stageIndex].file_url;
     var newUrl:string = currentUrl;
+    var invalidCount:number=0;
     for (var char:string of currentUrl){
       if(char.charCodeAt(0)>127){
         console.log(char);
         newUrl = newUrl.replace(char,'_')
+        invalidCount++
       }
     }
     this.stages[stageIndex].file_url=newUrl;
+    //if no invalid characters then possibly file just missing
+    if(invalidCount==0){this.stages[stageIndex].file_url='wp-content/sin imagen.png'}
   }
 }

@@ -7,7 +7,7 @@
   <h4>seleccione una etapa para detalles</h4>
   <div *ngFor="let stage of stages; let i=index">
     <ion-card (click)="stageClick(stage.stage_id)">
-      <img src="{{stage.file_url}}" (error)="updateUrl(i)" onError="this.onerror=null;this.src='wp-content/sin imagen.png'">
+      <img src="{{stage.file_url}}" (error)="updateUrl(i)">
       <div class="card-title">{{stage.nombre}}</div>
     </ion-card>
   </div>
