@@ -1,0 +1,51 @@
+diff a/app/pages/stage-info/stage-info.html b/app/pages/stage-info/stage-info.html	(rejected hunks)
+@@ -60,6 +60,49 @@
+             </ion-item>
+         </ion-list>
+     </div>
++=======
++  <h2>{{stage.nombre}} Description</h2>
++  <!--binding the stage description to innerHTML so it can fully render the html passed-->
++  <div [innerHTML]="stage.descripcion"></div>
++  <br>
++  <h2>{{stage.nombre}} Image Gallery</h2>
++<div class="ionScroller">
++    <ion-scroll scrollX="true">
++      <ion-row >
++        <ion-col width-25 *ngFor="let test of imageTest">
++          <img class="sliderImage" src="wp-content/proinpa-logo.jpg" (click)="imageClick(test)">
++        </ion-col>
++      </ion-row>
++    </ion-scroll>
++</div>
++
++<div class='cards-bg'>
++  <ion-card>
++    <ion-card-header>View Data Associated with {{stage.nombre}}</ion-card-header>
++    <ion-list>
++      <button ion-item>
++
++        <!--might eventually use thumbnails here, but probably without the card format-->
++
++      <!-- <ion-thumbnail item-left>
++        <img src="img/thumbnail-puppy-1.jpg">
++      </ion-thumbnail> -->
++
++
++      Management Possibilities
++      <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
++      </button>
++      <button ion-item (click)="abioticosClick()">Abioticos
++        <ion-icon name="arrow-round-forward" clear item-right></ion-icon></button>
++      <button ion-item>Diseases
++        <ion-icon name="arrow-round-forward" clear item-right></ion-icon></button>
++      <button ion-item>Pests
++        <ion-icon name="arrow-round-forward" clear item-right></ion-icon></button>
++      <!-- <button *ngIf="{{stage.stage_id}}==1">Varieties</button> -->
++    </ion-list>
++  </ion-card>
++</div>
++>>>>>>> 86f07bdbe758b05b1de946d71ae91033a5e3e7e7
+ 
+ 
+ </ion-content>

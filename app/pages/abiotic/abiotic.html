@@ -10,11 +10,11 @@
 
 <ion-content padding class="page1 card-background-image">
   <h1>Abioticos</h1>
-  <h4>Abioticos associated with {{abioticos.ab_nombre}}</h4>
+  <h4>Abioticos associated with {{stage.nombre}}</h4>
   <div *ngFor="let abiotic of abioticos; let i=index">
-    <ion-card (click)="abioticosClick(abioticos.abioticos_id)">
+    <ion-card>
       <img src="{{abiotic.file_url}}" (error)="updateUrl(i)">
-      <div class="card-title">{{abioticos.nombre}}</div>
+      <div class="card-title">{{abiotic.ab_nombre}}</div>
     </ion-card>
   </div>
 

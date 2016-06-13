@@ -41,7 +41,7 @@ export class StartPage {
         //second call to getQueries.  This should probably be redone as get full array of queries, then run them all!
         var r=sql.getQueries('initialAbioticos');
         this.sql.query(r).then((result)=> {
-          this.sql.setValue('Abioticos', result);
+          this.sql.setValue('abioticos', result);
           this.dbLoaded++;
         })
       });
