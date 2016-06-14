@@ -4,21 +4,17 @@
   </ion-buttons>
   <ion-title>
     <ion-icon name="images" large></ion-icon>
-    Fotos de ...
+    Fotos de {{galleryMeta.title}}
   </ion-title>
 </ion-toolbar>
 
 <ion-content padding class="image-popup">
-  <ion-slides pager>
-    <ion-slide style="background-color: green">
-      <h2>Photo 1</h2>
+  <ion-slides pager [options]="slideOptions">
+    <ion-slide *ngFor="let image of galleryMeta.imageList">
+      <img class="slideImage" src="{{image.src}}">
+      {{image.description}}
     </ion-slide>
-    <ion-slide style="background-color: blue">
-      <h2>Photo 2</h2>
-    </ion-slide>
-    <ion-slide style="background-color: red">
-      <h2>Photo 3</h2>
-    </ion-slide>
+
   </ion-slides>
   
 </ion-content>

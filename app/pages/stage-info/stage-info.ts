@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, Modal} from 'ionic-angular';
+import {NavController, NavParams, Modal} from 'ionic-angular';
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 import {Abiotic} from '../abiotic/abiotic'
 import {Diseases} from '../diseases/diseases'
@@ -18,12 +18,12 @@ export class StageInfoPage {
     this.sql = sql;
     this.stage = this.sql.getValue('stages')[this.sql.getValue('stageArrayIndex')];
     this.imageTest = [
+      {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 0},
       {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 1},
       {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 2},
       {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 3},
       {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 4},
-      {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 5},
-      {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 6}
+      {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 5}
     ]
   }
   pushAbiotic(){this.nav.push(Abiotic)}
@@ -33,9 +33,7 @@ export class StageInfoPage {
   pushFullStage(){this.nav.push(FullStage)}
 
   imageClick(image){
-    console.log(image);
-    let modal = Modal.create(ImagePopup);
-    this.nav.present(modal);
-
+    let modal = Modal.create(ImagePopup, {imageList:this.imageTest,activeImage:image, title:this.stage.nombre});
+    this.nav.present(modal)
   }
 }
