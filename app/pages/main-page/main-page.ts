@@ -2,10 +2,11 @@ import {Component} from "@angular/core";
 import {NavController} from 'ionic-angular';
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 import {StageInfoPage} from '../stage-info/stage-info'
+import {ImageFallback} from '../../directives/image-fallback'
 
 @Component({
   templateUrl: 'build/pages/main-page/main-page.html',
-  directives: [],
+  directives: [ImageFallback],
 })
 export class MainPage {
   stages:any;
@@ -43,4 +44,21 @@ export class MainPage {
     //if no invalid characters then possibly file just missing
     if(invalidCount==0){this.stages[stageIndex].file_url='wp-content/sin imagen.png'}
   }
+
+  //deprecated url cleaning function
+  /*cleanUrl(event){
+    console.log(this)
+    console.log('cleaning url');
+    var currentUrl=event.srcElement.src;
+    var newUrl:string = currentUrl;
+    var invalidCount:number=0
+    for (var char:string of currentUrl){
+      if(char.charCodeAt(0)>127){
+        newUrl = newUrl.replace(char,'_')
+        invalidCount++
+      }
+    }
+    if(invalidCount==0){return 'wp-content/sin imagen.png'}
+    else{return newUrl}
+  }*/
 }
