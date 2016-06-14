@@ -5,4 +5,9 @@
   .sliderImage{
     max-height: 9em;
   }
+  /*override default item thumbnail sizes*/
+  .viewImage{
+    max-width:8em !important;
+    max-height:8em !important;
+  }
 }

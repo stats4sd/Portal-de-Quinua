@@ -5,11 +5,10 @@
 <ion-content padding class="page1 card-background-image">
   <h1>Etapes</h1>
   <h4>seleccione una etapa para detalles</h4>
-  <div *ngFor="let stage of stages">
-    <ion-card (click)="stageClick(stage.stage_id)">
-      <img src="wp-content/uploads/stage/{{stage.nombre}}.png" onError="this.onerror=null;this.src='wp-content/sin imagen.png'">
+  <div *ngFor="let stage of stages; let i=index">
+    <ion-card (click)="stageClick(i)">
+      <img src="{{stage.file_url}}" image-fallback>
       <div class="card-title">{{stage.nombre}}</div>
-      <div class="card-subtitle">Subtitle</div>
     </ion-card>
   </div>
 

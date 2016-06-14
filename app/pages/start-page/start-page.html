@@ -5,10 +5,11 @@
       <img [src]="slide.image" class="slide-image"/>
       <h2 class="slide-title" [innerHTML]="slide.title"></h2>
       <p [innerHTML]="slide.description"></p>
-      <div *ngIf="!dbLoaded">
+      <div *ngIf="dbLoaded!=2">
         Loading Data
       </div>
-      <button large proinpa-green (click)="startButtonClick()" *ngIf="dbLoaded">
+      <!-- dbLoaded==2 because 2 queries must be loaded. Need to update to know how many queries there are automatically...? -->
+      <button large proinpa-green (click)="startButtonClick()" *ngIf="dbLoaded==2">
         Empieza
         <ion-icon name="arrow-forward"></ion-icon>
       </button>
