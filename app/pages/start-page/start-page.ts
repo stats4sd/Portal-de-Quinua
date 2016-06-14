@@ -12,7 +12,7 @@ export class StartPage {
   sql:any;
   queries:any;
   dbLoaded:number;
-  q:any;
+  sliderOptions:[];
 
   constructor(public nav: NavController, sql: SqLiteService, platform:Platform, ) {
     this.sql=sql;
@@ -20,6 +20,9 @@ export class StartPage {
     //dbLoaded tracks number of queries successfully run.
     this.dbLoaded=0;
     //initial page can be turned into multiple page swipes if wanted (add more slides to array)
+    this.sliderOptions={
+      pager:false
+    };
     this.slides = [
       {
         title: "<b>Proinpa Informacion Servicio</b>",
