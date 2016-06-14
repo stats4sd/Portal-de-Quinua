@@ -12,8 +12,8 @@
     <div class="ionScroller">
         <ion-scroll scrollX="true">
             <ion-row >
-                <ion-col width-25 *ngFor="let test of imageTest">
-                    <img class="sliderImage" src="wp-content/proinpa-logo.jpg" (click)="imageClick(test)">
+                <ion-col width-25 *ngFor="let image of imageTest">
+                    <img class="sliderImage" src="{{image.src}}" (click)="imageClick(image)">{{image.index}}
                 </ion-col>
             </ion-row>
         </ion-scroll>
