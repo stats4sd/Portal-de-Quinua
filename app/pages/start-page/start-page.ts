@@ -11,14 +11,19 @@ export class StartPage {
   stages:any;
   sql:any;
   queries:any;
-  dbLoaded:number;
-  sliderOptions:[];
+  jsonDbLoaded:boolean;
+  SQLDbLoaded:number;
+  loadSQL:boolean;
+  sliderOptions:any;
 
   constructor(public nav: NavController, sql: SqLiteService, platform:Platform, ) {
     this.sql=sql;
     this.stages=[];
-    //dbLoaded tracks number of queries successfully run.
-    this.dbLoaded=0;
+    //dbLoaded displays start button when loaded.
+    this.jsonDbLoaded=false;
+    this.SQLDbLoaded=0;
+    //variable to decide whether to attempt loading sql - will need to determine script for use and update html page accordingly
+    this.loadSQL=true;
     //initial page can be turned into multiple page swipes if wanted (add more slides to array)
     this.sliderOptions={
       pager:false
@@ -32,22 +37,31 @@ export class StartPage {
     ];
     //when platform is ready load database. sets dbLoaded variable true which shows enter button
     platform.ready().then(() => {
-      sql.loadDatabase().then((result)=> {
-        //prepare data for next page for smoother transitions. Start button only appears after complete
-        //in future may want to actually cache these results in a local db
-        var q=sql.getQueries('initialStages');
-        this.sql.query(q).then((result)=> {
-          this.sql.setValue('stages', result);
-          this.dbLoaded++;
-        });
+      //first load cachedDB
+      this.sql.loadFromJson().then((result)=>{
+        console.log(result);
+        this.jsonDbLoaded=true;
 
-        //second call to getQueries.  This should probably be redone as get full array of queries, then run them all!
-        var r=sql.getQueries('initialAbioticos');
-        this.sql.query(r).then((result)=> {
-          this.sql.setValue('abioticos', result);
-          this.dbLoaded++;
-        })
-      });
+        //load sql db if required
+        if(this.loadSQL==true){
+          sql.loadDatabase().then((result)=> {
+            //prepare data for next page for smoother transitions. Start button only appears after complete
+            this.sql.queryByName('initialStages').then((result)=> {
+              this.sql.setValue('stages', result);
+              this.SQLDbLoaded++;
+              console.log(this.SQLDbLoaded)
+            });
+            //second call to getQueries.  This should probably be redone as get full array of queries, then run them all!
+            this.sql.queryByName('initialAbioticos').then((result)=> {
+              this.sql.setValue('abioticos', result);
+              this.SQLDbLoaded++;
+              console.log(this.SQLDbLoaded)
+            })
+          });
+        }
+      })
+
+
     })
   }
 

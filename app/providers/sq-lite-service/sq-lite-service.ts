@@ -14,6 +14,7 @@ export class SqLiteService {
   db:any;
   dbLoaded:boolean;
   cachedQueries:any;
+  jsonData:any = null
 
   constructor(public http:Http, platform:Platform) {
     this.platform = platform;
@@ -30,7 +31,7 @@ export class SqLiteService {
       xhr.onload = function (e) {
         var uInt8Array = new Uint8Array(this.response);
         this.db = new sql.Database(uInt8Array);
-        console.log('db loaded successfully');
+        console.log('SQl db loaded successfully');
         resolve(true);
         // contents is now [{columns:['col1','col2',...], values:[[first row], [second row], ...]}]
       };
@@ -39,21 +40,33 @@ export class SqLiteService {
   }
 
   /*sql query async so using promises*/
-  query(queryText) {
+  queryByName(queryName) {
     return new Promise((resolve, reject) => {
-      var sql = window.SQL;
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'proinpa.db', true);
-      xhr.responseType = 'arraybuffer';
-      xhr.onload = function () {
-        var uInt8Array = new Uint8Array(this.response);
-        this.db = new sql.Database(uInt8Array);
-        var contents = this.db.exec(queryText);
-        var rowContents = convertToRowFormat(contents[0]);
-        console.log(rowContents);
-        resolve(rowContents)
-      };
-      xhr.send();
+      //first try local cache
+      if(this.jsonData[queryName]!=undefined){
+        console.log('loading cached data')
+        resolve(this.jsonData[queryName])
+      }
+      //if doesn't exist execute - note, still only working with named queries
+      else{
+        console.log('no cached data, running sql query')
+        var queryText=this.getQueries(queryName)
+        var sql = window.SQL;
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'proinpa.db', true);
+        xhr.responseType = 'arraybuffer';
+        xhr.onload = function () {
+          var uInt8Array = new Uint8Array(this.response);
+          this.db = new sql.Database(uInt8Array);
+          var contents = this.db.exec(queryText);
+          var rowContents = convertToRowFormat(contents[0]);
+          console.log(rowContents);
+          resolve(rowContents)
+        };
+        xhr.send();
+      }
+
+
     });
   }
 
@@ -68,6 +81,27 @@ export class SqLiteService {
   getQueries(name) {
     console.log('getting query by name: ' + name);
     return masterQueries[name];
+  }
+
+  loadFromJson(){
+    if (this.jsonData) {
+      return Promise.resolve(this.data);
+    }
+    return new Promise(resolve => {
+      this.http.get('cachedQueries.json')
+          .map(res => res.json())
+          .subscribe(data => {
+            this.jsonData = data;
+            resolve(this.jsonData);
+          });
+    });
+  }
+}
+
+function getQueryFromCache(queryName){
+  if(!this.json){return false}
+  else{
+
   }
 }
 
