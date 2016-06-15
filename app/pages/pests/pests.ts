@@ -28,19 +28,18 @@ export class Pests {
   constructor(public sql:SqLiteService, nav: NavController) {
     this.sql = sql;
     this.nav = nav;
+
+    //grab chosen stage ID and full pest list data
     this.stage=this.sql.getValue('stages')[this.sql.getValue('stageArrayIndex')];
     this.pests = this.sql.getValue('pests');
-    console.log('pests = ')
-    console.log(this.pests);
-    console.log(this.pests[0].stageList);
 
-    for(var i=0; i<this.pests.length; i++) {
-      this.pests[i].stageList = this.pests[i].stageList.split(",")
-      console.log(this.pests[i]);
+    //iterate through pest data and turn stageList into an array
+    ////will eventually move to main data handling area and generalise for other types of idList...
+    for(var pest of this.pests) {
+      pest.stageList = pest.stageList.split(",")
+      console.log(pest);
     }
 
-    console.log('new pests = ');
-    console.log(this.pests)
   }
 
 }
