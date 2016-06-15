@@ -41,7 +41,7 @@ export class SqLiteService {
   }
 
   /*sql query async so using promises*/
-  queryByName(queryName) {
+  query(queryName, queryType = "static", par1 = "", par2 = "", par3 = "") {
     return new Promise((resolve, reject) => {
       //first try local cache
       if(this.jsonData[queryName]!=undefined){
@@ -51,7 +51,14 @@ export class SqLiteService {
       //if doesn't exist execute - note, still only working with named queries
       else{
         console.log('no cached data, running sql query')
-        var queryText=this.getQueries(queryName)
+        var queryText;
+        if(queryType=="static") {
+          queryText=this.getQueries(queryName)
+        }
+        else{
+          queryText=getFilterQuery(par1, par2, par3)
+          console.log(queryText);
+        }
         var sql = window.SQL;
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'proinpa.db', true);
@@ -60,9 +67,15 @@ export class SqLiteService {
           var uInt8Array = new Uint8Array(this.response);
           this.db = new sql.Database(uInt8Array);
           var contents = this.db.exec(queryText);
-          var rowContents = convertToRowFormat(contents[0]);
-          console.log(rowContents);
-          resolve(rowContents)
+          console.log(contents)
+          if(contents.length>0){
+            var rowContents = convertToRowFormat(contents[0]);
+            console.log(rowContents);
+            resolve(rowContents)
+          }
+          else {
+            resolve(contents);
+          }
         };
         xhr.send();
       }
@@ -70,6 +83,8 @@ export class SqLiteService {
 
     });
   }
+
+
 
   setValue(key, value) {
     this[key] = value
@@ -118,6 +133,40 @@ function convertToRowFormat(contents) {
   }
   return rowArray
 }
+
+function getFilterQuery(tbl, filter, filterId) {
+
+  var idLabel;
+
+  //switch statement to generate name of id column, thanks to silly inconsistent pluralisations in table names
+  switch(tbl) {
+    case "inputs":
+      idLabel = "input";
+    break;
+    case "pests":
+      idLabel = "pest";
+    break;
+    default:
+      idLabel = tbl;
+  }
+
+  var query = "SELECT `a`.*, `b`.`file_url` \
+  FROM `" + tbl + "` a \
+  LEFT JOIN `media_" + tbl + "` b ON a.`" + idLabel + "_id` = b.`" + idLabel + "_id` \
+  INNER JOIN ( \
+          SELECT `" + idLabel + "_id`, MIN(`file_url`) 'firstfile', `file_type` \
+          FROM `media_" + tbl + "` \
+          GROUP BY `" + idLabel + "_id` \
+      ) c ON a.`" + idLabel + "_id` = b.`" + idLabel + "_id` AND \
+    b.`file_url` = c.`firstfile` \
+    INNER JOIN `jnc_" + filter + "_" + idLabel +"` d \
+    ON a.`" + idLabel + "_id` = d.`" + idLabel + "_id` \
+    WHERE `d`.`" + filter + "_id` = " + filterId + "\
+    ORDER BY a.`" + idLabel + "_id`";
+
+  return query;
+}
+
 
 //queries to be executed within the app
 var masterQueries=
