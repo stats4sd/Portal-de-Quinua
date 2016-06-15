@@ -8,6 +8,15 @@
   <ion-title>Pests</ion-title>
 </ion-navbar>
 
-<ion-content padding class="pests">
-  
+<ion-content padding class="page1 card-background-image">
+  <h1>Pests</h1>
+  <h4>Pests associated with {{stage.nombre}}</h4>
+  <div *ngFor="let pest of pests; let i=index">
+    <ion-card>
+      <img src="{{pest.file_url}}" (error)="updateUrl(i)">
+      <div class="card-title">{{pest.pest_nombre}}</div>
+    </ion-card>
+  </div>
+
+
 </ion-content>

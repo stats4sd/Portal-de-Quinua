@@ -56,7 +56,18 @@ export class StartPage {
               this.sql.setValue('abioticos', result);
               this.SQLDbLoaded++;
               console.log(this.SQLDbLoaded)
-            })
+            });
+            //third call to getQueries.  This should probably be redone as get full array of queries, then run them all!
+            this.sql.queryByName('initialDisease').then((result)=> {
+              this.sql.setValue('disease', result);
+              this.SQLDbLoaded++;
+              console.log(this.SQLDbLoaded)
+            });
+            this.sql.queryByName('initialPests').then((result)=> {
+              this.sql.setValue('pests', result);
+              this.SQLDbLoaded++;
+              console.log(this.SQLDbLoaded)
+            });
           });
         }
       })

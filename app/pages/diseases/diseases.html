@@ -1,5 +1,5 @@
 <!--
-  Generated template for the DiseasesPage page.
+  Generated template for the DiseasePage page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
@@ -8,6 +8,15 @@
   <ion-title>Diseases</ion-title>
 </ion-navbar>
 
-<ion-content padding class="diseases">
-  
+<ion-content padding class="page1 card-background-image">
+  <h1>Diseases</h1>
+  <h4>Diseases associated with {{stage.nombre}}</h4>
+  <div *ngFor="let d of disease; let i=index">
+    <ion-card>
+      <img src="{{d.file_url}}" (error)="updateUrl(i)">
+      <div class="card-title">{{d.dis_nombre}}</div>
+    </ion-card>
+  </div>
+
+
 </ion-content>

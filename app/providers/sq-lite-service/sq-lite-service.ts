@@ -16,6 +16,7 @@ export class SqLiteService {
   cachedQueries:any;
   jsonData:any = null
 
+
   constructor(public http:Http, platform:Platform) {
     this.platform = platform;
     this.cachedQueries = {}
@@ -121,33 +122,73 @@ function convertToRowFormat(contents) {
 //queries to be executed within the app
 var masterQueries=
 {
-  initialStages: `
-  SELECT \`a\`.*, \`b\`.\`file_url\`
-  FROM \`stage\` a
-  LEFT JOIN \`media_stage\` b
-  ON a.\`stage_id\` = b.\`stage_id\`
-  INNER JOIN (
-    SELECT \`stage_id\`, MIN(\`file_url\`) 'firstfile', \`file_type\`
-    FROM \`media_stage\`
-    GROUP BY \`stage_id\`
-      ) c
-      ON a.\`stage_id\` = b.\`stage_id\`
-      AND b.\`file_url\` = c.\`firstfile\`
-      ORDER BY a.\`stage_id\``,
+  initialStages: "  \
+  SELECT `a`.*, `b`.`file_url`  \
+  FROM `stage` a  \
+  LEFT JOIN `media_stage` b \
+  ON a.`stage_id` = b.`stage_id`  \
+  INNER JOIN (  \
+    SELECT `stage_id`, MIN(`file_url`) 'firstfile', `file_type` \
+    FROM `media_stage`  \
+    GROUP BY `stage_id` \
+  ) c \
+      ON a.`stage_id` = b.`stage_id`  \
+      AND b.`file_url` = c.`firstfile`  \
+      ORDER BY a.`stage_id`",
+
   simpleQuery: `
     SELECT * from stage
     `,
-  initialAbioticos: `
-  SELECT \`a\`.*, \`b\`.\`file_url\`
-  FROM \`abioticos\` a
-  LEFT JOIN \`media_abioticos\` b
-  ON a.\`abioticos_id\` = b.\`abioticos_id\`
-  INNER JOIN (
-    SELECT \`abioticos_id\`, MIN(\`file_url\`) 'firstfile', \`file_type\`
-    FROM \`media_abioticos\`
-    GROUP BY \`abioticos_id\`
-      ) c
-      ON a.\`abioticos_id\` = b.\`abioticos_id\`
-      AND b.\`file_url\` = c.\`firstfile\`
-      ORDER BY a.\`abioticos_id\``
+
+  initialAbioticos: " \
+  SELECT `a`.*, `b`.`file_url`, GROUP_CONCAT(d.`stage_id`) 'stageList' \
+  FROM `abioticos` a \
+  LEFT JOIN `media_abioticos` b \
+  ON a.`abioticos_id` = b.`abioticos_id` \
+  INNER JOIN ( \
+    SELECT `abioticos_id`, MIN(`file_url`) 'firstfile', `file_type` \
+    FROM `media_abioticos` \
+    GROUP BY `abioticos_id` \
+  ) c \
+  ON a.`abioticos_id` = b.`abioticos_id` \
+  AND b.`file_url` = c.`firstfile` \
+  INNER JOIN `jnc_stage_abioticos` d \
+  ON a.`abioticos_id` = d.`abioticos_id` \
+  GROUP BY a.`abioticos_id` \
+  ORDER BY a.`abioticos_id`",
+
+  initialDisease: " \
+  SELECT `a`.*, `b`.`file_url`, GROUP_CONCAT(d.`stage_id`) 'stageList' \
+  FROM `disease` a \
+  LEFT JOIN `media_disease` b \
+  ON a.`disease_id` = b.`disease_id` \
+  INNER JOIN ( \
+    SELECT `disease_id`, MIN(`file_url`) 'firstfile', `file_type` \
+    FROM `media_disease` \
+    GROUP BY `disease_id` \
+  ) c \
+  ON a.`disease_id` = b.`disease_id` \
+  AND b.`file_url` = c.`firstfile` \
+  INNER JOIN `jnc_stage_disease` d \
+  ON a.`disease_id` = d.`disease_id` \
+  GROUP BY a.`disease_id` \
+  ORDER BY a.`disease_id`",
+
+  initialPests: " \
+  SELECT `a`.*, `b`.`file_url`, GROUP_CONCAT(d.`stage_id`) 'stageList' \
+  FROM `pests` a \
+  LEFT JOIN `media_pests` b \
+  ON a.`pest_id` = b.`pest_id` \
+  INNER JOIN ( \
+    SELECT `pest_id`, MIN(`file_url`) 'firstfile', `file_type` \
+    FROM `media_pests` \
+    GROUP BY `pest_id` \
+  ) c \
+  ON a.`pest_id` = b.`pest_id` \
+  AND b.`file_url` = c.`firstfile` \
+  INNER JOIN `jnc_stage_pest` d \
+  ON a.`pest_id` = d.`pest_id` \
+  GROUP BY a.`pest_id` \
+  ORDER BY a.`pest_id`"
+
 };
