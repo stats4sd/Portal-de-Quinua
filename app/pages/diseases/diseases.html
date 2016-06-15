@@ -11,12 +11,22 @@
 <ion-content padding class="page1 card-background-image">
   <h1>Diseases</h1>
   <h4>Diseases associated with {{stage.nombre}}</h4>
-  <div *ngFor="let d of disease; let i=index">
-    <ion-card>
-      <img src="{{d.file_url}}" (error)="updateUrl(i)">
-      <div class="card-title">{{d.dis_nombre}}</div>
-    </ion-card>
+  <div *ngIf="disease.length>0 && loaded">
+    <div *ngFor="let d of disease; let i=index">
+      <ion-card>
+        <img src="{{d.file_url}}" (error)="updateUrl(i)">
+        <div class="card-title">{{d.dis_nombre}}</div>
+      </ion-card>
+    </div>
   </div>
+  <div *ngIf="disease.length==0 && loaded">
+    There are no diseases for this stage
+  </div>
+  <div *ngIf="!loaded">
+    Loading data...
+    ...
+    ...still loading...
 
-
+    ...if you're still reading this, it's probably taking too long...
+  </div>
 </ion-content>
