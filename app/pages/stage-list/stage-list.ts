@@ -21,7 +21,7 @@ export class StageList {
 
   stageClick(i) {
     this.sql.setValue('stageArrayIndex',i);
-    this.nav.push(StageInfoPage);
+    this.nav.push(StageInfoPage, {stageNumber:i});
   }
 
   ionViewLoaded(){

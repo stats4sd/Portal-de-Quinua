@@ -1,41 +1,4 @@
 {
-  "simpleQuery": [
-    {
-      "stage_id": 1,
-      "nombre": "Siembra",
-      "descripcion": "<p>La siembra de quinua se la realiza de forma manual y mecanizada con sembradoras, en ambos casos se requiere entre 4 a 8 Kg. de semilla por hectÃ¡rea. Es importante el uso de semilla seleccionada, mejor si es certificada.</p>"
-    },
-    {
-      "stage_id": 2,
-      "nombre": "Emergencia",
-      "descripcion": "<p>Ocurre cuando los cotiledones aÃºn unidos emergen del suelo a manera de una cabeza de fÃ³sforo hasta cuando se observan ocho hojas verdaderas extendidas.</p>"
-    },
-    {
-      "stage_id": 3,
-      "nombre": "Panojamiento",
-      "descripcion": "<p>Ocurre cuando la inflorescencia va emergiendo del Ã¡pice de la planta hasta cuando la inflorescencia sobre sale con mucha nitidez por encima de las hojas superiores.</p>"
-    },
-    {
-      "stage_id": 4,
-      "nombre": "FloraciÃ³n",
-      "descripcion": "<p>Ocurre cuando las flores se encuentran abiertas mostrando los estambres separados deÂ color amarillo hasta cuando el 50% tienen abundante polen en los estambres.</p>"
-    },
-    {
-      "stage_id": 5,
-      "nombre": "Grano",
-      "descripcion": "<p>Ocurre cuando los frutos al ser presionados entre las uÃ±as de los dedos pulgares explotan y dejan salir un lÃ­quido lechoso hasta cuando los frutos al ser presionados presentan resistencia a la penetraciÃ³n de las uÃ±as.</p>"
-    },
-    {
-      "stage_id": 6,
-      "nombre": "Cosecha",
-      "descripcion": "<p>La cosecha de quinua debe realizarse con la debida oportunidad para evitar no solo las pÃ©rdidas por efectos adversos del clima y ataque de aves sino, el deterioro de la calidad del grano.</p>"
-    },
-    {
-      "stage_id": 7,
-      "nombre": "Comercializacion",
-      "descripcion": "<p>La comercializaciÃ³n de quinua se realiza a nivel nacionalÂ en feriasÂ Â locales y a nivel internacional a travÃ©s deÂ empresas exportadoras.Â Â </p>"
-    }
-  ],
   "initialStages":[{"stage_id":1,"nombre":"Siembra","descripcion":"<p>La siembra de quinua se la realiza de forma manual y mecanizada con sembradoras, en ambos casos se requiere entre 4 a 8 Kg. de semilla por hectárea. Es importante el uso de semilla seleccionada, mejor si es certificada.</p>","file_url":"wp-content/uploads/stage/Siembra de quinua.png"},
     {"stage_id":2,"nombre":"Emergencia","descripcion":"<p>Ocurre cuando los cotiledones aún unidos emergen del suelo a manera de una cabeza de fósforo hasta cuando se observan ocho hojas verdaderas extendidas.</p>","file_url":"wp-content/uploads/stage/Nueva imagen.jpg"},
     {"stage_id":3,"nombre":"Panojamiento","descripcion":"<p>Ocurre cuando la inflorescencia va emergiendo del ápice de la planta hasta cuando la inflorescencia sobre sale con mucha nitidez por encima de las hojas superiores.</p>","file_url":"wp-content/uploads/stage/Panojamiento.png"},

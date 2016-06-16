@@ -17,10 +17,12 @@ export class StageInfoPage {
   sql:any;
   stage:any;
   imageTest:any;
+  badgeInfo:any;
   constructor(public nav: NavController, sql:SqLiteService) {
     this.nav = nav;
     this.sql = sql;
     this.stage = this.sql.getValue('stages')[this.sql.getValue('stageArrayIndex')];
+    this.badgeInfo = this.sql.getInfoLengths(this.stage.stage_id);
     this.imageTest = [
       {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 0},
       {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 1},
@@ -41,4 +43,8 @@ export class StageInfoPage {
     let modal = Modal.create(ImagePopup, {imageList:this.imageTest,activeImage:image, title:this.stage.nombre});
     this.nav.present(modal)
   }
+  //function to calculate number of results behind each info link
+
 }
+
+

@@ -33,7 +33,6 @@ export class SqLiteService {
         this.db = new sql.Database(uInt8Array);
         console.log('SQl db loaded successfully');
         resolve(true);
-        // contents is now [{columns:['col1','col2',...], values:[[first row], [second row], ...]}]
       };
       xhr.send();
     })
@@ -114,6 +113,21 @@ export class SqLiteService {
           });
     });
   }
+
+  //function to filter all jsonData to only that which contains stageId, seperated by info section (e.g. disease, pest)
+  //used to prepopulate badge info, can later be used as filter when working with json data
+  getInfoLengths(stageId){
+    var badgeInfo={};
+    var filtered = 'no cached json data';
+    for (let infoTitle of infoMapping){
+     if(this.jsonData[infoTitle.masterQuery]!=undefined){
+       var filtered = filterByStage(this.jsonData[infoTitle.masterQuery],stageId)
+     }
+      badgeInfo[infoTitle.name]=filtered
+    }
+    console.log(badgeInfo)
+    return badgeInfo
+  }
 }
 
 function convertToRowFormat(contents) {
@@ -184,16 +198,41 @@ function getFilterQuery(tbl, filter, filterId) {
   return query;
 }
 
+//slightly messy function to take json object containing stageList string and determine whether includes a specific stage id
+function filterByStage(data,stageId){
+  var resultsArray=[];
+  if(data[0].stageList!=undefined){
+    for (let item of data){
+      var containsStage=false;
+      var stageArray=item.stageList.split(',');
+      for (let e of stageArray){
+        if (parseInt(e)==stageId){containsStage=true;}
+      }
+      if(containsStage==true){resultsArray.push(item)}
+    }
+    return(resultsArray)
+  }
+  else return 'no stageList found'
+}
+
 //Mapping stage ids to names
-var stageMapping={
-  1:"Siembra",
-  2:"Emergencia",
-  3:"Panojamiento",
-  4:"Floración",
-  5:"Grano",
-  6:"Cosecha",
-  7:"Comercialization"
-};
+var stageMapping=[
+  {id:1,name:"Siembra",masterQuery:'null'},
+  {id:2,name:"Emergencia",masterQuery:'null'},
+  {id:3,name:"Panojamiento",masterQuery:'null'},
+  {id:4,name:"Floración",masterQuery:'null'},
+  {id:5,name:"Grano",masterQuery:'null'},
+  {id:6,name:"Cosecha",masterQuery:'null'},
+  {id:7,name:"Comercialization",masterQuery:'null'}
+    ];
+
+var infoMapping=[
+  {id:1,name:'possibilities',masterQuery:null},
+  {id:2,name:'abiotics',masterQuery:'initialAbioticos'},
+  {id:3,name:'diseases',masterQuery:'initialDisease'},
+  {id:4,name:'pests',masterQuery:'initialPests'},
+  {id:5,name:'varieties',masterQuery:null},
+]
 
 //queries to be executed within the app
 var masterQueries=
