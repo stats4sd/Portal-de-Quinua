@@ -31,7 +31,7 @@ export class StartPage {
     this.slides = [
       {
         title: "<b>Proinpa Informacion Servicio</b>",
-        description: "Esta applicacion...",
+        description: "Esta applicacion es parar ayudar productores de quinua en Bolivia con...",
         image: "wp-content/proinpa-logo.jpg",
       },
     ];
@@ -39,7 +39,7 @@ export class StartPage {
     platform.ready().then(() => {
       //first load cachedDB
       this.sql.loadFromJson().then((result)=>{
-        console.log(result);
+        console.log('DB cache loaded');
         this.jsonDbLoaded=true;
 
         //load sql db if required
@@ -49,7 +49,6 @@ export class StartPage {
             this.sql.queryByName('initialStages').then((result)=> {
               this.sql.setValue('stages', result);
               this.SQLDbLoaded++;
-              console.log(this.SQLDbLoaded)
             });
             //second call to getQueries.  This should probably be redone as get full array of queries, then run them all!
             this.sql.queryByName('initialAbioticos').then((result)=> {

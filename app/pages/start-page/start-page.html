@@ -6,7 +6,7 @@
       <h2 class="slide-title" [innerHTML]="slide.title"></h2>
       <p [innerHTML]="slide.description"></p>
       <div *ngIf="SQLDbLoaded!=2">
-        Loading Data
+        Cargando...
       </div>
       <button large proinpa-green (click)="startButtonClick()" *ngIf="SQLDbLoaded==4">
         Empieza
