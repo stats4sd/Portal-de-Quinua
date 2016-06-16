@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController,Modal,ViewController,NavParams} from 'ionic-angular';
 import {Platform} from 'ionic-angular';
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 import {ImageFallback} from '../../directives/image-fallback'
+import {DiseasePopupPage} from '../disease-popup/disease-popup';
 
 /*
   Generated class for the DiseasesPage page.
@@ -23,7 +24,7 @@ export class Diseases {
   disease:any;
   loaded:boolean;
 
-  constructor(public sql:SqLiteService, nav: NavController, platform:Platform) {
+  constructor(public sql:SqLiteService, nav: NavController, platform:Platform ) {
     this.sql = sql;
     this.nav = nav;
     this.disease = [];
@@ -48,5 +49,10 @@ export class Diseases {
         console.log(this.loaded)
       });
     });
+  }
+
+  diseaseClick(i) {
+    this.sql.setValue('diseaseArrayIndex',i);
+    this.nav.push(DiseasePopupPage, this.disease[i]);
   }
 }

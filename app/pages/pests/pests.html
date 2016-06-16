@@ -14,7 +14,7 @@
   <div *ngIf="pests.length>0 && loaded">
     <div *ngFor="let pest of pests; let i=index">
       <ion-card>
-        <img src="{{pest.file_url}}" (error)="updateUrl(i)">
+        <img src="{{pest.file_url}}" (error)="updateUrl(i)" (click)="pestClick(i)">
         <div class="card-title">{{pest.pest_nombre}}</div>
       </ion-card>
     </div>
@@ -22,7 +22,7 @@
   <div *ngIf="pests.length==0 && loaded">
     There are no pests for this stage
   </div>
-  
+
   <div *ngIf="!loaded">
     Loading data...
     ...

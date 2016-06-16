@@ -3,6 +3,7 @@ import {NavController} from 'ionic-angular';
 import {Platform} from 'ionic-angular';
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 import {ImageFallback} from '../../directives/image-fallback'
+import {PestPopupPage} from '../pest-popup/pest-popup';
 
 
 /*
@@ -52,5 +53,11 @@ export class Pests {
       })
     });
   }
+
+  pestClick(i) {
+    this.sql.setValue('abioticArrayIndex',i);
+    this.nav.push(PestPopupPage, this.pests[i]);
+  }
+
 
 }

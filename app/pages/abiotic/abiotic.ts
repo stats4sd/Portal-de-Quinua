@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, NavParams, Modal} from 'ionic-angular';
 import {Platform} from 'ionic-angular';
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 import {ImageFallback} from '../../directives/image-fallback'
-
+import {AbioticPopupPage} from '../abiotic-popup/abiotic-popup';
 /*
   Generated class for the AbioticosPage page.
 
@@ -39,6 +39,8 @@ export class Abiotic{
     //   console.log(pest);
     // }
     console.log(this.stage);
+
+    //call query to generate Abiotic list.
     platform.ready().then(() => {
       this.sql.query("", "filter", "abioticos", "stage", this.stage.stage_id).then((result)=> {
         this.abioticos = result;
@@ -46,7 +48,14 @@ export class Abiotic{
         this.loaded = true;
         console.log(this.loaded)
       });
-    })
+    });
 
   }
+
+  abioticClick(i) {
+    this.sql.setValue('abioticArrayIndex',i);
+    this.nav.push(AbioticPopupPage, this.abioticos[i]);
+  }
+
+
 }
