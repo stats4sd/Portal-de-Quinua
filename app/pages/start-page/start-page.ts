@@ -16,7 +16,7 @@ export class StartPage {
   loadSQL:boolean;
   sliderOptions:any;
 
-  constructor(public nav: NavController, sql: SqLiteService, platform:Platform, ) {
+  constructor(public nav: NavController, sql: SqLiteService, platform:Platform ) {
     this.sql=sql;
     this.stages=[];
     //dbLoaded displays start button when loaded.
@@ -46,23 +46,23 @@ export class StartPage {
         if(this.loadSQL==true){
           sql.loadDatabase().then((result)=> {
             //prepare data for next page for smoother transitions. Start button only appears after complete
-            this.sql.queryByName('initialStages').then((result)=> {
+            this.sql.query('initialStages').then((result)=> {
               this.sql.setValue('stages', result);
               this.SQLDbLoaded++;
             });
             //second call to getQueries.  This should probably be redone as get full array of queries, then run them all!
-            this.sql.queryByName('initialAbioticos').then((result)=> {
+            this.sql.query('initialAbioticos').then((result)=> {
               this.sql.setValue('abioticos', result);
               this.SQLDbLoaded++;
               console.log(this.SQLDbLoaded)
             });
             //third call to getQueries.  This should probably be redone as get full array of queries, then run them all!
-            this.sql.queryByName('initialDisease').then((result)=> {
+            this.sql.query('initialDisease').then((result)=> {
               this.sql.setValue('disease', result);
               this.SQLDbLoaded++;
               console.log(this.SQLDbLoaded)
             });
-            this.sql.queryByName('initialPests').then((result)=> {
+            this.sql.query('initialPests').then((result)=> {
               this.sql.setValue('pests', result);
               this.SQLDbLoaded++;
               console.log(this.SQLDbLoaded)

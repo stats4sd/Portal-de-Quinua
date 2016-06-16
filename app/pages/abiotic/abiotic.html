@@ -11,12 +11,24 @@
 <ion-content padding class="page1 card-background-image">
   <h1>Abioticos</h1>
   <h4>Abioticos associated with {{stage.nombre}}</h4>
-  <div *ngFor="let abiotic of abioticos; let i=index">
-    <ion-card>
-      <img src="{{abiotic.file_url}}" (error)="updateUrl(i)">
-      <div class="card-title">{{abiotic.ab_nombre}}</div>
-    </ion-card>
+  <div *ngIf="abioticos.length>0 && loaded==true">
+    <div *ngFor="let abiotic of abioticos; let i=index">
+      <ion-card>
+        <img src="{{abiotic.file_url}}" (error)="updateUrl(i)" (click)="abioticClick(i)">
+        <div class="card-title">{{abiotic.ab_nombre}}</div>
+      </ion-card>
+    </div>
   </div>
 
+  <div *ngIf="abioticos.length==0 && loaded">
+    There are no abioticos for this stage
+  </div>
+  <div *ngIf="!loaded">
+    Loading data...
+    ...
+    ...still loading...
+
+    ...if you're still reading this, it's probably taking too long...
+  </div>
 
 </ion-content>

@@ -41,17 +41,31 @@ export class SqLiteService {
   }
 
   /*sql query async so using promises*/
-  queryByName(queryName) {
+  query(queryName, queryType = "static", par1 = "", par2 = "", par3 = "") {
     return new Promise((resolve, reject) => {
       //first try local cache
       if(this.jsonData[queryName]!=undefined){
         console.log('loading cached data')
         resolve(this.jsonData[queryName])
       }
-      //if doesn't exist execute - note, still only working with named queries
+      //if doesn't exist, find and execute query:
       else{
         console.log('no cached data, running sql query')
-        var queryText=this.getQueries(queryName)
+        var queryText;
+
+        //Unless specified, query is 'static'.  Just find the named query using getQueries().
+        if(queryType=="static") {
+          queryText=this.getQueries(queryName)
+        }
+        //If a different type is specified, the query is 'dynamic'.
+        //..
+        //At present, the only dynamic query type is a filter query, so use getFilterQuery() to generate the queryText.
+        else{
+          queryText=getFilterQuery(par1, par2, par3)
+          console.log(queryText);
+        }
+
+        //Then run the code below to execute the queryText.
         var sql = window.SQL;
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'proinpa.db', true);
@@ -60,9 +74,19 @@ export class SqLiteService {
           var uInt8Array = new Uint8Array(this.response);
           this.db = new sql.Database(uInt8Array);
           var contents = this.db.exec(queryText);
-          var rowContents = convertToRowFormat(contents[0]);
-          console.log(rowContents);
-          resolve(rowContents)
+          console.log(contents)
+
+          //Added if statement to handle case where query returns an empty set.
+          //..
+          //convertToRowFormat() was breaking when contents[0] was undefined, so skip it if contents.length == 0.
+          if(contents.length>0){
+            var rowContents = convertToRowFormat(contents[0]);
+            console.log(rowContents);
+            resolve(rowContents)
+          }
+          else {
+            resolve(contents);
+          }
         };
         xhr.send();
       }
@@ -70,6 +94,8 @@ export class SqLiteService {
 
     });
   }
+
+
 
   setValue(key, value) {
     this[key] = value
@@ -118,6 +144,65 @@ function convertToRowFormat(contents) {
   }
   return rowArray
 }
+
+function getFilterQuery(tbl, filter, filterId) {
+  //function has 3 parameters:
+  // - tbl:  the main table to query;
+  // - filter:  the linked table to use as a filter;
+  // - filterId:  the ID value to filter by.
+  // eg: to return all pests that are linked to stage ID 1:  tbl='pest'; filter='stage'; filterId=1.
+  var idLabel;
+
+  //There is some silly inconcistent pluralisations in the names of tables and variables within the database.
+  //..
+  //Switch statement written to overcome these inconsitancies.
+  switch(tbl) {
+    case "inputs":
+      idLabel = "input";
+    break;
+    case "pests":
+      idLabel = "pest";
+    break;
+    default:
+      idLabel = tbl;
+  }
+
+  //janky bit about junction-table naming conventions: will fix later:
+  if(tbl=='possibilities') {
+
+    var query = "SELECT `a`.*, `b`.`file_url` \
+    FROM `" + tbl + "` a \
+    LEFT JOIN `media_" + tbl + "` b ON a.`" + idLabel + "_id` = b.`" + idLabel + "_id` \
+    INNER JOIN ( \
+            SELECT `" + idLabel + "_id`, MIN(`file_url`) 'firstfile', `file_type` \
+            FROM `media_" + tbl + "` \
+            GROUP BY `" + idLabel + "_id` \
+        ) c ON a.`" + idLabel + "_id` = b.`" + idLabel + "_id` AND \
+      b.`file_url` = c.`firstfile` \
+      INNER JOIN `jnc_" + idLabel + "_" + filter +"` d \
+      ON a.`" + idLabel + "_id` = d.`" + idLabel + "_id` \
+      WHERE `d`.`" + filter + "_id` = " + filterId + "\
+      ORDER BY a.`" + idLabel + "_id`";
+  }
+  else {
+  //Build the query.
+    var query = "SELECT `a`.*, `b`.`file_url` \
+    FROM `" + tbl + "` a \
+    LEFT JOIN `media_" + tbl + "` b ON a.`" + idLabel + "_id` = b.`" + idLabel + "_id` \
+    INNER JOIN ( \
+            SELECT `" + idLabel + "_id`, MIN(`file_url`) 'firstfile', `file_type` \
+            FROM `media_" + tbl + "` \
+            GROUP BY `" + idLabel + "_id` \
+        ) c ON a.`" + idLabel + "_id` = b.`" + idLabel + "_id` AND \
+      b.`file_url` = c.`firstfile` \
+      INNER JOIN `jnc_" + filter + "_" + idLabel +"` d \
+      ON a.`" + idLabel + "_id` = d.`" + idLabel + "_id` \
+      WHERE `d`.`" + filter + "_id` = " + filterId + "\
+      ORDER BY a.`" + idLabel + "_id`";
+  }
+  return query;
+}
+
 
 //queries to be executed within the app
 var masterQueries=

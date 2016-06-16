@@ -4,32 +4,46 @@ import {Platform} from 'ionic-angular';
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 import {ImageFallback} from '../../directives/image-fallback'
 import {AbioticPopupPage} from '../abiotic-popup/abiotic-popup';
+
 /*
-  Generated class for the AbioticosPage page.
+  Generated class for the PossibilitiesPage page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-  templateUrl: 'build/pages/abiotic/abiotic.html',
+  templateUrl: 'build/pages/possibilities/possibilities.html',
   directives: [ImageFallback],
 
 })
-export class Abiotic{
+export class PossibilitiesPage {
   stages:any;
   sql:any;
   stage:any;
   nav:any;
   abioticos:any;
   loaded:boolean;
+  item:any;
+  itemId:any;
+  itemNombre:any;
+  possibilities:any;
+  paramsdata:any;
 
-  constructor(public sql:SqLiteService, nav: NavController, platform:Platform) {
+  constructor(public sql:SqLiteService, nav: NavController, platform:Platform, private params:NavParams) {
     this.sql = sql;
     this.nav = nav;
-    this.abioticos = [];
+
+    //possibilities can be called from stages OR any of the risks. The params.item value tells us where the call came from.
+    this.params=params.data;
+    //this.paramsdata=this.params.data;
+    //grab chosen item ID and full pest list data
+    this.item=this.params.item;
+    this.itemId=this.params.id;
+    this.itemNombre=this.params.nombre
+
+    this.possibilities = [];
     this.loaded = false;
-    //grab chosen stage ID and full pest list data
-    this.stage=this.sql.getValue('stages')[this.sql.getValue('stageArrayIndex')];
+
     // this.pests = this.sql.getValue('pests');
     //
     // //iterate through pest data and turn stageList into an array
@@ -38,12 +52,13 @@ export class Abiotic{
     //   pest.stageList = pest.stageList.split(",")
     //   console.log(pest);
     // }
-    console.log(this.stage);
-
+    console.log(this.item);
+    console.log(this.itemId);
+    console.log(this.itemNombre);
     //call query to generate Abiotic list.
     platform.ready().then(() => {
-      this.sql.query("", "filter", "abioticos", "stage", this.stage.stage_id).then((result)=> {
-        this.abioticos = result;
+      this.sql.query("", "filter", "possibilities", this.item, this.itemId).then((result)=> {
+        this.possibilities = result;
         console.log(result);
         this.loaded = true;
         console.log(this.loaded)
@@ -52,10 +67,8 @@ export class Abiotic{
 
   }
 
-  abioticClick(i) {
-    this.sql.setValue('abioticArrayIndex',i);
+  possClick(i) {
+    this.sql.setValue('possArrayIndex',i);
     this.nav.push(AbioticPopupPage, this.abioticos[i]);
   }
-
-
 }
