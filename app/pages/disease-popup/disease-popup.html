@@ -12,14 +12,14 @@
   <h2>{{disease.dis_nombre}}</h2>
   <h4>Descripcion</h4>
   <div [innerHTML]="disease.descripcion"></div>
-  <p><span class='bold'>Tipo de patógeno:</span>  {{disease.patogeno}}
+  <p><span class='bold'>Tipo de patógeno:</span>  {{disease.patogeno}}</p>
   <h4>Taxonomy</h4>
   <ul>
-    <li><span class='bold'>Class:</span>{{pest.tax_clas}}</li>
-    <li><span class='bold'>Order:</span>{{pest.tax_ord}}</li>
-    <li><span class='bold'>Family:</span>{{pest.tax_fam}}</li>
-    <li><span class='bold'>Genus:</span>{{pest.tax_gen}}</li>
-    <li><span class='bold'>Species:</span>{{pest.tax_esp}}</li>
+    <li><span class='bold'>Class:</span>{{disease.etax_clas}}</li>
+    <li><span class='bold'>Order:</span>{{disease.etax_ord}}</li>
+    <li><span class='bold'>Family:</span>{{disease.etax_fam}}</li>
+    <li><span class='bold'>Genus:</span>{{disease.etax_gen}}</li>
+    <li><span class='bold'>Species:</span>{{disease.etax_esp}}</li>
   </ul>
   <h4>Image Gallery</h4>
   <div class="ionScroller">
