@@ -16,7 +16,6 @@ export class SqLiteService {
   cachedQueries:any;
   jsonData:any = null
 
-
   constructor(public http:Http, platform:Platform) {
     this.platform = platform;
     this.cachedQueries = {}
@@ -45,27 +44,25 @@ export class SqLiteService {
     return new Promise((resolve, reject) => {
       //first try local cache
       if(this.jsonData[queryName]!=undefined){
-        console.log('loading cached data')
+        console.log('loading cached data for: '+queryName)
         resolve(this.jsonData[queryName])
       }
       //if doesn't exist, find and execute query:
       else{
         console.log('no cached data, running sql query')
         var queryText;
-
         //Unless specified, query is 'static'.  Just find the named query using getQueries().
         if(queryType=="static") {
           queryText=this.getQueries(queryName)
         }
         //If a different type is specified, the query is 'dynamic'.
-        //..
         //At present, the only dynamic query type is a filter query, so use getFilterQuery() to generate the queryText.
         else{
           queryText=getFilterQuery(par1, par2, par3)
           console.log(queryText);
         }
-
         //Then run the code below to execute the queryText.
+        console.log(queryText)
         var sql = window.SQL;
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'proinpa.db', true);
@@ -75,9 +72,7 @@ export class SqLiteService {
           this.db = new sql.Database(uInt8Array);
           var contents = this.db.exec(queryText);
           console.log(contents)
-
           //Added if statement to handle case where query returns an empty set.
-          //..
           //convertToRowFormat() was breaking when contents[0] was undefined, so skip it if contents.length == 0.
           if(contents.length>0){
             var rowContents = convertToRowFormat(contents[0]);
@@ -90,12 +85,8 @@ export class SqLiteService {
         };
         xhr.send();
       }
-
-
     });
   }
-
-
 
   setValue(key, value) {
     this[key] = value
@@ -125,13 +116,6 @@ export class SqLiteService {
   }
 }
 
-function getQueryFromCache(queryName){
-  if(!this.json){return false}
-  else{
-
-  }
-}
-
 function convertToRowFormat(contents) {
   var rowArray = [];
   var columns = contents.columns;
@@ -152,7 +136,6 @@ function getFilterQuery(tbl, filter, filterId) {
   // - filterId:  the ID value to filter by.
   // eg: to return all pests that are linked to stage ID 1:  tbl='pest'; filter='stage'; filterId=1.
   var idLabel;
-
   //There is some silly inconcistent pluralisations in the names of tables and variables within the database.
   //..
   //Switch statement written to overcome these inconsitancies.
@@ -166,10 +149,8 @@ function getFilterQuery(tbl, filter, filterId) {
     default:
       idLabel = tbl;
   }
-
   //janky bit about junction-table naming conventions: will fix later:
   if(tbl=='possibilities') {
-
     var query = "SELECT `a`.*, `b`.`file_url` \
     FROM `" + tbl + "` a \
     LEFT JOIN `media_" + tbl + "` b ON a.`" + idLabel + "_id` = b.`" + idLabel + "_id` \
@@ -203,6 +184,16 @@ function getFilterQuery(tbl, filter, filterId) {
   return query;
 }
 
+//Mapping stage ids to names
+var stageMapping={
+  1:"Siembra",
+  2:"Emergencia",
+  3:"Panojamiento",
+  4:"Floración",
+  5:"Grano",
+  6:"Cosecha",
+  7:"Comercialization"
+};
 
 //queries to be executed within the app
 var masterQueries=

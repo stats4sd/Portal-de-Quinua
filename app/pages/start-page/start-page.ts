@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {Platform} from 'ionic-angular';
-import {MainPage} from '../main-page/main-page'
+import {StageList} from '../stage-list/stage-list'
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 
 @Component({
@@ -54,28 +54,23 @@ export class StartPage {
             this.sql.query('initialAbioticos').then((result)=> {
               this.sql.setValue('abioticos', result);
               this.SQLDbLoaded++;
-              console.log(this.SQLDbLoaded)
             });
             //third call to getQueries.  This should probably be redone as get full array of queries, then run them all!
             this.sql.query('initialDisease').then((result)=> {
               this.sql.setValue('disease', result);
               this.SQLDbLoaded++;
-              console.log(this.SQLDbLoaded)
             });
             this.sql.query('initialPests').then((result)=> {
               this.sql.setValue('pests', result);
               this.SQLDbLoaded++;
-              console.log(this.SQLDbLoaded)
             });
           });
         }
       })
-
-
     })
   }
 
   startButtonClick() {
-      this.nav.push(MainPage);
+      this.nav.push(StageList);
   }
 }

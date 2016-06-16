@@ -5,10 +5,10 @@ import {StageInfoPage} from '../stage-info/stage-info'
 import {ImageFallback} from '../../directives/image-fallback'
 
 @Component({
-  templateUrl: 'build/pages/main-page/main-page.html',
+  templateUrl: 'build/pages/stage-list/stage-list.html',
   directives: [ImageFallback],
 })
-export class MainPage {
+export class StageList {
   stages:any;
   sql:any;
   nav:any;
