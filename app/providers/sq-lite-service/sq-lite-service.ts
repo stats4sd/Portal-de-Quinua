@@ -48,17 +48,24 @@ export class SqLiteService {
         console.log('loading cached data')
         resolve(this.jsonData[queryName])
       }
-      //if doesn't exist execute - note, still only working with named queries
+      //if doesn't exist, find and execute query:
       else{
         console.log('no cached data, running sql query')
         var queryText;
+
+        //Unless specified, query is 'static'.  Just find the named query using getQueries().
         if(queryType=="static") {
           queryText=this.getQueries(queryName)
         }
+        //If a different type is specified, the query is 'dynamic'.
+        //..
+        //At present, the only dynamic query type is a filter query, so use getFilterQuery() to generate the queryText.
         else{
           queryText=getFilterQuery(par1, par2, par3)
           console.log(queryText);
         }
+
+        //Then run the code below to execute the queryText.
         var sql = window.SQL;
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'proinpa.db', true);
@@ -68,6 +75,10 @@ export class SqLiteService {
           this.db = new sql.Database(uInt8Array);
           var contents = this.db.exec(queryText);
           console.log(contents)
+
+          //Added if statement to handle case where query returns an empty set.
+          //..
+          //convertToRowFormat() was breaking when contents[0] was undefined, so skip it if contents.length == 0.
           if(contents.length>0){
             var rowContents = convertToRowFormat(contents[0]);
             console.log(rowContents);
@@ -135,10 +146,16 @@ function convertToRowFormat(contents) {
 }
 
 function getFilterQuery(tbl, filter, filterId) {
-
+  //function has 3 parameters:
+  // - tbl:  the main table to query;
+  // - filter:  the linked table to use as a filter;
+  // - filterId:  the ID value to filter by.
+  // eg: to return all pests that are linked to stage ID 1:  tbl='pest'; filter='stage'; filterId=1.
   var idLabel;
 
-  //switch statement to generate name of id column, thanks to silly inconsistent pluralisations in table names
+  //There is some silly inconcistent pluralisations in the names of tables and variables within the database.
+  //..
+  //Switch statement written to overcome these inconsitancies.
   switch(tbl) {
     case "inputs":
       idLabel = "input";
@@ -150,6 +167,7 @@ function getFilterQuery(tbl, filter, filterId) {
       idLabel = tbl;
   }
 
+  //Build the query. 
   var query = "SELECT `a`.*, `b`.`file_url` \
   FROM `" + tbl + "` a \
   LEFT JOIN `media_" + tbl + "` b ON a.`" + idLabel + "_id` = b.`" + idLabel + "_id` \
