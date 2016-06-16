@@ -4,15 +4,19 @@ import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 import {Abiotic} from '../abiotic/abiotic'
 import {Diseases} from '../diseases/diseases'
 import {Pests} from '../pests/pests'
-import {Varieties} from '../varieties/varieties'
+import {VarietiesPage} from '../varieties/varieties'
 import {FullStage} from '../full-stage/full-stage'
 import {ImagePopup} from '../image-popup/image-popup'
+import {PossibilitiesPage} from '../possibilities/possibilities';
 
 @Component({
   templateUrl: 'build/pages/stage-info/stage-info.html',
 })
+
 export class StageInfoPage {
   sql:any;
+  stage:any;
+  imageTest:any;
   constructor(public nav: NavController, sql:SqLiteService) {
     this.nav = nav;
     this.sql = sql;
@@ -28,9 +32,10 @@ export class StageInfoPage {
   }
   pushAbiotic(){this.nav.push(Abiotic)}
   pushPests(){this.nav.push(Pests)}
-  pushVarieties(){this.nav.push(Varieties)}
+  pushVarieties(){this.nav.push(VarietiesPage)}
   pushDiseases(){this.nav.push(Diseases)}
-  pushFullStage(){this.nav.push(FullStage)}
+  //possibilities page requires additional values, as many pages link to it.
+  pushPossibilities(){this.nav.push(PossibilitiesPage,{item:"stage",id:this.stage.stage_id,nombre:this.stage.nombre})}
 
   imageClick(image){
     let modal = Modal.create(ImagePopup, {imageList:this.imageTest,activeImage:image, title:this.stage.nombre});

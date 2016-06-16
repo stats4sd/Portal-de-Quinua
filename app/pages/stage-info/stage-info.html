@@ -23,12 +23,12 @@
         <h2>View Data Associated with {{stage.nombre}}</h2>
         <ion-list>
             <!--ordinarily would use ngFor loop here but doesn't work as can't push variables into nav.push(pageName) :( -->
-            <ion-item (click)="pushFullStage()">
+            <ion-item (click)="pushPossibilities()">
                 <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
                 <ion-thumbnail item-left>
                     <img class="viewImage" src="wp-content/covers/ManagementCover.png">
                 </ion-thumbnail>
-                Full Stage Listing
+                Stage Management Possibilities
             </ion-item>
             <ion-item (click)="pushAbiotic()">
                 <ion-icon name="arrow-round-forward" clear item-right></ion-icon>

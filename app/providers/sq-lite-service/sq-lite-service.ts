@@ -167,21 +167,39 @@ function getFilterQuery(tbl, filter, filterId) {
       idLabel = tbl;
   }
 
-  //Build the query. 
-  var query = "SELECT `a`.*, `b`.`file_url` \
-  FROM `" + tbl + "` a \
-  LEFT JOIN `media_" + tbl + "` b ON a.`" + idLabel + "_id` = b.`" + idLabel + "_id` \
-  INNER JOIN ( \
-          SELECT `" + idLabel + "_id`, MIN(`file_url`) 'firstfile', `file_type` \
-          FROM `media_" + tbl + "` \
-          GROUP BY `" + idLabel + "_id` \
-      ) c ON a.`" + idLabel + "_id` = b.`" + idLabel + "_id` AND \
-    b.`file_url` = c.`firstfile` \
-    INNER JOIN `jnc_" + filter + "_" + idLabel +"` d \
-    ON a.`" + idLabel + "_id` = d.`" + idLabel + "_id` \
-    WHERE `d`.`" + filter + "_id` = " + filterId + "\
-    ORDER BY a.`" + idLabel + "_id`";
+  //janky bit about junction-table naming conventions: will fix later:
+  if(tbl=='possibilities') {
 
+    var query = "SELECT `a`.*, `b`.`file_url` \
+    FROM `" + tbl + "` a \
+    LEFT JOIN `media_" + tbl + "` b ON a.`" + idLabel + "_id` = b.`" + idLabel + "_id` \
+    INNER JOIN ( \
+            SELECT `" + idLabel + "_id`, MIN(`file_url`) 'firstfile', `file_type` \
+            FROM `media_" + tbl + "` \
+            GROUP BY `" + idLabel + "_id` \
+        ) c ON a.`" + idLabel + "_id` = b.`" + idLabel + "_id` AND \
+      b.`file_url` = c.`firstfile` \
+      INNER JOIN `jnc_" + idLabel + "_" + filter +"` d \
+      ON a.`" + idLabel + "_id` = d.`" + idLabel + "_id` \
+      WHERE `d`.`" + filter + "_id` = " + filterId + "\
+      ORDER BY a.`" + idLabel + "_id`";
+  }
+  else {
+  //Build the query.
+    var query = "SELECT `a`.*, `b`.`file_url` \
+    FROM `" + tbl + "` a \
+    LEFT JOIN `media_" + tbl + "` b ON a.`" + idLabel + "_id` = b.`" + idLabel + "_id` \
+    INNER JOIN ( \
+            SELECT `" + idLabel + "_id`, MIN(`file_url`) 'firstfile', `file_type` \
+            FROM `media_" + tbl + "` \
+            GROUP BY `" + idLabel + "_id` \
+        ) c ON a.`" + idLabel + "_id` = b.`" + idLabel + "_id` AND \
+      b.`file_url` = c.`firstfile` \
+      INNER JOIN `jnc_" + filter + "_" + idLabel +"` d \
+      ON a.`" + idLabel + "_id` = d.`" + idLabel + "_id` \
+      WHERE `d`.`" + filter + "_id` = " + filterId + "\
+      ORDER BY a.`" + idLabel + "_id`";
+  }
   return query;
 }
 
