@@ -25,11 +25,11 @@ export class StageInfoPage {
     this.badgeInfo = this.sql.getInfoLengths(this.stage.stage_id);
     this.imageTest = [
       {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 0},
-      {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 1},
+      /*{src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 1},
       {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 2},
       {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 3},
       {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 4},
-      {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 5}
+      {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 5}*/
     ]
   }
   pushAbiotic(){this.nav.push(Abiotic)}
