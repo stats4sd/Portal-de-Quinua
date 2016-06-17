@@ -14,7 +14,7 @@
   <div *ngIf="abioticos.length>0 && loaded==true">
     <div *ngFor="let abiotic of abioticos; let i=index">
       <ion-card>
-        <img src="{{abiotic.file_url}}" (error)="updateUrl(i)" (click)="abioticClick(i)">
+        <img src="{{abiotic.file_url}}" image-fallback (click)="abioticClick(i)">
         <div class="card-title">{{abiotic.ab_nombre}}</div>
       </ion-card>
     </div>

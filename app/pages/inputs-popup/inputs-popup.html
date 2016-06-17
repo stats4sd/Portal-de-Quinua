@@ -9,5 +9,48 @@
 </ion-navbar>
 
 <ion-content padding class="inputs-popup">
-  
+  <h2>{{inputs.pnombre}}</h2>
+  <div>
+    <ul>
+      <li><span class='bold'>¿Es orgánico?</span> {{inputs.porg}}</li>
+      <li><span class='bold'>¿Es químico?</span>  {{inputs.pqui}}</li>
+      <li><span class='bold'>¿Es permitido para producción orgánica?</span> {{inputs.pperm}}</li>
+    </ul>
+  </div>
+  <h4>Características</h4>
+  <div [innerHTML]="inputs.pcarc"></div>
+  <h4>Composición química</h4>
+  <div [innerHTML]="inputs.pcompq"></div>
+  <h4>Modo de acción</h4>
+  <div [innerHTML]="inputs.pmodac"></div>
+  <h4>Forma de aplicación</h4>
+  <div [innerHTML]="inputs.pforap"></div>
+  <h4>Instrucciones de uso</h4>
+  <div [innerHTML]="inputs.pinsuso"></div>
+  <h4>Precauciones y recomendaciones</h4>
+  <div [innerHTML]="inputs.pprec"></div>
+  <h4>Availability of input</h4>
+  <div [innerHTML]="inputs.dinsumo"></div>
+  <h4>¿Se puede elaborar en artesanalmente?</h4>
+  <div [innerHTML]="inputs.pmanart"></div>
+  <h4>Image Gallery</h4>
+  <div class="ionScroller">
+      <ion-scroll scrollX="true">
+          <ion-row >
+              <ion-col width-25 *ngFor="let image of imageTest">
+                  <img class="sliderImage" src="{{image.src}}" (click)="imageClick(image)">
+              </ion-col>
+          </ion-row>
+      </ion-scroll>
+  </div>
+  <br>
+  <ion-list>
+      <ion-item (click)="pushVendors()">
+          <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
+          <ion-thumbnail item-left>
+              <img class="viewImage" src="wp-content/covers/InputCover.png">
+          </ion-thumbnail>
+          Vendors that sell this input
+      </ion-item>
+    </ion-list>
 </ion-content>

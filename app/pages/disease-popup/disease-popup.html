@@ -32,4 +32,14 @@
       </ion-scroll>
   </div>
   <br>
+  <ion-list>
+      <!--ordinarily would use ngFor loop here but doesn't work as can't push variables into nav.push(pageName) :( -->
+      <ion-item (click)="pushPossibilities()">
+          <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
+          <ion-thumbnail item-left>
+              <img class="viewImage" src="wp-content/covers/ManagementCover.png">
+          </ion-thumbnail>
+          Posibilidades de gestión
+      </ion-item>
+    </ion-list>
 </ion-content>

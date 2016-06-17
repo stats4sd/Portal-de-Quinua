@@ -14,7 +14,7 @@
   <div *ngIf="disease.length>0 && loaded">
     <div *ngFor="let d of disease; let i=index">
       <ion-card>
-        <img src="{{d.file_url}}" (error)="updateUrl(i)" (click)="diseaseClick(i)">
+        <img src="{{d.file_url}}" image-fallback (click)="diseaseClick(i)">
         <div class="card-title">{{d.dis_nombre}}</div>
       </ion-card>
     </div>

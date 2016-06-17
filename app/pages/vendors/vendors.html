@@ -9,5 +9,26 @@
 </ion-navbar>
 
 <ion-content padding class="vendors">
-  
+  <h1>Vendors</h1>
+  <h4>Vendors that sell {{item}}: {{itemNombre}}</h4>
+  <div *ngIf="vendors.length>0 && loaded==true">
+    <div *ngFor="let vendor of vendors; let i=index">
+      <ion-card>
+        <img src="{{vendor.file_url}}" (click)="vendorClick(i)" image-fallback>
+        <div class="card-title">{{vendor.vquien}}</div>
+        <div class='card-content'>{{vendor.vdonde}}</div>
+      </ion-card>
+    </div>
+  </div>
+
+  <div *ngIf="vendors.length==0 && loaded">
+    There are no registered vendors that sell this item: {{item}}
+  </div>
+  <div *ngIf="!loaded">
+    Loading data...
+    ...
+    ...still loading...
+
+    ...if you're still reading this, it's probably taking too long...
+  </div>
 </ion-content>

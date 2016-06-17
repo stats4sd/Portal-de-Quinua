@@ -2,6 +2,9 @@ import {Component} from '@angular/core';
 import {Modal, NavController,ViewController,NavParams} from 'ionic-angular';
 import {ImagePopup} from '../image-popup/image-popup'
 import {ImageFallback} from '../../directives/image-fallback'
+import {PossibilitiesPage} from '../possibilities/possibilities';
+import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
+
 
 /*
   Generated class for the DiseasePopupPage page.
@@ -38,4 +41,6 @@ export class DiseasePopupPage {
     let modal = Modal.create(ImagePopup, {imageList:this.imageTest,activeImage:image, title:this.abioticos.ab_nombre});
     this.nav.present(modal)
   }
+  pushPossibilities(){this.nav.push(PossibilitiesPage,{item:"disease",id:this.disease.disease_id,nombre:this.disease.dis_nombre})}
+
 }

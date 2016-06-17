@@ -9,5 +9,30 @@
 </ion-navbar>
 
 <ion-content padding class="vendors-popup">
-  
+  <h2>{{vendors.vquen}}</h2>
+  <h4>Dirección</h4>
+  <div [innerHTML]="vendors.vdonde"></div>
+  <h4>When are they active?</h4>
+  <ul>
+    <li>lunes: {{cuando_lunes}} </li>
+    <li>martes: {{cuando_martes}} </li>
+    <li>miercoles: {{cuando_miercoles}} </li>
+    <li>jueves: {{cuando_jueves}} </li>
+    <li>viernes: {{cuando_viernes}} </li>
+    <li>sabado: {{cuando_sabado}} </li>
+    <li>domingo: {{cuando_domingo}} </li>
+  </ul>
+  <p>Lugar de venta:  {{vcomo}}</p>
+  <h4>Número de teléfono</h4>
+  <div [innerHTML]="vtel"></div>
+  <h4>Departamento</h4>
+  <div [innerHTML]="vdep"></div>
+  <h4>Provincia</h4>
+  <div [innerHTML]="vprov"></div>
+  <h4>Municipio</h4>
+  <div [innerHTML]="vmun"></div>
+  <h4>Calidad de semilla</h4>
+  <div [innerHTML]="vcalsem"></div>
+  <h4>Ultima vez que se actualizó lesta información</h4>
+  <div [innerHTML]="ultimvez"></div>
 </ion-content>

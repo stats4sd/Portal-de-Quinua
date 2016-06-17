@@ -71,4 +71,7 @@ export class PossibilitiesPage {
     this.sql.setValue('possArrayIndex',i);
     this.nav.push(PossibilitiesPopupPage, this.possibilities[i]);
   }
+  pushInputs() {
+    this.nav.push(InputsPage,{item:"possibilities",id:this.possibilities.possibilities_id,nombre:this.possibilities.pos_nombre})
+  }
 }

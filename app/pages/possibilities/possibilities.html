@@ -14,7 +14,7 @@
   <div *ngIf="possibilities.length>0 && loaded==true">
     <div *ngFor="let poss of possibilities; let i=index">
       <ion-card>
-        <img src="{{poss.file_url}}" (error)="updateUrl(i)" (click)="possClick(i)">
+        <img src="{{poss.file_url}}" (click)="possClick(i)" image-fallback>
         <div class="card-title">{{poss.pos_nombre}}</div>
       </ion-card>
     </div>

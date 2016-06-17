@@ -1,5 +1,10 @@
 import {Component} from '@angular/core';
-import {NavController,NavParams} from 'ionic-angular';
+import {NavController,NavParams, Modal} from 'ionic-angular';
+import {ImagePopup} from '../image-popup/image-popup'
+import {PossibilitiesPage} from '../possibilities/possibilities';
+import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
+import {ImageFallback} from '../../directives/image-fallback'
+
 
 /*
   Generated class for the PestPopupPage page.
@@ -31,4 +36,7 @@ export class PestPopupPage {
     let modal = Modal.create(ImagePopup, {imageList:this.imageTest,activeImage:image, title:this.abioticos.ab_nombre});
     this.nav.present(modal)
   }
+
+  pushPossibilities(){this.nav.push(PossibilitiesPage,{item:"pest",id:this.pest.pest_id,nombre:this.pest.pest_nombre})}
+
 }
