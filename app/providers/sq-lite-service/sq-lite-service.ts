@@ -58,7 +58,6 @@ export class SqLiteService {
         //At present, the only dynamic query type is a filter query, so use getFilterQuery() to generate the queryText.
         else{
           queryText=getFilterQuery(par1, par2, par3)
-          console.log(queryText);
         }
         //Then run the code below to execute the queryText.
         console.log(queryText)
@@ -75,7 +74,6 @@ export class SqLiteService {
           //convertToRowFormat() was breaking when contents[0] was undefined, so skip it if contents.length == 0.
           if(contents.length>0){
             var rowContents = convertToRowFormat(contents[0]);
-            console.log(rowContents);
             resolve(rowContents)
           }
           else {
@@ -118,9 +116,10 @@ export class SqLiteService {
   //used to prepopulate badge info, can later be used as filter when working with json data
   getInfoLengths(stageId){
     var badgeInfo={};
-    var filtered = 'no cached json data';
     for (let infoTitle of infoMapping){
+      var filtered = 'no cached json data';
      if(this.jsonData[infoTitle.masterQuery]!=undefined){
+       console.log(infoTitle.masterQuery)
        var filtered = filterByStage(this.jsonData[infoTitle.masterQuery],stageId)
      }
       badgeInfo[infoTitle.name]=filtered
@@ -227,11 +226,11 @@ var stageMapping=[
     ];
 
 var infoMapping=[
-  {id:1,name:'possibilities',masterQuery:null},
+  {id:1,name:'possibilities',masterQuery:'initialPossibilities'},
   {id:2,name:'abiotics',masterQuery:'initialAbioticos'},
   {id:3,name:'diseases',masterQuery:'initialDisease'},
   {id:4,name:'pests',masterQuery:'initialPests'},
-  {id:5,name:'varieties',masterQuery:null},
+  {id:5,name:'varieties',masterQuery:'initialVarieties'},
 ]
 
 //queries to be executed within the app
