@@ -3,7 +3,7 @@ import {NavController, NavParams, Modal} from 'ionic-angular';
 import {Platform} from 'ionic-angular';
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 import {ImageFallback} from '../../directives/image-fallback'
-import {AbioticPopupPage} from '../abiotic-popup/abiotic-popup';
+import {PossibilitiesPopupPage} from '../possibilities-popup/possibilities-popup';
 
 /*
   Generated class for the PossibilitiesPage page.
@@ -69,6 +69,6 @@ export class PossibilitiesPage {
 
   possClick(i) {
     this.sql.setValue('possArrayIndex',i);
-    this.nav.push(AbioticPopupPage, this.abioticos[i]);
+    this.nav.push(PossibilitiesPopupPage, this.possibilities[i]);
   }
 }
