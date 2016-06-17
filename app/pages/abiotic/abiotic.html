@@ -1,34 +1,27 @@
-<!--
-  Generated template for the AbioticosPage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-navbar *navbar>
   <ion-title>Abioticos</ion-title>
 </ion-navbar>
 
 <ion-content padding class="page1 card-background-image">
-  <h1>Abioticos</h1>
-  <h4>Abioticos associated with {{stage.nombre}}</h4>
+  <h4>Abioticos asociado con{{stage.nombre}}</h4>
   <div *ngIf="abioticos.length>0 && loaded==true">
-    <div *ngFor="let abiotic of abioticos; let i=index">
-      <ion-card>
-        <img src="{{abiotic.file_url}}" image-fallback (click)="abioticClick(i)">
-        <div class="card-title">{{abiotic.ab_nombre}}</div>
+      <ion-card *ngFor="let abiotic of abioticos; let i=index" (click)="abioticClick(i)">
+          <ion-row wrap>
+            <ion-col width-33>
+              <img src="{{abiotic.file_url}}" image-fallback >
+            </ion-col>
+            <ion-col width-66>
+              <div class="card-title">{{abiotic.ab_nombre}}</div>
+            </ion-col>
+          </ion-row>
       </ion-card>
-    </div>
   </div>
 
   <div *ngIf="abioticos.length==0 && loaded">
-    There are no abioticos for this stage
+    No hay abioticos para esta etape
   </div>
   <div *ngIf="!loaded">
-    Loading data...
-    ...
-    ...still loading...
-
-    ...if you're still reading this, it's probably taking too long...
+    ...Habia un error...
   </div>
 
 </ion-content>
