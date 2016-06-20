@@ -14,7 +14,7 @@ export class StartPage {
   sql:any;
   queries:any;
   jsonDbLoaded:boolean;
-  SQLDbLoaded:number;
+  SQLDbLoaded:boolean=false;
   loadSQL:boolean;
   sliderOptions:any;
   queryNumber:number;
@@ -25,7 +25,6 @@ export class StartPage {
     this.stages = [];
     //dbLoaded displays start button when loaded.
     this.jsonDbLoaded = false;
-    this.SQLDbLoaded = 0;
     //variable to decide whether to attempt loading sql - will need to determine script for use and update html page accordingly
     this.loadSQL = true;
 
@@ -53,14 +52,14 @@ export class StartPage {
         this.jsonDbLoaded = true;
       }).then(()=> {
         this.sql.loadFromJson().then((results)=> {
-          console.log('db cache 2 loaded')
+          console.log('db cache 2 loaded');
           //load sql db if required
           if (this.loadSQL == true) {
             sql.loadDatabase().then((result)=> {
 
               //run array of queries - note should move logic into sq lite service
               //define list of query names
-              var queryList = ['initialStages', 'initialAbioticos', 'initialPests', 'initialPossibilities', 'initialInputs', 'initialVariety', 'initialVendor']
+              var queryList = ['allStages', 'allAbioticos', 'allPests', 'allPossibilities', 'allDiseases', 'allInputs', 'allVarieties', 'allVendors']
               //define function that queries
               var queryFn = function (queryName) {
                 sql.query(queryName).then((res)=>{})
@@ -71,6 +70,11 @@ export class StartPage {
               Promise.all(allQueries).then((res) => {
                 console.log('executed all queries');
                 console.log(results)
+                this.SQLDbLoaded=true
+                //save results in correct key-value pair in sql service
+                for(let res in results){
+                  this.sql.setValue(res,results[res])
+                }
               })
 
   })}})})})}

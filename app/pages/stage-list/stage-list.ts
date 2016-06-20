@@ -16,7 +16,7 @@ export class StageList {
   constructor(sql:SqLiteService, nav:NavController) {
     this.sql = sql;
     this.nav = nav;
-    this.stages=sql.getValue('stages');
+    this.stages=sql.getValue('allStages');
     console.log(this.stages);
   }
 

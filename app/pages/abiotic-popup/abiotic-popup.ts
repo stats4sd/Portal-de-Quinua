@@ -18,6 +18,7 @@ export class AbioticPopupPage {
   abioticos:any;
   id:any;
   constructor(public nav: NavController, viewCtrl: ViewController, private params:NavParams) {
+    console.log('loading page')
     this.params=params;
     this.abioticos=params.data;
     console.log(this.abioticos);

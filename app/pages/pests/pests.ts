@@ -34,7 +34,7 @@ export class Pests {
     this.loaded = false;
 
     //grab chosen stage ID and full pest list data
-    this.stage=this.sql.getValue('stages')[this.sql.getValue('stageArrayIndex')];
+    this.stage=this.sql.getValue('allStages')[this.sql.getValue('stageArrayIndex')];
     // this.pests = this.sql.getValue('pests');
     //
     // //iterate through pest data and turn stageList into an array

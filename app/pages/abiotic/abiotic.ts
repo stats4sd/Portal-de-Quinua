@@ -24,12 +24,13 @@ export class Abiotic{
   loaded:boolean;
 
   constructor(public sql:SqLiteService, nav: NavController, platform:Platform) {
+    console.log('loading abiotic page')
     this.sql = sql;
     this.nav = nav;
     this.abioticos = [];
     this.loaded = false;
     //grab chosen stage ID and full pest list data
-    this.stage=this.sql.getValue('stages')[this.sql.getValue('stageArrayIndex')];
+    this.stage=this.sql.getValue('allStages')[this.sql.getValue('stageArrayIndex')];
     // this.pests = this.sql.getValue('pests');
     //
     // //iterate through pest data and turn stageList into an array
@@ -53,6 +54,7 @@ export class Abiotic{
   }
 
   abioticClick(i) {
+    console.log(i)
     this.sql.setValue('abioticArrayIndex',i);
     this.nav.push(AbioticPopupPage, this.abioticos[i]);
   }

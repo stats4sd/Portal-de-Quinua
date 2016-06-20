@@ -5,10 +5,10 @@
       <img [src]="slide.image" class="slide-image"/>
       <h2 class="slide-title" [innerHTML]="slide.title"></h2>
       <p [innerHTML]="slide.description"></p>
-        <div *ngIf="SQLDbLoaded < queryNumber">
+        <div *ngIf="SQLDbLoaded==false">
           Cargando...
         </div>
-        <div *ngIf="SQLDbLoaded==queryNumber">
+        <div *ngIf="SQLDbLoaded">
         <button large proinpa-green (click)="startButtonClick()" >
           Información según la etapa
           <ion-icon name="arrow-forward"></ion-icon>

@@ -21,7 +21,7 @@ export class StageInfoPage {
   constructor(public nav: NavController, sql:SqLiteService) {
     this.nav = nav;
     this.sql = sql;
-    this.stage = this.sql.getValue('stages')[this.sql.getValue('stageArrayIndex')];
+    this.stage = this.sql.getValue('allStages')[this.sql.getValue('stageArrayIndex')];
     this.badgeInfo = this.sql.getInfoLengths(this.stage.stage_id);
     this.imageTest = [
       {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 0},

@@ -86,7 +86,7 @@ export class SqLiteService {
   }
 
   setValue(key, value) {
-    this[key] = value
+    this[key] = value;
   }
 
   getValue(key) {
@@ -129,7 +129,6 @@ export class SqLiteService {
     for (let infoTitle of infoMapping){
       var filtered = 'no cached json data';
      if(this.jsonData[infoTitle.masterQuery]!=undefined){
-       console.log(infoTitle.masterQuery)
        var filtered = filterByStage(this.jsonData[infoTitle.masterQuery],stageId)
      }
       badgeInfo[infoTitle.name]=filtered
@@ -251,17 +250,17 @@ var stageMapping=[
     ];
 
 var infoMapping=[
-  {id:1,name:'possibilities',masterQuery:'initialPossibilities'},
-  {id:2,name:'abiotics',masterQuery:'initialAbioticos'},
-  {id:3,name:'diseases',masterQuery:'initialDisease'},
-  {id:4,name:'pests',masterQuery:'initialPests'},
-  {id:5,name:'varieties',masterQuery:'initialVarieties'},
+  {id:1,name:'possibilities',masterQuery:'allPossibilities'},
+  {id:2,name:'abiotics',masterQuery:'allAbioticos'},
+  {id:3,name:'diseases',masterQuery:'allDiseases'},
+  {id:4,name:'pests',masterQuery:'allPests'},
+  {id:5,name:'varieties',masterQuery:'allVarieties'},
 ]
 
 //queries to be executed within the app
 var masterQueries=
 {
-  initialStages: "  \
+  allStages: "  \
   SELECT `a`.*, `b`.`file_url`  \
   FROM `stage` a  \
   LEFT JOIN `media_stage` b \
@@ -276,7 +275,7 @@ var masterQueries=
       GROUP BY a.`stage_id` \
       ORDER BY a.`stage_id`",
 
-  initialAbioticos: " \
+  allAbioticos: " \
   SELECT `a`.*, `b`.`file_url`, GROUP_CONCAT(DISTINCT d.`stage_id`) 'stageList' \
   FROM `abioticos` a \
   LEFT JOIN `media_abioticos` b \
@@ -293,7 +292,7 @@ var masterQueries=
   GROUP BY a.`abioticos_id` \
   ORDER BY a.`abioticos_id`",
 
-  initialDisease: " \
+  allDiseases: " \
   SELECT `a`.*, `b`.`file_url`, GROUP_CONCAT(DISTINCT d.`stage_id`) 'stageList' \
   FROM `disease` a \
   LEFT JOIN `media_disease` b \
@@ -310,7 +309,7 @@ var masterQueries=
   GROUP BY a.`disease_id` \
   ORDER BY a.`disease_id`",
 
-  initialPests: " \
+  allPests: " \
   SELECT `a`.*, `b`.`file_url`, GROUP_CONCAT(DISTINCT d.`stage_id`) 'stageList' \
   FROM `pests` a \
   LEFT JOIN `media_pests` b \
@@ -327,7 +326,7 @@ var masterQueries=
   GROUP BY a.`pest_id` \
   ORDER BY a.`pest_id`",
 
-  initialPossibilities: " \
+  allPossibilities: " \
   SELECT `a`.*, `b`.`file_url`, GROUP_CONCAT(DISTINCT d.`stage_id`) 'stageList', GROUP_CONCAT(DISTINCT e.`abioticos_id`) 'abioticosList', GROUP_CONCAT(DISTINCT f.`disease_id`) 'diseaseList', GROUP_CONCAT(DISTINCT g.`pest_id`) 'pestList' \
   FROM `possibilities` a \
   LEFT JOIN `media_possibilities` b \
@@ -350,7 +349,7 @@ var masterQueries=
    GROUP BY a.`possibilities_id` \
    ORDER BY a.`possibilities_id`",
 
-   initialInputs: " \
+   allInputs: " \
    SELECT a.*, b.`file_url`, GROUP_CONCAT(DISTINCT d.`possibilities_id`) 'possibilitiesList', GROUP_CONCAT(DISTINCT e.`vendor_id`) 'vendorList', f.`nom` 'porgValue', g.`nom` 'pquiValue', h.`nom` 'ppermValue' \
    FROM `inputs` a \
    LEFT JOIN `media_inputs` b \
@@ -375,7 +374,7 @@ var masterQueries=
    GROUP BY a.`input_id` \
    ORDER BY a.`input_id`",
 
-   initialVendor: " \
+   allVendors: " \
      SELECT a.*, b.`file_url`, GROUP_CONCAT(DISTINCT d.`input_id`) 'inputList', GROUP_CONCAT(DISTINCT e.`variety_id`) 'varietyList', f.`nom` 'cuando_lunesValue', g.`nom` 'cuando_martesValue', h.`nom` 'cuando_miercolesValue', i.`nom` 'cuando_juevesValue', j.`nom` 'cuando_viernesValue', k.`nom` 'cuando_sabadoValue', l.`nom` 'cuando_domingoValue', m.`spanish` 'vcomoValue' \
      FROM `vendor` a  \
      LEFT JOIN `media_vendor` b \
@@ -410,7 +409,7 @@ var masterQueries=
     GROUP BY a.`vendor_id` \
     ORDER BY a.`vendor_id`",
 
-   initialVariety: " \
+   allVarieties: " \
    SELECT a.*, b.`file_url` GROUP_CONCAT(DISTINCT d.`vendor_id`) 'vendorList' \
    FROM `variety` a \
    LEFT JOIN `media_variety` b \
