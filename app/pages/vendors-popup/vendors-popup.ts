@@ -18,7 +18,6 @@ export class VendorsPopupPage {
     this.params=params;
     this.vendors=params.data;
     console.log(params.data)
-    console.log(params.data[0])
     this.imageTest = [
       {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 0},
       {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 1},

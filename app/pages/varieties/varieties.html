@@ -9,5 +9,25 @@
 </ion-navbar>
 
 <ion-content padding class="varieties">
-  
+  <h4>Varieties</h4>
+  <div *ngIf="variety.length>0 && loaded==true">
+      <ion-card *ngFor="let var of variety; let i=index" (click)="varietyClick(i)">
+          <ion-row wrap>
+            <ion-col width-33>
+              <img src="{{var.file_url}}" image-fallback >
+            </ion-col>
+            <ion-col width-66>
+              <div class="card-title">{{var.nombre}}</div>
+            </ion-col>
+          </ion-row>
+      </ion-card>
+  </div>
+
+  <div *ngIf="variety.length==0 && loaded">
+    No hay varieties para esta etape
+  </div>
+  <div *ngIf="!loaded">
+    ...Habia un error...
+  </div>
+
 </ion-content>

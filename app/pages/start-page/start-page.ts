@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {Platform} from 'ionic-angular';
 import {StageList} from '../stage-list/stage-list'
+import {VarietiesPage} from '../varieties/varieties'
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 
 @Component({
@@ -111,5 +112,9 @@ export class StartPage {
 
   startButtonClick() {
       this.nav.push(StageList);
+  }
+
+  catalogueButtonClick() {
+    this.nav.push(VarietiesPage)
   }
 }

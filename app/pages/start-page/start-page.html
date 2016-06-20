@@ -8,10 +8,16 @@
         <div *ngIf="SQLDbLoaded < queryNumber">
           Cargando...
         </div>
-        <button large proinpa-green (click)="startButtonClick()" *ngIf="SQLDbLoaded==queryNumber">
-          Empieza
+        <div *ngIf="SQLDbLoaded==queryNumber">
+        <button large proinpa-green (click)="startButtonClick()" >
+          Información según la etapa
           <ion-icon name="arrow-forward"></ion-icon>
         </button>
+        <button large proinpa-green (click)="catalogueButtonClick()" >
+          Catalogar
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </div>
     </ion-slide>
   </ion-slides>
 </ion-content>

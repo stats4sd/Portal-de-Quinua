@@ -1,5 +1,9 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, NavParams, Modal} from 'ionic-angular';
+import {Platform} from 'ionic-angular';
+import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
+import {ImageFallback} from '../../directives/image-fallback'
+import {AbioticPopupPage} from '../abiotic-popup/abiotic-popup';
 
 /*
   Generated class for the VarietiesPage page.
@@ -11,5 +15,19 @@ import {NavController} from 'ionic-angular';
   templateUrl: 'build/pages/varieties/varieties.html',
 })
 export class VarietiesPage {
-  constructor(public nav: NavController) {}
+  stages:any;
+  sql:any;
+  stage:any;
+  nav:any;
+  variety:any;
+  loaded:boolean;
+
+  constructor(public sql:SqLiteService, nav: NavController, platform:Platform) {
+    this.sql =sql;
+    this.nav = nav;
+    this.variety = this.sql.getValue('variety');
+    this.loaded = false;
+
+
+  }
 }
