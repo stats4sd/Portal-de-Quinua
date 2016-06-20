@@ -9,5 +9,36 @@
 </ion-navbar>
 
 <ion-content padding class="varieties-popup">
-  
+  <h2>{{variety.nombre}}</h2>
+  <ion-list>
+    <ion-list-header>Key Details</ion-list-header>
+    <ion-item>
+      Cultivo:
+      <ion-note item-right>
+      {{variety.cultivo}}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      Nombre cientifico del cultivo:
+      <ion-note item-right>
+      {{variety.cult_nc}}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      Nombre de la variedad:
+      <ion-note item-right>
+      {{variety.nombre}}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      Preferencia del cultivoL Planicie or Ladera:
+      <ion-note item-right>
+      {{variety.pref}}
+      </ion-note>
+    </ion-item>
+  </ion-list>
+
+  ### OTHER DETAILS TO BE ADDED HERE ### 
+
+
 </ion-content>

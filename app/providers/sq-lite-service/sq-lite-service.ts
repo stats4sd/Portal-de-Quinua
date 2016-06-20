@@ -264,7 +264,7 @@ var masterQueries=
   initialStages: "  \
   SELECT `a`.*, `b`.`file_url`  \
   FROM `stage` a  \
-  INNER JOIN `media_stage` b \
+  LEFT JOIN `media_stage` b \
   ON a.`stage_id` = b.`stage_id`  \
   LEFT JOIN (  \
     SELECT `stage_id`, MIN(`file_url`) 'firstfile', `file_type` \

@@ -3,7 +3,7 @@ import {NavController, NavParams, Modal} from 'ionic-angular';
 import {Platform} from 'ionic-angular';
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 import {ImageFallback} from '../../directives/image-fallback'
-import {AbioticPopupPage} from '../abiotic-popup/abiotic-popup';
+import {VarietiesPopupPage} from '../varieties-popup/varieties-popup';
 
 /*
   Generated class for the VarietiesPage page.
@@ -13,10 +13,11 @@ import {AbioticPopupPage} from '../abiotic-popup/abiotic-popup';
 */
 @Component({
   templateUrl: 'build/pages/varieties/varieties.html',
+  directives: [ImageFallback],
+
 })
 export class VarietiesPage {
   stages:any;
-  sql:any;
   stage:any;
   nav:any;
   variety:any;
@@ -26,8 +27,13 @@ export class VarietiesPage {
     this.sql =sql;
     this.nav = nav;
     this.variety = this.sql.getValue('variety');
-    this.loaded = false;
+    console.log(this.variety)
 
 
+  }
+
+  varietyClick(i) {
+    this.sql.setValue('varietyIndex',i);
+    this.nav.push(VarietiesPopupPage, {varietyId:i, variety:this.variety[i]});
   }
 }
