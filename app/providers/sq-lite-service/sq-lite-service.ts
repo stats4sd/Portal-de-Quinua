@@ -256,7 +256,7 @@ var masterQueries=
   FROM `stage` a  \
   LEFT JOIN `media_stage` b \
   ON a.`stage_id` = b.`stage_id`  \
-  INNER JOIN (  \
+  LEFT JOIN (  \
     SELECT `stage_id`, MIN(`file_url`) 'firstfile', `file_type` \
     FROM `media_stage`  \
     GROUP BY `stage_id` \
@@ -270,54 +270,132 @@ var masterQueries=
     `,
 
   initialAbioticos: " \
-  SELECT `a`.*, `b`.`file_url`, GROUP_CONCAT(d.`stage_id`) 'stageList' \
+  SELECT `a`.*, `b`.`file_url`, GROUP_CONCAT(DISTINCT d.`stage_id`) 'stageList' \
   FROM `abioticos` a \
   LEFT JOIN `media_abioticos` b \
   ON a.`abioticos_id` = b.`abioticos_id` \
-  INNER JOIN ( \
+  LEFT JOIN ( \
     SELECT `abioticos_id`, MIN(`file_url`) 'firstfile', `file_type` \
     FROM `media_abioticos` \
     GROUP BY `abioticos_id` \
   ) c \
   ON a.`abioticos_id` = b.`abioticos_id` \
   AND b.`file_url` = c.`firstfile` \
-  INNER JOIN `jnc_stage_abioticos` d \
+  LEFT JOIN `jnc_stage_abioticos` d \
   ON a.`abioticos_id` = d.`abioticos_id` \
   GROUP BY a.`abioticos_id` \
   ORDER BY a.`abioticos_id`",
 
   initialDisease: " \
-  SELECT `a`.*, `b`.`file_url`, GROUP_CONCAT(d.`stage_id`) 'stageList' \
+  SELECT `a`.*, `b`.`file_url`, GROUP_CONCAT(DISTINCT d.`stage_id`) 'stageList' \
   FROM `disease` a \
   LEFT JOIN `media_disease` b \
   ON a.`disease_id` = b.`disease_id` \
-  INNER JOIN ( \
+  LEFT JOIN ( \
     SELECT `disease_id`, MIN(`file_url`) 'firstfile', `file_type` \
     FROM `media_disease` \
     GROUP BY `disease_id` \
   ) c \
   ON a.`disease_id` = b.`disease_id` \
   AND b.`file_url` = c.`firstfile` \
-  INNER JOIN `jnc_stage_disease` d \
+  LEFT JOIN `jnc_stage_disease` d \
   ON a.`disease_id` = d.`disease_id` \
   GROUP BY a.`disease_id` \
   ORDER BY a.`disease_id`",
 
   initialPests: " \
-  SELECT `a`.*, `b`.`file_url`, GROUP_CONCAT(d.`stage_id`) 'stageList' \
+  SELECT `a`.*, `b`.`file_url`, GROUP_CONCAT(DISTINCT d.`stage_id`) 'stageList' \
   FROM `pests` a \
   LEFT JOIN `media_pests` b \
   ON a.`pest_id` = b.`pest_id` \
-  INNER JOIN ( \
+  LEFT JOIN ( \
     SELECT `pest_id`, MIN(`file_url`) 'firstfile', `file_type` \
     FROM `media_pests` \
     GROUP BY `pest_id` \
   ) c \
   ON a.`pest_id` = b.`pest_id` \
   AND b.`file_url` = c.`firstfile` \
-  INNER JOIN `jnc_stage_pest` d \
+  LEFT JOIN `jnc_stage_pest` d \
   ON a.`pest_id` = d.`pest_id` \
   GROUP BY a.`pest_id` \
-  ORDER BY a.`pest_id`"
+  ORDER BY a.`pest_id`",
+
+  initialPossibilities: " \
+  SELECT `a`.*, `b`.`file_url`, GROUP_CONCAT(DISTINCT d.`stage_id`) 'stageList', GROUP_CONCAT(DISTINCT e.`abioticos_id`) 'abioticosList', GROUP_CONCAT(DISTINCT f.`disease_id`) 'diseaseList', GROUP_CONCAT(DISTINCT g.`pest_id`) 'pestList' \
+  FROM `possibilities` a \
+  LEFT JOIN `media_possibilities` b \
+  ON a.`possibilities_id` = b.`possibilities_id` \
+  LEFT JOIN ( \
+    SELECT `possibilities_id`, MIN(`file_url`) 'firstfile', `file_type` \
+     FROM `media_possibilities` \
+     GROUP BY `possibilities_id` \
+   ) c \
+   ON a.`possibilities_id` = b.`possibilities_id` \
+   AND b.`file_url` = c.`firstfile` \
+   LEFT JOIN `jnc_possibilities_stage` d \
+   ON a.`possibilities_id` = d.`possibilities_id` \
+   LEFT JOIN `jnc_possibilities_abioticos` e \
+   ON a.`possibilities_id` = e.`possibilities_id` \
+   LEFT JOIN `jnc_possibilities_disease` f \
+   ON a.`possibilities_id` = f.`possibilities_id` \
+   LEFT JOIN `jnc_possibilities_pest` g \
+   ON a.`possibilities_id` = g.`possibilities_id` \
+   GROUP BY a.`possibilities_id` \
+   ORDER BY a.`possibilities_id`",
+
+   initialInputs: " \
+   SELECT a.*, b.`file_url`, GROUP_CONCAT(DISTINCT d.`possibilities_id`) 'possibilitiesList', GROUP_CONCAT(DISTINCT e.`vendor_id`) 'vendorList' \
+   FROM `inputs` a \
+   LEFT JOIN `media_inputs` b \
+   ON a.`input_id` = b.`input_id` \
+   LEFT JOIN ( \
+     SELECT `input_id`, MIN(`file_url`) 'firstfile', `file_type` \
+     FROM `media_inputs` \
+     GROUP BY `input_id` \
+   ) c \
+   ON a.`input_id` = b.`input_id` \
+   AND b.`file_url` = c.`firstfile` \
+   LEFT JOIN `jnc_possibilities_input` d \
+   ON a.`input_id` = d.`input_id` \
+   LEFT JOIN `jnc_vendor_input` e \
+   ON a.`input_id` = e.`input_id` \
+   GROUP BY a.`input_id` \
+   ORDER BY a.`input_id`",
+
+   initialVendors: " \
+   SELECT a.*, b.`file_url`, GROUP_CONCAT(DISTINCT d.`input_id`) 'inputList', GROUP_CONCAT(DISTINCT e.`variety_id`) 'varietyList' \
+   FROM `vendor` a \
+   LEFT JOIN `media_vendor` b \
+   ON a.`vendor_id` = b.`vendor_id` \
+   LEFT JOIN ( \
+    SELECT `vendor_id`, MIN(`file_url`) 'firstfile', `file_type` \
+    FROM `media_vendor` \
+    GROUP BY `vendor_id` \
+   ) c \
+   ON a.`vendor_id` = b.`vendor_id` \
+   AND b.`file_url` = c.`firstfile` \
+   LEFT JOIN `jnc_vendor_input` d \
+   ON a.`vendor_id` = d.`vendor_id` \
+   LEFT JOIN `jnc_vendor_variety` e \
+   ON a.`vendor_id` = e.`vendor_id` \
+   GROUP BY a.`vendor_id` \
+   ORDER BY a.`vendor_id`",
+
+   initialVariety: " \
+   SELECT a.*, b.`file_url` GROUP_CONCAT(DISTINCT d.`vendor_id`) 'vendorList' \
+   FROM `variety` a \
+   LEFT JOIN `media_variety` b \
+   ON a.`variety_id` = b.`variety_id` \
+   LEFT JOIN ( \
+     SELECT `variety_id`, MIN(`file_url`) 'firstfile', `file_type` \
+     FROM `media_variety` \
+     GROUP BY `variety_id` \
+   ) c \
+   ON a.`variety_id` = b.`variety_id` \
+   AND b.`file_url` = c.`firstfile` \
+   LEFT JOIN `jnc_vendor_variety` d \
+   ON a.`variety_id` = d.`variety_id` \
+   GROUP BY a.`variety_id` \
+   ORDER BY a.`variety_id`"
 
 };
