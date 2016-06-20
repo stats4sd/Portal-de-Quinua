@@ -15,6 +15,7 @@ export class StartPage {
   SQLDbLoaded:number;
   loadSQL:boolean;
   sliderOptions:any;
+  queryNumber:number;
 
   constructor(public nav: NavController, sql: SqLiteService, platform:Platform ) {
     this.sql=sql;
@@ -24,6 +25,12 @@ export class StartPage {
     this.SQLDbLoaded=0;
     //variable to decide whether to attempt loading sql - will need to determine script for use and update html page accordingly
     this.loadSQL=true;
+
+
+    //initialise masterQueries variable and count objects
+    this.queryNumber = this.sql.getAllQueriesLength();
+    var masterQueries = this.sql.getAllQueries();
+
     //initial page can be turned into multiple page swipes if wanted (add more slides to array)
     this.sliderOptions={
       pager:false
@@ -46,6 +53,22 @@ export class StartPage {
         if(this.loadSQL==true){
           sql.loadDatabase().then((result)=> {
             //prepare data for next page for smoother transitions. Start button only appears after complete
+
+            ///////////////////////////////////////
+            ///SECTION TO run *all* queries in masterQueries.
+            /// in current form, thanks to async, all sql.setValue() functions use the LAST name in masterQueries.  Grr...
+            // for(var name in masterQueries) {
+            //   //var query = masterQueries[name];
+            //   this.sql.query(name).then((result)=> {
+            //     this.sql.setValue(name, result);
+            //     console.log(name);
+            //     console.log(this.sql.getValue(name));
+            //     this.SQLDbLoaded++;
+            //     console.log(this.SQLDbLoaded)
+            //   });
+            // }
+            ////////////////////////////////////////
+
             this.sql.query('initialStages').then((result)=> {
               this.sql.setValue('stages', result);
               this.SQLDbLoaded++;
@@ -62,6 +85,22 @@ export class StartPage {
             });
             this.sql.query('initialPests').then((result)=> {
               this.sql.setValue('pests', result);
+              this.SQLDbLoaded++;
+            });
+            this.sql.query('initialPossibilities').then((result)=> {
+              this.sql.setValue('possibilities', result);
+              this.SQLDbLoaded++;
+            });
+            this.sql.query('initialInputs').then((result)=> {
+              this.sql.setValue('inputs', result);
+              this.SQLDbLoaded++;
+            });
+            this.sql.query('initialVariety').then((result)=> {
+              this.sql.setValue('variety', result);
+              this.SQLDbLoaded++;
+            });
+            this.sql.query('initialVendor').then((result)=> {
+              this.sql.setValue('vendor', result);
               this.SQLDbLoaded++;
             });
           });

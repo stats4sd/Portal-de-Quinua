@@ -5,10 +5,10 @@
       <img [src]="slide.image" class="slide-image"/>
       <h2 class="slide-title" [innerHTML]="slide.title"></h2>
       <p [innerHTML]="slide.description"></p>
-        <div *ngIf="SQLDbLoaded!=4">
+        <div *ngIf="SQLDbLoaded < queryNumber">
           Cargando...
         </div>
-        <button large proinpa-green (click)="startButtonClick()" *ngIf="SQLDbLoaded==4">
+        <button large proinpa-green (click)="startButtonClick()" *ngIf="SQLDbLoaded==queryNumber">
           Empieza
           <ion-icon name="arrow-forward"></ion-icon>
         </button>

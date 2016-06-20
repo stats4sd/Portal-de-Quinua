@@ -98,6 +98,16 @@ export class SqLiteService {
     return masterQueries[name];
   }
 
+  getAllQueries() {
+    console.log(masterQueries);
+    return masterQueries;
+  }
+
+  getAllQueriesLength() {
+    console.log(Object.keys(masterQueries).length);
+    return Object.keys(masterQueries).length;
+  }
+
   loadFromJson(){
     if (this.jsonData) {
       return Promise.resolve(this.data);
@@ -265,10 +275,6 @@ var masterQueries=
       AND b.`file_url` = c.`firstfile`  \
       ORDER BY a.`stage_id`",
 
-  simpleQuery: `
-    SELECT * from stage
-    `,
-
   initialAbioticos: " \
   SELECT `a`.*, `b`.`file_url`, GROUP_CONCAT(DISTINCT d.`stage_id`) 'stageList' \
   FROM `abioticos` a \
@@ -362,7 +368,7 @@ var masterQueries=
    GROUP BY a.`input_id` \
    ORDER BY a.`input_id`",
 
-   initialVendors: " \
+   initialVendor: " \
    SELECT a.*, b.`file_url`, GROUP_CONCAT(DISTINCT d.`input_id`) 'inputList', GROUP_CONCAT(DISTINCT e.`variety_id`) 'varietyList' \
    FROM `vendor` a \
    LEFT JOIN `media_vendor` b \
