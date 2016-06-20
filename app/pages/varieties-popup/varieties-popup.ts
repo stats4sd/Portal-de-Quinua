@@ -1,5 +1,9 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {Modal, NavController,ViewController,NavParams} from 'ionic-angular';
+import {ImagePopup} from '../image-popup/image-popup'
+import {ImageFallback} from '../../directives/image-fallback'
+import {PossibilitiesPage} from '../possibilities/possibilities';
+import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 
 /*
   Generated class for the VarietiesPopupPage page.
@@ -11,5 +15,11 @@ import {NavController} from 'ionic-angular';
   templateUrl: 'build/pages/varieties-popup/varieties-popup.html',
 })
 export class VarietiesPopupPage {
-  constructor(public nav: NavController) {}
+  variety:any;
+  constructor(public nav: NavController, viewCtrl: ViewController, private params:NavParams) {
+    this.params=params;
+    this.variety=params.data.variety;
+    console.log(this.variety)
+
+  }
 }
