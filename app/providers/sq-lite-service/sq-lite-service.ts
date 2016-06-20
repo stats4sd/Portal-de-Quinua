@@ -350,10 +350,10 @@ var masterQueries=
    ORDER BY a.`possibilities_id`",
 
    initialInputs: " \
-   SELECT a.*, b.`file_url`, GROUP_CONCAT(DISTINCT d.`possibilities_id`) 'possibilitiesList', GROUP_CONCAT(DISTINCT e.`vendor_id`) 'vendorList' \
+   SELECT a.*, b.`file_url`, GROUP_CONCAT(DISTINCT d.`possibilities_id`) 'possibilitiesList', GROUP_CONCAT(DISTINCT e.`vendor_id`) 'vendorList', f.`nom` 'porgValue', g.`nom` 'pquiValue', h.`nom` 'ppermValue' \
    FROM `inputs` a \
    LEFT JOIN `media_inputs` b \
-   ON a.`input_id` = b.`input_id` \
+   ON a.`input_id` = b.`input_id`  \
    LEFT JOIN ( \
      SELECT `input_id`, MIN(`file_url`) 'firstfile', `file_type` \
      FROM `media_inputs` \
@@ -365,27 +365,49 @@ var masterQueries=
    ON a.`input_id` = d.`input_id` \
    LEFT JOIN `jnc_vendor_input` e \
    ON a.`input_id` = e.`input_id` \
+   LEFT JOIN `yn` f \
+   ON a.`porg` = f.`id` \
+   LEFT JOIN `yn` g \
+   ON a.`pqui` = g.`id` \
+   LEFT JOIN `yn` h  \
+   ON a.`pperm` = h.`id` \
    GROUP BY a.`input_id` \
    ORDER BY a.`input_id`",
 
    initialVendor: " \
-   SELECT a.*, b.`file_url`, GROUP_CONCAT(DISTINCT d.`input_id`) 'inputList', GROUP_CONCAT(DISTINCT e.`variety_id`) 'varietyList' \
-   FROM `vendor` a \
-   LEFT JOIN `media_vendor` b \
-   ON a.`vendor_id` = b.`vendor_id` \
-   LEFT JOIN ( \
-    SELECT `vendor_id`, MIN(`file_url`) 'firstfile', `file_type` \
-    FROM `media_vendor` \
-    GROUP BY `vendor_id` \
-   ) c \
-   ON a.`vendor_id` = b.`vendor_id` \
-   AND b.`file_url` = c.`firstfile` \
-   LEFT JOIN `jnc_vendor_input` d \
-   ON a.`vendor_id` = d.`vendor_id` \
-   LEFT JOIN `jnc_vendor_variety` e \
-   ON a.`vendor_id` = e.`vendor_id` \
-   GROUP BY a.`vendor_id` \
-   ORDER BY a.`vendor_id`",
+     SELECT a.*, b.`file_url`, GROUP_CONCAT(DISTINCT d.`input_id`) 'inputList', GROUP_CONCAT(DISTINCT e.`variety_id`) 'varietyList', f.`nom` 'cuando_lunesValue', g.`nom` 'cuando_martesValue', h.`nom` 'cuando_miercolesValue', i.`nom` 'cuando_juevesValue', j.`nom` 'cuando_viernesValue', k.`nom` 'cuando_sabadoValue', l.`nom` 'cuando_domingoValue', m.`spanish` 'vcomoValue' \
+     FROM `vendor` a  \
+     LEFT JOIN `media_vendor` b \
+     ON a.`vendor_id` = b.`vendor_id` \
+     LEFT JOIN ( \
+      SELECT `vendor_id`, MIN(`file_url`) 'firstfile', `file_type` \
+      FROM `media_vendor` \
+      GROUP BY `vendor_id` \
+    ) c \
+     ON a.`vendor_id` = b.`vendor_id` \
+     AND b.`file_url` = c.`firstfile` \
+     LEFT JOIN `jnc_vendor_input` d \
+     ON a.`vendor_id` = d.`vendor_id` \
+     LEFT JOIN `jnc_vendor_variety` e \
+     ON a.`vendor_id` = e.`vendor_id` \
+    LEFT JOIN `yn` f \
+    ON a.`cuando_lunes` = f.`id` \
+    LEFT JOIN `yn` g \
+    ON a.`cuando_martes` = g.`id` \
+    LEFT JOIN `yn` h \
+    ON a.`cuando_miercoles` = h.`id` \
+    LEFT JOIN `yn` i \
+    ON a.`cuando_jueves` = i.`id` \
+    LEFT JOIN `yn` j \
+    ON a.`cuando_viernes` = j.`id` \
+    LEFT JOIN `yn` k \
+    ON a.`cuando_sabado` = k.`id` \
+    LEFT JOIN `yn` l \
+    ON a.`cuando_domingo` = l.`id` \
+    LEFT JOIN `vcomo` m \
+    ON a.`vcomo` = m.`id` \
+    GROUP BY a.`vendor_id` \
+    ORDER BY a.`vendor_id`",
 
    initialVariety: " \
    SELECT a.*, b.`file_url` GROUP_CONCAT(DISTINCT d.`vendor_id`) 'vendorList' \
