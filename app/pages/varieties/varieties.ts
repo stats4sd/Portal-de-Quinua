@@ -26,7 +26,7 @@ export class VarietiesPage {
   constructor(public sql:SqLiteService, nav: NavController, platform:Platform) {
     this.sql =sql;
     this.nav = nav;
-    this.variety = this.sql.getValue('variety');
+    this.variety = this.sql.getValue('allVarieties');
     console.log(this.variety)
 
 

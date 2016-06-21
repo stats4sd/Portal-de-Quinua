@@ -22,15 +22,19 @@ export class Abiotic{
   nav:any;
   abioticos:any;
   loaded:boolean;
+  params:any;
 
-  constructor(public sql:SqLiteService, nav: NavController, platform:Platform) {
-    console.log('loading abiotic page')
+  constructor(public sql:SqLiteService, nav: NavController, platform:Platform, params:NavParams) {
+    console.log('loading abiotic page');
+    this.params=params.data;
+    console.log(this.params);
     this.sql = sql;
     this.nav = nav;
     this.abioticos = [];
     this.loaded = false;
     //grab chosen stage ID and full pest list data
-    this.stage=this.sql.getValue('allStages')[this.sql.getValue('stageArrayIndex')];
+    this.stage=this.params.stage;
+    this.abioticos=this.params.instances
     // this.pests = this.sql.getValue('pests');
     //
     // //iterate through pest data and turn stageList into an array
@@ -43,12 +47,12 @@ export class Abiotic{
 
     //call query to generate Abiotic list.
     platform.ready().then(() => {
-      this.sql.query("", "filter", "abioticos", "stage", this.stage.stage_id).then((result)=> {
+      /*this.sql.query("", "filter", "abioticos", "stage", this.stage.stage_id).then((result)=> {
         this.abioticos = result;
         console.log(result);
         this.loaded = true;
         console.log(this.loaded)
-      });
+      });*/
     });
 
   }

@@ -124,17 +124,17 @@ export class SqLiteService {
 
   //function to filter all jsonData to only that which contains stageId, seperated by info section (e.g. disease, pest)
   //used to prepopulate badge info, can later be used as filter when working with json data
-  getInfoLengths(stageId){
-    var badgeInfo={};
+  filterAllByStage(stageId){
+    var stageResults={};
     for (let infoTitle of infoMapping){
       var filtered = 'no cached json data';
      if(this.jsonData[infoTitle.masterQuery]!=undefined){
        var filtered = filterByStage(this.jsonData[infoTitle.masterQuery],stageId)
      }
-      badgeInfo[infoTitle.name]=filtered
+      stageResults[infoTitle.name]=filtered
     }
-    console.log(badgeInfo)
-    return badgeInfo
+    console.log(stageResults)
+    return stageResults
   }
 }
 
