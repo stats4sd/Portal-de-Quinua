@@ -1,0 +1,33 @@
+<!--
+  Generated template for the InputsPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-navbar *navbar>
+  <ion-title>inputs</ion-title>
+</ion-navbar>
+
+<ion-content padding class="inputs">
+  <h1>Inputs</h1>
+  <h4>Inputs associated with {{item.nombre}}</h4>
+  <div *ngIf="inputs.length>0 && loaded==true">
+    <div *ngFor="let input of inputs; let i=index">
+      <ion-card>
+        <img src="{{input.file_url}}" image-fallback (click)="inputClick(i)">
+        <div class="card-title">{{input.pnombre}}</div>
+      </ion-card>
+    </div>
+  </div>
+
+  <div *ngIf="inputs.length==0 && loaded">
+    There are no inputs for this {{item}}
+  </div>
+  <div *ngIf="!loaded">
+    Loading data...
+    ...
+    ...still loading...
+
+    ...if you're still reading this, it's probably taking too long...
+  </div>
+</ion-content>

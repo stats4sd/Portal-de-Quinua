@@ -3,11 +3,12 @@ import {Platform, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {StartPage} from './pages/start-page/start-page';
 import {SqLiteService} from './providers/sq-lite-service/sq-lite-service';
+import {JsonCacheService} from './providers/json-cache-service/json-cache-service';
 
 
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
-  providers:[[SqLiteService]]
+  providers:[[SqLiteService],[JsonCacheService]]
 })
 export class MyApp {
   rootPage: any = StartPage;

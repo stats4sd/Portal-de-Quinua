@@ -8,10 +8,20 @@
 // App Shared Sass variables belong in app.variables.scss.
 
 @import "../pages/start-page/start-page";
-@import "../pages/main-page/main-page";
+@import "../pages/stage-list/stage-list";
 @import "../pages/stage-info/stage-info";
-@import "../pages/abiotic/abiotic";
-@import "../pages/diseases/diseases";
 @import "../pages/full-stage/full-stage";
-@import "../pages/pests/pests";
 @import "../pages/varieties/varieties";
+@import "../pages/image-popup/image-popup";
+@import "../pages/vendors/vendors.scss";
+@import "../pages/possibilities/possibilities.scss";
+@import "../pages/inputs/inputs.scss";
+@import "../pages/varieties/varieties.scss";
+@import "../pages/possibilities-popup/possibilities-popup.scss";
+@import "../pages/inputs-popup/inputs-popup.scss";
+@import "../pages/varieties-popup/varieties-popup.scss";
+@import "../pages/vendors-popup/vendors-popup.scss";
+@import "../pages/catalogue-index/catalogue-index.scss";
+@import "../pages/information-overview/information-overview";
+@import "../pages/information-overview/instance-details/info-tab";
+@import "../pages/information-overview/instance-details/management-tab";

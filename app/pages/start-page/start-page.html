@@ -1,23 +1,23 @@
 <ion-content padding class="start-page">
 
-  <ion-slides pager (slideChangeStart)="onSlideChangeStart($event)">
+  <ion-slides pager (slideChangeStart)="onSlideChangeStart($event)" [options]="sliderOptions">
     <ion-slide *ngFor="let slide of slides">
       <img [src]="slide.image" class="slide-image"/>
       <h2 class="slide-title" [innerHTML]="slide.title"></h2>
       <p [innerHTML]="slide.description"></p>
-      <div *ngIf="dbLoaded!=2">
-        Loading Data
+        <div *ngIf="SQLDbLoaded==false">
+          Cargando...
+        </div>
+        <div *ngIf="SQLDbLoaded">
+        <button large proinpa-green (click)="startButtonClick()" >
+          Información según la etapa
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+        <button large proinpa-green (click)="catalogueButtonClick()" >
+          Catalogar
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
       </div>
-      <!-- dbLoaded==2 because 2 queries must be loaded. Need to update to know how many queries there are automatically...? -->
-      <button large proinpa-green (click)="startButtonClick()" *ngIf="dbLoaded==2">
-        Empieza
-        <ion-icon name="arrow-forward"></ion-icon>
-      </button>
     </ion-slide>
-    <!--Can include addtional slide here is we want more slides and custom last screen (e.g. only start button appears on last screen)-->
-    <!--<ion-slide>
-      <ion-toolbar>
-      </ion-toolbar>
-    </ion-slide>-->
   </ion-slides>
 </ion-content>

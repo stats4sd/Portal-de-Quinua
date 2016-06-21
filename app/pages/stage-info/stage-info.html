@@ -4,60 +4,63 @@
 </ion-navbar>
 
 <ion-content padding class="stage-info">
-    <h2>{{stage.nombre}} Description</h2>
+    <h2>{{stage.nombre}} Descripción</h2>
     <!--binding the stage description to innerHTML so it can fully render the html passed-->
     <div [innerHTML]="stage.descripcion"></div>
-    <br>
-    <h2>{{stage.nombre}} Image Gallery</h2>
+    <!--<h2>Fotos de {{stage.nombre}}</h2>
     <div class="ionScroller">
         <ion-scroll scrollX="true">
             <ion-row >
-                <ion-col width-25 *ngFor="let test of imageTest">
-                    <img class="sliderImage" src="wp-content/proinpa-logo.jpg" (click)="imageClick(test)">
+                <ion-col width-25 *ngFor="let image of imageTest">
+                    <img class="sliderImage" src="{{image.src}}" (click)="imageClick(image)">
                 </ion-col>
+                <div *ngIf="imageTest.length==0">No hay fotos en la galería</div>
             </ion-row>
         </ion-scroll>
-    </div>
+    </div>-->
     <br>
     <div>
-        <h2>View Data Associated with {{stage.nombre}}</h2>
+        <h2>Información asociada con {{stage.nombre}}</h2>
         <ion-list>
             <!--ordinarily would use ngFor loop here but doesn't work as can't push variables into nav.push(pageName) :( -->
-            <ion-item (click)="pushFullStage()">
+            <!--<ion-item (click)="pushPossibilities()">
                 <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
                 <ion-thumbnail item-left>
                     <img class="viewImage" src="wp-content/covers/ManagementCover.png">
                 </ion-thumbnail>
-                Full Stage Listing
-            </ion-item>
+                Posibilidades de gestión
+            </ion-item>-->
             <ion-item (click)="pushAbiotic()">
                 <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
                 <ion-thumbnail item-left>
                     <img class="viewImage" src="wp-content/covers/AbioticCover.png">
                 </ion-thumbnail>
                 Abiotics
+                <p>{{stageResults.abiotics.length}} Resultados</p>
             </ion-item>
             <ion-item (click)="pushDiseases()">
                 <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
                 <ion-thumbnail item-left>
                     <img class="viewImage" src="wp-content/covers/DiseaseCover.png">
                 </ion-thumbnail>
-                Details of Diseases
+                Detalles de enfermedades
+                <p>{{stageResults.diseases.length}} Resultados</p>
             </ion-item>
             <ion-item (click)="pushPests()">
                 <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
                 <ion-thumbnail item-left>
                     <img class="viewImage" src="wp-content/covers/PestCover.png">
                 </ion-thumbnail>
-                Details of Pests
+                Detalles de plagas
+                <p>{{stageResults.pests.length}} Resultados</p>
             </ion-item>
-            <ion-item (click)="pushVarieties()">
+            <!--<ion-item (click)="pushVarieties()">
                 <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
                 <ion-thumbnail item-left>
                     <img class="viewImage" src="wp-content/covers/VarietyCover.png">
                 </ion-thumbnail>
-                Varieties
-            </ion-item>
+                Variedades
+            </ion-item>-->
         </ion-list>
     </div>
 

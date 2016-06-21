@@ -1,0 +1,29 @@
+<ion-navbar *navbar>
+  <ion-title>Possibilities Details</ion-title>
+</ion-navbar>
+
+<ion-content padding class="possibilities-popup">
+  <h2>{{possibilities.pos_nombre}}</h2>
+  <h4>Descripcion</h4>
+  <div [innerHTML]="possibilities.pos_desc"></div>
+  <!--<h4>Image Gallery</h4>
+  <div class="ionScroller">
+      <ion-scroll scrollX="true">
+          <ion-row >
+              <ion-col width-25 *ngFor="let image of imageTest">
+                  <img class="sliderImage" src="{{image.src}}" (click)="imageClick(image)">
+              </ion-col>
+          </ion-row>
+      </ion-scroll>
+  </div>
+  <br>-->
+  <ion-list>
+      <ion-item (click)="pushInputs()">
+          <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
+          <ion-thumbnail item-left>
+              <img class="viewImage" src="wp-content/covers/InputCover.png">
+          </ion-thumbnail>
+          Inputs required for this management activity
+      </ion-item>
+    </ion-list>
+</ion-content>
