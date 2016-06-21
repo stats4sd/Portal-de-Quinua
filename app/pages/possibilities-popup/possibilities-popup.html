@@ -1,9 +1,3 @@
-<!--
-  Generated template for the PossibilitiesPopupPage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-navbar *navbar>
   <ion-title>Possibilities Details</ion-title>
 </ion-navbar>
@@ -12,7 +6,7 @@
   <h2>{{possibilities.pos_nombre}}</h2>
   <h4>Descripcion</h4>
   <div [innerHTML]="possibilities.pos_desc"></div>
-  <h4>Image Gallery</h4>
+  <!--<h4>Image Gallery</h4>
   <div class="ionScroller">
       <ion-scroll scrollX="true">
           <ion-row >
@@ -22,7 +16,7 @@
           </ion-row>
       </ion-scroll>
   </div>
-  <br>
+  <br>-->
   <ion-list>
       <ion-item (click)="pushInputs()">
           <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
