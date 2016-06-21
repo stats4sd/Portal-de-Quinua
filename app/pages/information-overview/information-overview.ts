@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
-import {InstanceDetails} from './instance-details/instance-details'
+import {InfoTab} from './instance-details/info-tab'
+import {TabsPage} from './instance-details/tabs'
 
 @Component({
   templateUrl: 'build/pages/information-overview/information-overview.html',
@@ -12,7 +13,7 @@ export class InformationOverview {
     console.log(this.params)
   }
   instanceClick(index){
-    this.nav.push(InstanceDetails,{
+    this.nav.push(TabsPage,{
       instance:this.params.instances[index],
       parent:this.params,
     })

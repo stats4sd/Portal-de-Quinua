@@ -1,0 +1,26 @@
+<ion-content padding class="management-tab">
+  <ion-content padding class="possibilities">
+    <h1>Management Possibilities</h1>
+    <h4>Management Possibilities associated with {{item}}: {{itemNombre}}</h4>
+    <div *ngIf="possibilities.length>0 && loaded==true">
+      <div *ngFor="let poss of possibilities; let i=index">
+        <ion-card>
+          <img src="{{poss.file_url}}" (click)="possClick(i)" image-fallback>
+          <div class="card-title">{{poss.pos_nombre}}</div>
+        </ion-card>
+      </div>
+    </div>
+
+    <div *ngIf="possibilities.length==0 && loaded">
+      There are no available managment possibilities for this {{item}}
+    </div>
+    <div *ngIf="!loaded">
+      Loading data...
+      ...
+      ...still loading...
+
+      ...if you're still reading this, it's probably taking too long...
+    </div>
+
+  </ion-content>
+</ion-content>

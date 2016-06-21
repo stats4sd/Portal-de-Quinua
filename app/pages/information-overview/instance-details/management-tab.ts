@@ -1,17 +1,17 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams, Modal} from 'ionic-angular';
-import {Platform} from 'ionic-angular';
-import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
-import {ImageFallback} from '../../directives/image-fallback'
-import {PossibilitiesPopupPage} from '../possibilities-popup/possibilities-popup';
+import {NavController, Platform, NavParams} from 'ionic-angular';
+import {SqLiteService} from '../../../providers/sq-lite-service/sq-lite-service'
 
+/*
+  Generated class for the ManagementTabPage page.
 
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+*/
 @Component({
-  templateUrl: 'build/pages/possibilities/possibilities.html',
-  directives: [ImageFallback],
-
+  templateUrl: 'build/pages/information-overview/instance-details/management-tab.html',
 })
-export class PossibilitiesPage {
+export class ManagementTab {
   stages:any;
   sql:any;
   stage:any;
@@ -69,4 +69,5 @@ export class PossibilitiesPage {
   pushInputs() {
     this.nav.push(InputsPage,{item:"possibilities",id:this.possibilities.possibilities_id,nombre:this.possibilities.pos_nombre})
   }
+}
 }

@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams, Modal} from 'ionic-angular';
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
-import {Abiotic} from '../abiotic/abiotic'
-import {Pests} from '../pests/pests'
 import {ImagePopup} from '../image-popup/image-popup'
 import {InformationOverview} from '../information-overview/information-overview';
 

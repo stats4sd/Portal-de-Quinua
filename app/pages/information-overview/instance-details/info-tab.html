@@ -1,11 +1,5 @@
-<ion-navbar *navbar>
-  <ion-title *ngIf="params.instance.dis_nombre">{{params.instance.dis_nombre}}</ion-title>
-  <ion-title *ngIf="params.instance.ab_nombre">{{params.instance.ab_nombre}}</ion-title>
-  <ion-title *ngIf="params.instance.pes_nombre">{{params.instance.pes_nombre}}</ion-title>
-</ion-navbar>
-
 <ion-content padding class="disease-popup">
-  <h4>Image Gallery</h4>
+  <!--<h4>Image Gallery</h4>
   <div class="ionScroller">
     <ion-scroll scrollX="true">
       <ion-row >
@@ -14,7 +8,8 @@
         </ion-col>
       </ion-row>
     </ion-scroll>
-  </div>
+  </div>-->
+  <img class="largeImage" src="{{instance.file_url}}" image-fallback>
 
   <!--abiotic specific template-->
   <div *ngIf="instance.ab_nombre">
@@ -54,14 +49,4 @@
       </ul>
     </div>
   </div>
-
-  <ion-list>
-    <ion-item (click)="pushPossibilities()">
-      <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
-      <ion-thumbnail item-left>
-        <img class="viewImage" src="wp-content/covers/ManagementCover.png">
-      </ion-thumbnail>
-      Posibilidades de gestión
-    </ion-item>
-  </ion-list>
 </ion-content>
