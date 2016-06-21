@@ -12,7 +12,6 @@ import {SqLiteService} from '../../../providers/sq-lite-service/sq-lite-service'
   templateUrl: 'build/pages/information-overview/instance-details/management-tab.html',
 })
 export class ManagementTab {
-  stages:any;
   sql:any;
   stage:any;
   nav:any;
@@ -22,7 +21,7 @@ export class ManagementTab {
   itemId:any;
   itemNombre:any;
   possibilities:any;
-  paramsdata:any;
+  params:any;
 
   constructor(public sql:SqLiteService, nav: NavController, platform:Platform, private params:NavParams) {
     this.sql = sql;
@@ -30,6 +29,7 @@ export class ManagementTab {
 
     //possibilities can be called from stages OR any of the risks. The params.item value tells us where the call came from.
     this.params=params.data;
+    console.log(this.params)
     //this.paramsdata=this.params.data;
     //grab chosen item ID and full pest list data
     this.item=this.params.item;
@@ -62,12 +62,12 @@ export class ManagementTab {
 
   }
 
-  possClick(i) {
+  /*possClick(i) {
     this.sql.setValue('possArrayIndex',i);
     this.nav.push(PossibilitiesPopupPage, this.possibilities[i]);
   }
   pushInputs() {
     this.nav.push(InputsPage,{item:"possibilities",id:this.possibilities.possibilities_id,nombre:this.possibilities.pos_nombre})
-  }
-}
+  }*/
+
 }

@@ -30,6 +30,7 @@ export class PossibilitiesPage {
 
     //possibilities can be called from stages OR any of the risks. The params.item value tells us where the call came from.
     this.params=params.data;
+    console.log(this.params)
     //this.paramsdata=this.params.data;
     //grab chosen item ID and full pest list data
     this.item=this.params.item;
