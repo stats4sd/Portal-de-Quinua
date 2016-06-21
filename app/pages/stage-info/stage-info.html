@@ -36,7 +36,7 @@
                     <img class="viewImage" src="wp-content/covers/AbioticCover.png">
                 </ion-thumbnail>
                 Abiotics
-                <p>{{badgeInfo.abiotics.length}} Resultados</p>
+                <p>{{stageResults.abiotics.length}} Resultados</p>
             </ion-item>
             <ion-item (click)="pushDiseases()">
                 <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
@@ -44,7 +44,7 @@
                     <img class="viewImage" src="wp-content/covers/DiseaseCover.png">
                 </ion-thumbnail>
                 Detalles de enfermedades
-                <p>{{badgeInfo.diseases.length}} Resultados</p>
+                <p>{{stageResults.diseases.length}} Resultados</p>
             </ion-item>
             <ion-item (click)="pushPests()">
                 <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
@@ -52,7 +52,7 @@
                     <img class="viewImage" src="wp-content/covers/PestCover.png">
                 </ion-thumbnail>
                 Detalles de plagas
-                <p>{{badgeInfo.pests.length}} Resultados</p>
+                <p>{{stageResults.pests.length}} Resultados</p>
             </ion-item>
             <!--<ion-item (click)="pushVarieties()">
                 <ion-icon name="arrow-round-forward" clear item-right></ion-icon>

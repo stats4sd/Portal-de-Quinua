@@ -4,7 +4,7 @@
 
 <ion-content padding class="page1 card-background-image">
   <h4>Abioticos asociado con{{stage.nombre}}</h4>
-  <div *ngIf="abioticos.length>0 && loaded==true">
+  <div *ngIf="abioticos.length>0">
       <ion-card *ngFor="let abiotic of abioticos; let i=index" (click)="abioticClick(i)">
           <ion-row wrap>
             <ion-col width-33>
@@ -17,11 +17,8 @@
       </ion-card>
   </div>
 
-  <div *ngIf="abioticos.length==0 && loaded">
+  <div *ngIf="abioticos.length==0">
     No hay abioticos para esta etape
-  </div>
-  <div *ngIf="!loaded">
-    ...Habia un error...
   </div>
 
 </ion-content>
