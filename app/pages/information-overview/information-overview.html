@@ -1,0 +1,29 @@
+<ion-navbar *navbar>
+  <ion-title>{{params.title}}</ion-title>
+</ion-navbar>
+
+<ion-content padding class="page1 card-background-image">
+  <h4>{{params.title}} asociado con {{params.stage.nombre}}</h4>
+  <div *ngIf="params.instances.length>0">
+    <ion-list >
+      <ion-item *ngFor="let instance of params.instances; let i=index" (click)="instanceClick(i)">
+        <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
+        <ion-row wrap>
+          <ion-col width-33>
+            <img src="{{instance.file_url}}" image-fallback >
+          </ion-col>
+          <ion-col width-66>
+            <div class="card-title" *ngIf="instance.ab_nombre">{{instance.ab_nombre}}</div>
+            <div class="card-title" *ngIf="instance.dis_nombre">{{instance.dis_nombre}}</div>
+            <div class="card-title" *ngIf="instance.pest_nombre">{{instance.pest_nombre}}</div>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="params.instances.length==0">
+    No hay {{params.infoSection}} para esta etape
+  </div>
+
+</ion-content>

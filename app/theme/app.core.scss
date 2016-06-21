@@ -10,19 +10,13 @@
 @import "../pages/start-page/start-page";
 @import "../pages/stage-list/stage-list";
 @import "../pages/stage-info/stage-info";
-@import "../pages/abiotic/abiotic";
-@import "../pages/diseases/diseases";
 @import "../pages/full-stage/full-stage";
-@import "../pages/pests/pests";
 @import "../pages/varieties/varieties";
 @import "../pages/image-popup/image-popup";
 @import "../pages/vendors/vendors.scss";
 @import "../pages/possibilities/possibilities.scss";
 @import "../pages/inputs/inputs.scss";
 @import "../pages/varieties/varieties.scss";
-@import "../pages/abiotic-popup/abiotic-popup.scss";
-@import "../pages/disease-popup/disease-popup.scss";
-@import "../pages/pest-popup/pest-popup.scss";
 @import "../pages/possibilities-popup/possibilities-popup.scss";
 @import "../pages/inputs-popup/inputs-popup.scss";
 @import "../pages/varieties-popup/varieties-popup.scss";
@@ -32,3 +26,5 @@
 @import "../pages/info-tabbed-popup/management-tab/management-tab";
 @import "../pages/info-tabbed-popup/photo-tab/photo-tab";
 @import "../pages/catalogue-index/catalogue-index.scss";
+@import "../pages/information-overview/information-overview";
+@import "../pages/information-overview/instance-details/instance-details";

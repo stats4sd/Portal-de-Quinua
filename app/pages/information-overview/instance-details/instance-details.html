@@ -1,0 +1,67 @@
+<ion-navbar *navbar>
+  <ion-title *ngIf="params.instance.dis_nombre">{{params.instance.dis_nombre}}</ion-title>
+  <ion-title *ngIf="params.instance.ab_nombre">{{params.instance.ab_nombre}}</ion-title>
+  <ion-title *ngIf="params.instance.pes_nombre">{{params.instance.pes_nombre}}</ion-title>
+</ion-navbar>
+
+<ion-content padding class="disease-popup">
+  <h4>Image Gallery</h4>
+  <div class="ionScroller">
+    <ion-scroll scrollX="true">
+      <ion-row >
+        <ion-col width-25 *ngFor="let image of imageTest">
+          <img class="sliderImage" src="{{image.src}}" (click)="imageClick(image)">
+        </ion-col>
+      </ion-row>
+    </ion-scroll>
+  </div>
+
+  <!--abiotic specific template-->
+  <div *ngIf="instance.ab_nombre">
+    <h4>Descripcion</h4>
+    <div [innerHTML]="instance.ab_desc"></div>
+  </div>
+
+  <!--pest specific template-->
+  <div *ngIf="instance.pest_nombre">
+    <h4>Descripcion</h4>
+    <div [innerHTML]="instance.pest_desc"></div>
+    <h4>Taxonomy</h4>
+    <ul>
+      <li><span class='bold'>Class:</span>{{instance.tax_clas}}</li>
+      <li><span class='bold'>Order:</span>{{instance.tax_ord}}</li>
+      <li><span class='bold'>Family:</span>{{instance.tax_fam}}</li>
+      <li><span class='bold'>Genus:</span>{{instance.tax_gen}}</li>
+      <li><span class='bold'>Species:</span>{{instance.tax_esp}}</li>
+    </ul>
+    <h4>Descripción del cido biológico</h4>
+    <p [innerHTML]="instance.c_bio"></p>
+  </div>
+
+  <!--disease specific template-->
+  <div *ngIf="instance.dis_nombre">
+    <div *ngIf="instance.dis_nombre">
+      <h4>Descripcion</h4>
+      <div [innerHTML]="instance.descripcion"></div>
+      <p><span class='bold'>Tipo de patógeno:</span>  {{instance.patogeno}}</p>
+      <h4>Taxonomy</h4>
+      <ul>
+        <li><span class='bold'>Class:</span>{{instance.etax_clas}}</li>
+        <li><span class='bold'>Order:</span>{{instance.etax_ord}}</li>
+        <li><span class='bold'>Family:</span>{{instance.etax_fam}}</li>
+        <li><span class='bold'>Genus:</span>{{instance.etax_gen}}</li>
+        <li><span class='bold'>Species:</span>{{instance.etax_esp}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <ion-list>
+    <ion-item (click)="pushPossibilities()">
+      <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
+      <ion-thumbnail item-left>
+        <img class="viewImage" src="wp-content/covers/ManagementCover.png">
+      </ion-thumbnail>
+      Posibilidades de gestión
+    </ion-item>
+  </ion-list>
+</ion-content>

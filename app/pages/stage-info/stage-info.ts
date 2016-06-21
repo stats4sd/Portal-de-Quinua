@@ -2,12 +2,9 @@ import {Component} from '@angular/core';
 import {NavController, NavParams, Modal} from 'ionic-angular';
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 import {Abiotic} from '../abiotic/abiotic'
-import {Diseases} from '../diseases/diseases'
 import {Pests} from '../pests/pests'
-import {VarietiesPage} from '../varieties/varieties'
-import {FullStage} from '../full-stage/full-stage'
 import {ImagePopup} from '../image-popup/image-popup'
-import {PossibilitiesPage} from '../possibilities/possibilities';
+import {InformationOverview} from '../information-overview/information-overview';
 
 @Component({
   templateUrl: 'build/pages/stage-info/stage-info.html',
@@ -32,12 +29,21 @@ export class StageInfoPage {
       {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 5}*/
     ]
   }
-  pushAbiotic(){this.nav.push(Abiotic,{
+  pushAbiotic(){this.nav.push(InformationOverview,{
+    title:'Abioticos',
     infoSection:'abioticos',
     stage:this.stage,
     instances:this.stageResults.abiotics})}
-  pushPests(){this.nav.push(Pests, {instances:this.stageResults.pests})}
-  pushDiseases(){this.nav.push(Diseases, {instances:this.stageResults.diseases})}
+  pushPests(){this.nav.push(InformationOverview, {
+    title:'Plagas',
+    infoSection:'plagas',
+    instances:this.stageResults.pests,
+    stage:this.stage})}
+  pushDiseases(){this.nav.push(InformationOverview, {
+    title:'Enfermedas',
+    infoSection:'enfermedas',
+    instances:this.stageResults.diseases,
+    stage:this.stage})}
 
   imageClick(image){
     let modal = Modal.create(ImagePopup, {imageList:this.imageTest,activeImage:image, title:this.stage.nombre});
