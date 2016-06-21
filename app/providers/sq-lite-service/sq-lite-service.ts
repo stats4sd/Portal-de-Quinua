@@ -410,20 +410,46 @@ var masterQueries=
     ORDER BY a.`vendor_id`",
 
    allVarieties: " \
-   SELECT a.*, b.`file_url` GROUP_CONCAT(DISTINCT d.`vendor_id`) 'vendorList' \
-   FROM `variety` a \
-   LEFT JOIN `media_variety` b \
-   ON a.`variety_id` = b.`variety_id` \
-   LEFT JOIN ( \
-     SELECT `variety_id`, MIN(`file_url`) 'firstfile', `file_type` \
-     FROM `media_variety` \
-     GROUP BY `variety_id` \
-   ) c \
-   ON a.`variety_id` = b.`variety_id` \
-   AND b.`file_url` = c.`firstfile` \
-   LEFT JOIN `jnc_vendor_variety` d \
-   ON a.`variety_id` = d.`variety_id` \
-   GROUP BY a.`variety_id` \
-   ORDER BY a.`variety_id`"
+   SELECT a.*, b.`file_url`, GROUP_CONCAT(DISTINCT d.`vendor_id`) 'vendorList', GROUP_CONCAT(DISTINCT e.`onombre`) 'onombre', f.`nom` 'epocames1Value', g.`nom` 'epocaif1Value', h.`nom` 'epocames2Value', i.`nom` 'epocaif2Value', j.`nom` 'precozValue', k.`nombre` 'theladaValue', l.`nombre` 'tmildiuValue', m.`nombre` 'tsequiaValue', n.`nombre` 'tgranizoValue', o.`nombre` 'tvolcaValue', GROUP_CONCAT(DISTINCT p.`media_id`) 'mediaList', GROUP_CONCAT(DISTINCT q.`id`) 'documentList' \
+      FROM `variety` a \
+      LEFT JOIN `media_variety` b \
+      ON a.`variety_id` = b.`variety_id` \
+      LEFT JOIN ( \
+        SELECT `variety_id`, MIN(`file_url`) 'firstfile', `file_type`\
+        FROM `media_variety`\
+        GROUP BY `variety_id`\
+      ) c\
+      ON a.`variety_id` = b.`variety_id` \
+      AND b.`file_url` = c.`firstfile` \
+      LEFT JOIN `jnc_vendor_variety` d \
+      ON a.`variety_id` = d.`variety_id` \
+       LEFT JOIN `variety_name` e \
+       ON a.`variety_id` = e.`variety_id` \
+       LEFT JOIN `months` f \
+       ON a.`epocames1` = f.`id` \
+       LEFT JOIN `months` h \
+       ON a.`epocames2` = h.`id` \
+       LEFT JOIN `months` g \
+       ON a.`epocaif1` = g.`id` \
+       LEFT JOIN `months` i \
+       ON a.`epocaif2` = i.`id` \
+       LEFT JOIN `precoz` j \
+       ON a.`precoz` = j.`id` \
+       LEFT JOIN `tolerance` k \
+       ON a.`thelada` = k.`id` \
+       LEFT JOIN `tolerance` l \
+       ON a.`tmildiu` = l.`id` \
+       LEFT JOIN `tolerance` m \
+       ON a.`tsequia` = m.`id` \
+       LEFT JOIN `tolerance` n \
+       ON a.`tgranizo` = n.`id` \
+       LEFT JOIN `tolerance` o \
+       ON a.`tvolca` = o.`id` \
+       LEFT JOIN `media_variety` p \
+       ON a.`variety_id` = p.`variety_id` \
+       LEFT JOIN `doc_variety` q \
+       ON a.`variety_id` = q.`variety_id` \
+      GROUP BY a.`variety_id` \
+      ORDER BY a.`variety_id`"
 
 };

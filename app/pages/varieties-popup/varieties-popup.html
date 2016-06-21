@@ -11,34 +11,110 @@
 <ion-content padding class="varieties-popup">
   <h2>{{variety.nombre}}</h2>
   <ion-list>
-    <ion-list-header>Key Details</ion-list-header>
+    <ion-list-header>Nomenclature</ion-list-header>
     <ion-item>
-      Cultivo:
-      <ion-note item-right>
-      {{variety.cultivo}}
-      </ion-note>
+      <ion-note>Cultivo:</ion-note>
+      <span item-right>{{variety.cultivo}}</span>
     </ion-item>
     <ion-item>
-      Nombre cientifico del cultivo:
-      <ion-note item-right>
-      {{variety.cult_nc}}
-      </ion-note>
+      <ion-note>Nombre cientifico del cultivo:</ion-note>
+      <span item-right>{{variety.cult_nc}}</span>
     </ion-item>
     <ion-item>
-      Nombre de la variedad:
-      <ion-note item-right>
-      {{variety.nombre}}
-      </ion-note>
-    </ion-item>
-    <ion-item>
-      Preferencia del cultivoL Planicie or Ladera:
-      <ion-note item-right>
-      {{variety.pref}}
-      </ion-note>
+      <ion-note>Nombre de la variedad:</ion-note>
+      <span item-right>{{variety.nombre}}</span>
     </ion-item>
   </ion-list>
-
-  ### OTHER DETAILS TO BE ADDED HERE ### 
+  <ion-list>
+    <ion-list-header>Otros nombres</ion-list-header>
+        <ion-item *ngFor="let onombre of onombres; let i=index">
+      <span item-right>{{onombre}}</span>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>Cultivation</ion-list-header>
+    <ion-item>
+      <ion-note>Preferencia del cultivo:</ion-note>
+      <span item-right>{{variety.pref}}</span>
+    </ion-item>
+    <ion-item>
+      <h4>Lugares de siembra</h4>
+      <p [innerHTML]="variety.lugsiem"></p>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>Sowing Season</ion-list-header>
+    <ion-item>
+      <ion-note>Epoca de siembra:</ion-note>
+      <span item-right>{{variety.epocaif1Value}} {{variety.epocames1Value}}</span>
+    </ion-item>
+    <ion-item>
+      <ion-note>Epoca de finalizacion</ion-note>
+      <span item-right>{{variety.epocaif2Value}}  {{variety.epocames2Value}}</span>
+    </ion-item>
+    <ion-item>
+      <ion-note>Ciclo vegetativo (días)</ion-note>
+      <span item-right>{{variety.ciclov}}</span>
+    </ion-item>
+    <ion-item>
+      <ion-note>Descripción del largo del ciclo:</ion-note>
+      <span item-right>{{variety.precozValue}}</span>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-note>Ensayo experimental (kg/ha):</ion-note>
+      <span item-right>{{variety.rensayo}}</span>
+    </ion-item>
+    <ion-item>
+      <ion-note>Parcela del agricultor (kg/ha):</ion-note>
+      <span item-right>{{variety.rfinca}}</span>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>Tolerences</ion-list-header>
+    <ion-item *ngIf="variety.theladaValue!='NULL'">
+      <ion-note>Tolerancia a las heladas</ion-note>
+      <span item-right>{{variety.theladaValue}}</span>
+    </ion-item>
+    <ion-item *ngIf="variety.tmildiuValue!='NULL'">
+      <ion-note>Tolerancia al mildiu</ion-note>
+      <span item-right>{{variety.tmildiuValue}}</span>
+    </ion-item>
+    <ion-item *ngIf="variety.tsequiaValue!='NULL'">
+      <ion-note>Tolerancia al sequilla</ion-note>
+      <span item-right>{{variety.tsequiaValue}}</span>
+    </ion-item>
+    <ion-item *ngIf="variety.tgranizoValue!='NULL'">
+      <ion-note>Tolerancia al granizo</ion-note>
+      <span item-right>{{variety.tgranizoValue}}</span>
+    </ion-item>
+    <ion-item *ngIf="variety.tvolcaValue!='NULL'">
+      <ion-note>Tolerancia al volcamiento</ion-note>
+      <span item-right>{{variety.tvolcaValue}}</span>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>Uses of Variety</ion-list-header>
+    <ion-item>
+      <h4>Consumo tradicional</h4>
+      <p [innerHTML]="variety.consut"></p>
+    </ion-item>
+    <ion-item>
+      <h4>Agroindustria</h4>
+      <p [innerHTML]="variety.agroind"></p>
+    </ion-item>
+    <ion-item>
+      <h4>Medicina</h4>
+      <p [innerHTML]="variety.medicina"></p>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-note>Disponibilidad de semilla</ion-note>
+      <span item-right>{{variety.dsemilla}}</span>
+    </ion-item>
+  </ion-list>
 
 
 </ion-content>

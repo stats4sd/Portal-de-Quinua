@@ -19,7 +19,11 @@ export class VarietiesPopupPage {
   constructor(public nav: NavController, viewCtrl: ViewController, private params:NavParams) {
     this.params=params;
     this.variety=params.data.variety;
-    console.log(this.variety)
+    console.log(this.variety);
+
+    //split onombres into array;
+    this.onombres = this.variety.onombre.split(",");
+    console.log(this.onombres);
 
   }
 }
