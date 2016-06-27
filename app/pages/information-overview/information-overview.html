@@ -3,7 +3,8 @@
 </ion-navbar>
 
 <ion-content padding class="page1 card-background-image">
-  <h4>{{params.title}} asociado con {{params.stage.nombre}}</h4>
+  <h4 *ngIf="params.stage">{{params.title}} asociado con {{params.stage.nombre}}</h4>
+  <h4 *ngIf="!params.stage">{{params.title}}</h4>
   <div *ngIf="params.instances.length>0">
     <ion-list >
       <ion-item *ngFor="let instance of params.instances; let i=index" (click)="instanceClick(i)">

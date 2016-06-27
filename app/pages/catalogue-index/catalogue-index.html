@@ -17,6 +17,7 @@
           <img class="viewImage" src="wp-content/covers/VarietyCover.png">
       </ion-thumbnail>
       Variedades
+      <p>{{varieties.length}} Resultados</p>
       <!-- <p>{{badgeInfo.pests.length}} Resultados</p> -->
   </ion-item>
   <ion-item>
@@ -25,6 +26,8 @@
           <img class="viewImage" src="wp-content/covers/InputCover.png">
       </ion-thumbnail>
       Insumos
+      <p>{{inputs.length}} Resultados</p>
+
       <!-- <p>{{badgeInfo.pests.length}} Resultados</p> -->
   </ion-item>
   <ion-item>
@@ -33,30 +36,37 @@
           <img class="viewImage" src="wp-content/covers/VendorCover.png">
       </ion-thumbnail>
       Vendedores
+      <p>{{vendors.length}} Resultados</p>
+
   </ion-item>
 </ion-list>
 <ion-list>
   <ion-list-header>Risks</ion-list-header>
-  <ion-item >
+  <ion-item (click)="pushAbiotic()">
       <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
       <ion-thumbnail item-left>
           <img class="viewImage" src="wp-content/covers/AbioticCover.png">
       </ion-thumbnail>
       Abiotics
+      <p>{{abiotics.length}} Resultados</p>
+
   </ion-item>
-  <ion-item >
+  <ion-item (click)="pushDiseases()">
       <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
       <ion-thumbnail item-left>
           <img class="viewImage" src="wp-content/covers/DiseaseCover.png">
       </ion-thumbnail>
       enfermedades
+      <p>{{diseases.length}} Resultados</p>
   </ion-item>
-  <ion-item >
+  <ion-item (click)="pushPests()">
       <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
       <ion-thumbnail item-left>
           <img class="viewImage" src="wp-content/covers/PestCover.png">
       </ion-thumbnail>
       plagas
+      <p>{{pests.length}} Resultados</p>
+
   </ion-item>
 </ion-list>
 <ion-list>
@@ -67,6 +77,7 @@
           <img class="viewImage" src="wp-content/covers/PossibilitiesCover.png">
       </ion-thumbnail>
       posibilidades
+      <p>{{possibilities.length}} Resultados</p>
   </ion-item>
 </ion-list>
 </ion-content>
