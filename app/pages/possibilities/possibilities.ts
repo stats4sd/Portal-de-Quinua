@@ -36,8 +36,6 @@ export class PossibilitiesPage {
     this.item=this.params.item;
     this.itemId=this.params.id;
     this.itemNombre=this.params.nombre
-
-    this.possibilities = [];
     this.loaded = false;
 
     // this.pests = this.sql.getValue('pests');
@@ -51,6 +49,10 @@ export class PossibilitiesPage {
     console.log(this.item);
     console.log(this.itemId);
     console.log(this.itemNombre);
+    var listname = this.itemNombre + "List";
+
+    this.possibilities = this.sql.getValue("allPossibilities");
+    this.possibilities = this.sql.filterAllByList(this.possibilities, this.itemId);
     //call query to generate Abiotic list.
     platform.ready().then(() => {
       this.sql.query("", "filter", "possibilities", this.item, this.itemId).then((result)=> {

@@ -50,5 +50,3 @@ export class StageInfoPage {
   //function to calculate number of results behind each info link
 
 }
-
-

@@ -136,6 +136,31 @@ export class SqLiteService {
     console.log(stageResults)
     return stageResults
   }
+
+  //attempt at writing generic filter, to allow filtering of any complete set by any list.  (stageList, abioticList etc)
+  filterByList(set,list,filterId) {
+    var results = [];
+    console.log(set);
+    console.log(set[0]);
+    console.log(set[11][list]);
+    console.log(list);
+      for (let item of set){
+        var contains=false;
+        if(item[list]!=null) {
+          var listArray=item[list].split(',');
+          for (let e of listArray){
+            if (parseInt(e)==filterId){
+              contains=true;
+            }
+          }
+          if(contains==true){
+            results.push(item)
+          }
+      }
+      }
+      return(results)
+  }
+
 }
 
 function convertToRowFormat(contents) {

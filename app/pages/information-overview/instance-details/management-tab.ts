@@ -25,6 +25,7 @@ export class ManagementTab {
   itemNombre:any;
   possibilities:any;
   params:any;
+  possibilitiesSet:any;
 
   constructor(public sql:SqLiteService, nav: NavController, platform:Platform, private params:NavParams) {
     this.sql = sql;
@@ -34,19 +35,26 @@ export class ManagementTab {
     this.params=params.data;
     console.log(this.params)
     this.item=this.params.item;
+    var list = this.item + 'List';
     this.itemId=this.params.id;
     this.itemNombre=this.params.nombre
     this.possibilities = [];
     this.loaded = false;
 
-    platform.ready().then(() => {
-      this.sql.query("", "filter", "possibilities", this.item, this.itemId).then((result)=> {
-        this.possibilities = result;
-        console.log(result);
-        this.loaded = true;
-        console.log(this.loaded)
-      });
-    });
+    this.possibilitiesSet = this.sql.getValue("allPossibilities");
+    console.log(this.possibilitiesSet)
+    this.possibilities = this.sql.filterByList(this.possibilitiesSet, list,this.itemId);
+    console.log(this.possibilities)
+
+    this.loaded=true;
+    // platform.ready().then(() => {
+    //   this.sql.query("", "filter", "possibilities", this.item, this.itemId).then((result)=> {
+    //     this.possibilities = result;
+    //     console.log(result);
+    //     this.loaded = true;
+    //     console.log(this.loaded)
+    //   });
+    // });
 
   }
 
