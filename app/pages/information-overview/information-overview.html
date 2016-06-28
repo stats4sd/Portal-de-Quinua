@@ -10,8 +10,8 @@
       <ion-item *ngFor="let instance of params.instances; let i=index" (click)="instanceClick(i)">
         <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
         <ion-row wrap>
-          <ion-col width-33>
-            <img src="{{instance.file_url}}" image-fallback >
+          <ion-col class='image-col' width-33>
+            <img class='card-image' src="{{instance.file_url}}" image-fallback >
           </ion-col>
           <ion-col width-66>
             <div class="card-title" *ngIf="instance.ab_nombre">{{instance.ab_nombre}}</div>
