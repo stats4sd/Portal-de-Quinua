@@ -12,7 +12,7 @@ import {JsonCacheService} from '../../providers/json-cache-service/json-cache-se
 export class StartPage {
   stages:any;
   sql:any;
-  queries:any;
+  slides:any;
   jsonDbLoaded:boolean;
   SQLDbLoaded:boolean=false;
   loadSQL:boolean;

@@ -2,4 +2,7 @@
   button{
     white-space: normal;
   }
+  .button:hover, .button:active{
+    background-color: #f51919;
+  }
 }
