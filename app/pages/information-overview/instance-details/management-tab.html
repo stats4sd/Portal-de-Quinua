@@ -1,10 +1,10 @@
 <ion-content padding class="management-tab">
-  <ion-content padding class="possibilities">
     <div *ngIf="possibilities.length>0 && loaded==true">
       <div *ngFor="let poss of possibilities; let i=index">
-        <ion-card>
-          <img src="{{poss.file_url}}" (click)="possClick(i)" image-fallback>
+        <ion-card (click)="possClick(i)">
+          <img src="{{poss.file_url}}"  image-fallback>
           <div class="card-title">{{poss.pos_nombre}}</div>
+          <a>Clic para más información</a>
         </ion-card>
       </div>
     </div>
@@ -16,5 +16,4 @@
       Loading data...
     </div>
 
-  </ion-content>
 </ion-content>

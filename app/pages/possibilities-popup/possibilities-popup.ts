@@ -3,6 +3,7 @@ import {NavController, Modal, ViewController, NavParams} from 'ionic-angular';
 import {ImagePopup} from '../image-popup/image-popup';
 import {ImageFallback} from '../../directives/image-fallback'
 import {InputsPage} from '../inputs/inputs';
+import {ImageFallback} from '../../directives/image-fallback'
 
 /*
   Generated class for the PossibilitiesPopupPage page.
@@ -12,6 +13,7 @@ import {InputsPage} from '../inputs/inputs';
 */
 @Component({
   templateUrl: 'build/pages/possibilities-popup/possibilities-popup.html',
+  directives: [ImageFallback]
 })
 export class PossibilitiesPopupPage {
   possibilities:any;
@@ -19,21 +21,12 @@ export class PossibilitiesPopupPage {
 
   constructor(public nav: NavController, viewCtrl: ViewController, private params:NavParams) {
     this.params=params;
-    this.possibilities=params.data
-    this.imageTest = [
-      {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 0},
-      {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 1},
-      {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 2},
-      {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 3},
-      {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 4},
-      {src: 'wp-content/proinpa-logo.jpg', description: 'example image description', index: 5}
-    ]
+    this.possibilities=params.data;
+    console.log(this.possibilities);
+    //this.inputs
   }
 
-  imageClick(image){
-    let modal = Modal.create(ImagePopup, {imageList:this.imageTest,activeImage:image, title:this.abioticos.ab_nombre});
-    this.nav.present(modal)
-  }
+
   pushInputs() {
     this.nav.push(InputsPage,{item:"possibilities",id:this.possibilities.possibilities_id,nombre:this.possibilities.pos_nombre})
   }

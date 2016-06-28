@@ -40,21 +40,10 @@ export class ManagementTab {
     this.itemNombre=this.params.nombre
     this.possibilities = [];
     this.loaded = false;
-
     this.possibilitiesSet = this.sql.getValue("allPossibilities");
-    console.log(this.possibilitiesSet)
     this.possibilities = this.sql.filterByList(this.possibilitiesSet, list,this.itemId);
     console.log(this.possibilities)
-
     this.loaded=true;
-    // platform.ready().then(() => {
-    //   this.sql.query("", "filter", "possibilities", this.item, this.itemId).then((result)=> {
-    //     this.possibilities = result;
-    //     console.log(result);
-    //     this.loaded = true;
-    //     console.log(this.loaded)
-    //   });
-    // });
 
   }
 

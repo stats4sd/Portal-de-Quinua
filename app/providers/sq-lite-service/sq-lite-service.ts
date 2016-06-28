@@ -99,12 +99,10 @@ export class SqLiteService {
   }
 
   getAllQueries() {
-    console.log(masterQueries);
     return masterQueries;
   }
 
   getAllQueriesLength() {
-    console.log(Object.keys(masterQueries).length);
     return Object.keys(masterQueries).length;
   }
 
@@ -140,10 +138,6 @@ export class SqLiteService {
   //attempt at writing generic filter, to allow filtering of any complete set by any list.  (stageList, abioticList etc)
   filterByList(set,list,filterId) {
     var results = [];
-    console.log(set);
-    console.log(set[0]);
-    console.log(set[11][list]);
-    console.log(list);
       for (let item of set){
         var contains=false;
         if(item[list]!=null) {
