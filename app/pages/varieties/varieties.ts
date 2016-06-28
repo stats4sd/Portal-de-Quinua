@@ -5,12 +5,6 @@ import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 import {ImageFallback} from '../../directives/image-fallback'
 import {VarietiesPopupPage} from '../varieties-popup/varieties-popup';
 
-/*
-  Generated class for the VarietiesPage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   templateUrl: 'build/pages/varieties/varieties.html',
   directives: [ImageFallback],
@@ -22,14 +16,38 @@ export class VarietiesPage {
   nav:any;
   variety:any;
   loaded:boolean;
+  searchQuery:any;
+  items:any;
 
-  constructor(public sql:SqLiteService, nav: NavController, platform:Platform) {
+  constructor(public sql:SqLiteService, nav: NavController) {
     this.sql =sql;
     this.nav = nav;
     this.variety = this.sql.getValue('allVarieties');
-    console.log(this.variety)
+    console.log(this.variety);
+    this.searchQuery = '';
+    this.initializeItems();
+  }
 
+  initializeItems() {
+    this.items = this.variety;
+    console.log(this.items);
+  }
 
+  getItems(searchbar) {
+    // Reset items back to all of the items
+    this.initializeItems();
+    // set q to the value of the searchbar
+    var q = searchbar.value;
+    // if the value is an empty string don't filter the items
+    if (q.trim() == '') {
+      return;
+    }
+    this.items = this.items.filter((v) => {
+      if (v.nombre.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+        return true;
+      }
+      return false;
+    })
   }
 
   varietyClick(i) {
