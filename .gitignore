@@ -14,6 +14,7 @@ log.txt
 .idea/
 .sass-cache/
 .versions/
+artwork/
 coverage/
 node_modules/
 tmp/
