@@ -1,4 +1,16 @@
-.vendors {
+.sale-list-tab {
+  padding: 0;
+  scroll-content{
+    padding: 0;
+  }
+  ion-card{
+    margin:10;
+    img{
+      max-width:100%;
+      max-height:30vh;
+    }
+  }
+
   ion-item{
     border-bottom: 1px rgb(169, 155, 155) solid;
     padding-left: 0px;
@@ -6,8 +18,6 @@
   .card-title{
     width: 100%!important;
     white-space: normal!important;
-    font-weight: bold;
-    font-size: 1.1em;
   }
 
   .image-col {
@@ -21,8 +31,5 @@
     min-height: 100%;
     min-width: 100%;
   }
-
-  .card-content {
-    white-space: normal!important;
-  }
+  
 }

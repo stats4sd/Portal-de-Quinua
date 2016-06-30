@@ -3,6 +3,8 @@ import {NavController} from 'ionic-angular';
 import {Platform} from 'ionic-angular';
 import {StageList} from '../stage-list/stage-list'
 import {VarietiesPage} from '../varieties/varieties'
+import {VendorsPage} from '../vendors/vendors'
+
 import {InformationOverview} from '../information-overview/information-overview'
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 import {ImageFallback} from '../../directives/image-fallback'
@@ -64,6 +66,12 @@ export class CatalogueIndexPage {
   title:'Enfermedas',
   infoSection:'enfermedas',
   instances:this.diseases
+  })}
+
+  pushVendors(){this.nav.push(VendorsPage, {
+  title:'Vendedores',
+  infoSection:'vendedores',
+  instances:this.vendors
   })}
 
 }

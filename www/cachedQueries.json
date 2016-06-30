@@ -522,7 +522,7 @@
     {
       "possibilities_id": 15,
       "pos_nombre": "Tratamiento de semilla",
-      "pos_desc": "Se aplica TRICOBAL y VIGORTOP a la semilla al momento de la siembra para mejorar la emergencia, controlar las enfermedades y obtener plantas más saludables.\t",
+      "pos_desc": "Se aplica TRICOBAL y VIGORTOP a la semilla al momento de la siembra para mejorar la emergencia, controlar las enfermedades y obtener plantas más saludables.t",
       "j": null,
       "file_url": "wp-content/uploads/possibilities/Tratamiento de semilla.png",
       "stageList": "1",
@@ -684,7 +684,7 @@
       "tgranizoValue": "NULL",
       "tvolcaValue": "NULL",
       "mediaList": "162,163,164,207",
-      "documentList": null
+      "documentList": "5"
     },
     {
       "variety_id": 3,
@@ -804,7 +804,7 @@
       "tgranizoValue": null,
       "tvolcaValue": null,
       "mediaList": "9,10,11,12",
-      "documentList": null
+      "documentList": "3"
     },
     {
       "variety_id": 6,

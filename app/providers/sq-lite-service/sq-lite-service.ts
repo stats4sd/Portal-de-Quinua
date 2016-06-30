@@ -140,8 +140,13 @@ export class SqLiteService {
     var results = [];
       for (let item of set){
         var contains=false;
+        console.log(list);
+        console.log(item);
+        console.log(item[list])
+        console.log(item.inputList)
         if(item[list]!=null) {
           var listArray=item[list].split(',');
+          console.log(listArray)
           for (let e of listArray){
             if (parseInt(e)==filterId){
               contains=true;
@@ -429,7 +434,7 @@ var masterQueries=
     ORDER BY a.`vendor_id`",
 
    allVarieties: " \
-   SELECT a.*, b.`file_url`, GROUP_CONCAT(DISTINCT d.`vendor_id`) 'vendorList', GROUP_CONCAT(DISTINCT e.`onombre`) 'onombre', f.`nom` 'epocames1Value', g.`nom` 'epocaif1Value', h.`nom` 'epocames2Value', i.`nom` 'epocaif2Value', j.`nom` 'precozValue', k.`nombre` 'theladaValue', l.`nombre` 'tmildiuValue', m.`nombre` 'tsequiaValue', n.`nombre` 'tgranizoValue', o.`nombre` 'tvolcaValue', GROUP_CONCAT(DISTINCT p.`media_id`) 'mediaList', GROUP_CONCAT(DISTINCT q.`id`) 'documentList' \
+   SELECT a.*, b.`file_url`, GROUP_CONCAT(DISTINCT d.`vendor_id`) 'vendorList', GROUP_CONCAT(DISTINCT e.`onombre`) 'onombre', f.`nom` 'epocames1Value', g.`nom` 'epocaif1Value', h.`nom` 'epocames2Value', i.`nom` 'epocaif2Value', j.`nom` 'precozValue', k.`nombre` 'theladaValue', l.`nombre` 'tmildiuValue', m.`nombre` 'tsequiaValue', n.`nombre` 'tgranizoValue', o.`nombre` 'tvolcaValue', GROUP_CONCAT(DISTINCT p.`media_id`) 'mediaList', GROUP_CONCAT(DISTINCT q.`id`) 'documentList', GROUP_CONCAT(DISTINCT r.`vendor_id`) 'vendorList' \
       FROM `variety` a \
       LEFT JOIN `media_variety` b \
       ON a.`variety_id` = b.`variety_id` \
@@ -468,6 +473,8 @@ var masterQueries=
        ON a.`variety_id` = p.`variety_id` \
        LEFT JOIN `doc_variety` q \
        ON a.`variety_id` = q.`variety_id` \
+       LEFT JOIN `jnc_vendor_variety` r \
+       ON a.`variety_id` = r.`variety_id` \
       GROUP BY a.`variety_id` \
       ORDER BY a.`variety_id`"
 

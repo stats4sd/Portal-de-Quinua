@@ -3,7 +3,7 @@ import {NavController, NavParams, Modal} from 'ionic-angular';
 import {Platform} from 'ionic-angular';
 import {ImagePopup} from '../image-popup/image-popup';
 import {ImageFallback} from '../../directives/image-fallback'
-import {VendorsPopupPage} from '../vendors-popup/vendors-popup';
+import {VendorTabsPage} from './vendors-details/tabs';
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 
 /*
@@ -40,28 +40,18 @@ export class VendorsPage {
     this.itemId=this.params.id;
     this.itemNombre=this.params.nombre;
 
-    this.vendors = [];
-    this.loaded = false;
-    console.log(this.item);
-    console.log(this.itemId);
-    console.log(this.itemNombre);
-    //call query to generate Abiotic list.
+    this.vendors = this.params.instances
 
-    platform.ready().then(() => {
-      this.sql.query("", "filter", "vendor", this.item, this.itemId).then((result)=> {
-        this.vendors = result;
-        console.log(result);
-        this.loaded = true;
-        console.log(this.loaded)
-        console.log(this.vendors[0].file_url)
-      });
-    });
+    console.log(this.vendors);
+    console.log(this.params);
+
+
 
 
   }
   vendorClick(i) {
     this.sql.setValue('possArrayIndex',i);
-    this.nav.push(VendorsPopupPage, this.vendors[i]);
+    this.nav.push(VendorTabsPage, this.vendors[i]);
   }
 
 

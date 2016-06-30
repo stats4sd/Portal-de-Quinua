@@ -1,0 +1,47 @@
+<ion-content padding class="sale-list-tab">
+<!--List all Inputs for sale -->
+  <div *ngIf="inputs.length>0" padding>
+    <h3>Insumos por venta</h3>
+    <ion-card>
+      <ion-list padding>
+        <ion-item *ngFor="let input of inputs; let i=index">
+          <ion-row wrap>
+            <ion-col class='image-col' width-33>
+              <img class='card-image' src="{{input.file_url}}" image-fallback>
+            </ion-col>
+            <ion-col width-66>
+              <div class="card-title">{{input.pnombre}}</div>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </div>
+
+
+<!--List all Varieties for sale -->
+  <div *ngIf="varieties.length>0" padding>
+    <h3>Variedades por venta</h3>
+    <ion-card>
+    <ion-list padding>
+      <ion-item *ngFor="let item of varieties; let i=index" (click)="varietyClick(i)">
+        <ion-row wrap>
+          <ion-col class='image-col' width-33>
+            <img class='card-image' src="{{item.file_url}}" image-fallback >
+          </ion-col>
+          <ion-col width-66>
+            <div class="card-title">{{item.nombre}}</div>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  </div>
+
+  <div *ngIf="varieties.length==0">
+    No hay varieties para esta etape
+  </div>
+
+
+
+</ion-content>

@@ -10,25 +10,28 @@
 
 <ion-content padding class="vendors">
   <h1>Vendors</h1>
-  <h4>Vendors that sell {{item}}: {{itemNombre}}</h4>
-  <div *ngIf="vendors.length>0 && loaded==true">
-    <div *ngFor="let vendor of vendors; let i=index">
-      <ion-card>
-        <img src="{{vendor.file_url}}" (click)="vendorClick(i)" image-fallback>
-        <div class="card-title">{{vendor.vquien}}</div>
-        <div class='card-content'>{{vendor.vdonde}}</div>
-      </ion-card>
-    </div>
+  <h4 *ngIf='!params.item'>Vendors</h4>
+  <h4 *ngIf='params.item'>Vendors that sell {{item}}: {{itemNombre}}</h4>
+  <div *ngIf="vendors.length>0">
+    <ion-list>
+      <ion-item *ngFor="let vendor of vendors; let i=index" (click)="vendorClick(i)">
+      <ion-icon name='arrow-round-forward' clear item-right></ion-icon>
+        <ion-row wrap>
+          <ion-col class='image-col' width-33>
+            <img src="{{vendor.file_url}}" class='card-image' image-fallback>
+          </ion-col>
+          <ion-col width-66>
+            <div class="card-title">{{vendor.vquien}}</div>
+            <div class='card-content'>{{vendor.vdonde}}</div>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
   </div>
 
-  <div *ngIf="vendors.length==0 && loaded">
+
+  <div *ngIf="vendors.length==0">
     There are no registered vendors that sell this item: {{item}}
   </div>
-  <div *ngIf="!loaded">
-    Loading data...
-    ...
-    ...still loading...
-
-    ...if you're still reading this, it's probably taking too long...
-  </div>
+  
 </ion-content>
