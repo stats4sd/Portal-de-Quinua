@@ -41,7 +41,7 @@ export class StartPage {
       {
         title: "<b>Proinpa Informacion Servicio</b>",
         description: "Esta applicacion es parar ayudar productores de quinua en Bolivia con...",
-        image: "wp-content/proinpa-logo.jpg",
+        image: "wp-content/thrashing-quinua.jpeg",
       },
     ];
     //when platform is ready load database. sets dbLoaded variable true which shows enter button
