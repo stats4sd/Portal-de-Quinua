@@ -1,3 +1,40 @@
 .inputs {
+  ion-card {
+    position: relative;
+    text-align: center;
+    min-height: 150px;
+    max-width: 450px;
+  }
+
+  ion-card{
+    margin:10;
+    img{
+      max-width:100%;
+      max-height:30vh;
+    }
+  }
+
+  ion-item{
+    border-bottom: 1px rgb(169, 155, 155) solid;
+    padding-left: 0px;
+  }
+  .card-title{
+    width: 100%!important;
+    white-space: normal!important;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
+  .image-col {
+    width: 200px;
+    height: 100px;
+  }
+
+  .card-image{
+    object-fit: cover;
+    object-position: TOP;
+    min-height: 100%;
+    min-width: 100%;
+  }
 
 }

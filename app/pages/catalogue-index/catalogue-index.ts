@@ -4,6 +4,7 @@ import {Platform} from 'ionic-angular';
 import {StageList} from '../stage-list/stage-list'
 import {VarietiesPage} from '../varieties/varieties'
 import {VendorsPage} from '../vendors/vendors'
+import {InputsPage} from '../inputs/inputs'
 
 import {InformationOverview} from '../information-overview/information-overview'
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
@@ -72,6 +73,12 @@ export class CatalogueIndexPage {
   title:'Vendedores',
   infoSection:'vendedores',
   instances:this.vendors
+  })}
+
+  pushInputs(){this.nav.push(InputsPage, {
+  title:'Insumos',
+  infoSection:'insumos',
+  instances:this.inputs
   })}
 
 }

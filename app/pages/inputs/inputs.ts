@@ -27,26 +27,17 @@ export class InputsPage {
     this.sql=sql;
     this.nav=nav;
     this.params=params.data;
-    this.item=this.params.item;
-    this.itemId=this.params.id;
-    this.itemNombre=this.params.nombre;
+    if(this.params.item){
+      this.item=this.params.item;
+    }
 
-    this.inputs = [];
-    this.loaded = false;
+    this.inputs = this.params.instances
 
-    platform.ready().then(() => {
-      this.sql.query("", "filter", "inputs", this.item, this.itemId).then((result)=> {
-        this.inputs = result;
-        this.loaded = true;
-        console.log(this.loaded);
-        console.log(result)
-      });
-    });
   }
 
   inputClick(i) {
-    this.sql.setValue('possArrayIndex',i);
-    this.nav.push(InputsPopupPage,this.inputs[i]);
+    this.sql.setValue('inputIndex',i);
+    this.nav.push(InputsPopupPage,{inputId:i, input:this.inputs[i]});
   }
 
 

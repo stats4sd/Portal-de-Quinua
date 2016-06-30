@@ -4,7 +4,7 @@
     <h3>Insumos por venta</h3>
     <ion-card>
       <ion-list padding>
-        <ion-item *ngFor="let input of inputs; let i=index">
+        <ion-item *ngFor="let input of inputs; let i=index" (click)="inputClick(i)">
           <ion-row wrap>
             <ion-col class='image-col' width-33>
               <img class='card-image' src="{{input.file_url}}" image-fallback>

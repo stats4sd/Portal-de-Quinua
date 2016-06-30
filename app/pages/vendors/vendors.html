@@ -9,7 +9,6 @@
 </ion-navbar>
 
 <ion-content padding class="vendors">
-  <h1>Vendors</h1>
   <h4 *ngIf='!params.item'>Vendors</h4>
   <h4 *ngIf='params.item'>Vendors that sell {{item}}: {{itemNombre}}</h4>
   <div *ngIf="vendors.length>0">
@@ -33,5 +32,5 @@
   <div *ngIf="vendors.length==0">
     There are no registered vendors that sell this item: {{item}}
   </div>
-  
+
 </ion-content>

@@ -9,25 +9,27 @@
 </ion-navbar>
 
 <ion-content padding class="inputs">
-  <h1>Inputs</h1>
-  <h4>Inputs associated with {{item.nombre}}</h4>
-  <div *ngIf="inputs.length>0 && loaded==true">
-    <div *ngFor="let input of inputs; let i=index">
-      <ion-card>
-        <img src="{{input.file_url}}" image-fallback (click)="inputClick(i)">
-        <div class="card-title">{{input.pnombre}}</div>
-      </ion-card>
-    </div>
+  <h4 *ngIf="!item">Insumos</h4>
+  <h4 *ngIf="item">Insumos asociado con {{item.nombre}}</h4>
+  <div *ngIf="inputs.length>0">
+    <ion-card>
+      <ion-list padding>
+        <ion-item *ngFor="let input of inputs; let i=index" (click)="inputClick(i)">
+          <ion-row wrap>
+            <ion-col class='image-col' width-33>
+              <img class='card-image' src="{{input.file_url}}" image-fallback>
+            </ion-col>
+            <ion-col width-66>
+              <div class="card-title">{{input.pnombre}}</div>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </ion-card>
   </div>
 
-  <div *ngIf="inputs.length==0 && loaded">
+  <div *ngIf="inputs.length==0">
     There are no inputs for this {{item}}
   </div>
-  <div *ngIf="!loaded">
-    Loading data...
-    ...
-    ...still loading...
 
-    ...if you're still reading this, it's probably taking too long...
-  </div>
 </ion-content>
