@@ -6,7 +6,7 @@
   <h4>Seleccione una etapa para detalles</h4>
   <div *ngFor="let stage of stages; let i=index">
     <ion-card (click)="stageClick(i)">
-      <img src="{{stage.file_url}}" image-fallback>
+      <img class='card-image' src="{{stage.file_url}}" image-fallback>
       <div class="card-title">{{stage.nombre}}</div>
     </ion-card>
   </div>
