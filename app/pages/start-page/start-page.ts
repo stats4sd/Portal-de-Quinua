@@ -39,8 +39,8 @@ export class StartPage {
     };
     this.slides = [
       {
-        title: "<b>Proinpa Informacion Servicio</b>",
-        description: "Esta applicacion es parar ayudar productores de quinua en Bolivia con...",
+        title: "<b>Portal de Quinua</b>",
+        description: "Esta aplicación está diseñada para informar sobre cultivo de la quinua y los problemas asociado.",
         image: "wp-content/thrashing-quinua.jpeg",
       },
     ];

@@ -11,7 +11,7 @@ export class ImageFallback {
     updateUrl(){
         var oldUrl =this.el.src;
         //search for foreign characters, e.g. %B3%C3
-        var invalid=(oldUrl.match(/%[A-Z][0-9]%[A-Z][A-Z0-9]/));
+        var invalid=(oldUrl.match(/%[A-Z][0-9]%[A-Z0-9][A-Z0-9]/));
         if(invalid==null){
             console.log('no special characters, file missing?');
             this.el.src='wp-content/sin imagen.png'
@@ -19,7 +19,7 @@ export class ImageFallback {
         else{
             console.log('special character found, renaming src file');
             var newUrl=oldUrl.replace(invalid[0],'_')
-        this.el.src=newUrl;
+        this.el.src=newUrl
       }
 }
 }
