@@ -5,11 +5,11 @@
   Ionic pages and navigation.
 -->
 <ion-navbar *navbar>
-  <ion-title>varieties-popup</ion-title>
+  <ion-title>{{variety.nombre}}</ion-title>
 </ion-navbar>
 
 <ion-content padding class="varieties-popup">
-  <h2>{{variety.nombre}}</h2>
+  <img class="largeImage" src="{{variety.file_url}}" image-fallback>
   <ion-list>
     <ion-list-header>Nomenclature</ion-list-header>
     <ion-item>

@@ -4,6 +4,7 @@ import {ImagePopup} from '../image-popup/image-popup'
 import {ImageFallback} from '../../directives/image-fallback'
 import {PossibilitiesPage} from '../possibilities/possibilities';
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
+import {ImageFallback} from '../../directives/image-fallback'
 
 /*
   Generated class for the VarietiesPopupPage page.
@@ -13,6 +14,7 @@ import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 */
 @Component({
   templateUrl: 'build/pages/varieties-popup/varieties-popup.html',
+  directives:[ImageFallback]
 })
 export class VarietiesPopupPage {
   variety:any;

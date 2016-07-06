@@ -3,6 +3,7 @@ import {NavController, Modal, ViewController, NavParams} from 'ionic-angular';
 import {ImagePopup} from '../image-popup/image-popup';
 import {ImageFallback} from '../../directives/image-fallback'
 import {VendorsPage} from '../vendors/vendors';
+import {ImageFallback} from '../../directives/image-fallback'
 /*
   Generated class for the InputsPopupPage page.
 
@@ -11,6 +12,7 @@ import {VendorsPage} from '../vendors/vendors';
 */
 @Component({
   templateUrl: 'build/pages/inputs-popup/inputs-popup.html',
+  directives:[ImageFallback]
 })
 export class InputsPopupPage {
   inputs:any;
