@@ -4,39 +4,39 @@
   <div padding>
     <!--abiotic specific template-->
     <div *ngIf="instance.ab_nombre">
-      <h4>Descripcion</h4>
+      <h4>Descripción</h4>
       <div [innerHTML]="instance.ab_desc"></div>
     </div>
 
     <!--pest specific template-->
     <div *ngIf="instance.pest_nombre">
-      <h4>Descripcion</h4>
+      <h4>Descripción</h4>
       <div [innerHTML]="instance.pest_desc"></div>
-      <h4>Taxonomy</h4>
+      <h4>Taxonomía</h4>
       <ul>
-        <li><span class='bold'>Class:</span>{{instance.tax_clas}}</li>
-        <li><span class='bold'>Order:</span>{{instance.tax_ord}}</li>
-        <li><span class='bold'>Family:</span>{{instance.tax_fam}}</li>
-        <li><span class='bold'>Genus:</span>{{instance.tax_gen}}</li>
-        <li><span class='bold'>Species:</span>{{instance.tax_esp}}</li>
+        <li><span class='bold'>Clase:</span>{{instance.tax_clas}}</li>
+        <li><span class='bold'>Orden:</span>{{instance.tax_ord}}</li>
+        <li><span class='bold'>Familia:</span>{{instance.tax_fam}}</li>
+        <li><span class='bold'>Genero:</span>{{instance.tax_gen}}</li>
+        <li><span class='bold'>Especie:</span>{{instance.tax_esp}}</li>
       </ul>
-      <h4>Descripción del cido biológico</h4>
+      <h4>Descripción del ciclo biológico</h4>
       <p [innerHTML]="instance.c_bio"></p>
     </div>
 
     <!--disease specific template-->
     <div *ngIf="instance.dis_nombre">
       <div *ngIf="instance.dis_nombre">
-        <h4>Descripcion</h4>
+        <h4>Descripción</h4>
         <div [innerHTML]="instance.descripcion"></div>
         <p><span class='bold'>Tipo de patógeno:</span>  {{instance.patogeno}}</p>
-        <h4>Taxonomy</h4>
+        <h4>Taxonomía</h4>
         <ul>
-          <li><span class='bold'>Class:</span>{{instance.etax_clas}}</li>
-          <li><span class='bold'>Order:</span>{{instance.etax_ord}}</li>
-          <li><span class='bold'>Family:</span>{{instance.etax_fam}}</li>
-          <li><span class='bold'>Genus:</span>{{instance.etax_gen}}</li>
-          <li><span class='bold'>Species:</span>{{instance.etax_esp}}</li>
+          <li><span class='bold'>Clase:</span>{{instance.etax_clas}}</li>
+          <li><span class='bold'>Orden:</span>{{instance.etax_ord}}</li>
+          <li><span class='bold'>Familia:</span>{{instance.etax_fam}}</li>
+          <li><span class='bold'>Genero:</span>{{instance.etax_gen}}</li>
+          <li><span class='bold'>Especie:</span>{{instance.etax_esp}}</li>
         </ul>
       </div>
     </div>

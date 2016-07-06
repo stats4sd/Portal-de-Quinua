@@ -270,7 +270,7 @@ var stageMapping=[
   {id:4,name:"Floración",masterQuery:'null'},
   {id:5,name:"Grano",masterQuery:'null'},
   {id:6,name:"Cosecha",masterQuery:'null'},
-  {id:7,name:"Comercialization",masterQuery:'null'}
+  {id:7,name:"Comercialización",masterQuery:'null'}
     ];
 
 var infoMapping=[

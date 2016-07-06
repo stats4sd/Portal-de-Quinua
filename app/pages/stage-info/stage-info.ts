@@ -38,8 +38,8 @@ export class StageInfoPage {
     instances:this.stageResults.pests,
     stage:this.stage})}
   pushDiseases(){this.nav.push(InformationOverview, {
-    title:'Enfermedas',
-    infoSection:'enfermedas',
+    title:'Enfermedades',
+    infoSection:'enfermedades',
     instances:this.stageResults.diseases,
     stage:this.stage})}
 

@@ -64,8 +64,8 @@ export class CatalogueIndexPage {
   })}
 
   pushDiseases(){this.nav.push(InformationOverview, {
-  title:'Enfermedas',
-  infoSection:'enfermedas',
+  title:'Enfermedades',
+  infoSection:'enfermedades',
   instances:this.diseases
   })}
 
