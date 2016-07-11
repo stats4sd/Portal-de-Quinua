@@ -1,9 +1,3 @@
-<!--
-  Generated template for the VendorsPopupPage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 
 <ion-content padding >
   <h2>{{vendors.vquien}}</h2>
@@ -23,27 +17,40 @@ Dirección</ion-card-header>
     <ion-card-header>¿Cuando son activos?</ion-card-header>
     <ion-list>
       <ion-item>
-      <span *ngIf='vendors.cuando_lunes==1' class='yes'>lunes, </span>
-      <span *ngIf='vendors.cuando_lunes==0' class='no'>lunes, </span>
-
-      <span *ngIf='vendors.cuando_martes==1' class='yes'>martes, </span>
-      <span *ngIf='vendors.cuando_martes==0' class='no'>martes, </span>
-
-      <span *ngIf='vendors.cuando_miercoles==1' class='yes'>miercoles, </span>
-      <span *ngIf='vendors.cuando_miercoles==0' class='no'>miercoles, </span>
-
-      <span *ngIf='vendors.cuando_jueves==1' class='yes'>jueves, </span>
-      <span *ngIf='vendors.cuando_jueves==0' class='no'>jueves, </span>
-
-      <span *ngIf='vendors.cuando_viernes==1' class='yes'>viernes, </span>
-      <span *ngIf='vendors.cuando_viernes==0' class='no'>viernes, </span>
-
-      <span *ngIf='vendors.cuando_sabado==1' class='yes'>sabado, </span>
-      <span *ngIf='vendors.cuando_sabado==0' class='no'>sabado, </span>
-
-      <span *ngIf='vendors.cuando_domingo==1' class='yes'>domingo </span>
-      <span *ngIf='vendors.cuando_domingo==0' class='no'>domingo </span>
-    </ion-item>
+        <ion-label>Lunes</ion-label>
+        <ion-checkbox *ngIf='vendors.cuando_lunes==1' checked="true" disabled="true"></ion-checkbox>
+        <ion-checkbox *ngIf='vendors.cuando_lunes==0' disabled="true"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Martes</ion-label>
+        <ion-checkbox *ngIf='vendors.cuando_martes==1' checked="true" disabled="true"></ion-checkbox>
+        <ion-checkbox *ngIf='vendors.cuando_martes==0' disabled="true"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Miercoles</ion-label>
+        <ion-checkbox *ngIf='vendors.cuando_miercoles==1' checked="true" disabled="true"></ion-checkbox>
+        <ion-checkbox *ngIf='vendors.cuando_miercoles==0' disabled="true"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Jueves</ion-label>
+        <ion-checkbox *ngIf='vendors.cuando_jueves==1' checked="true" disabled="true"></ion-checkbox>
+        <ion-checkbox *ngIf='vendors.cuando_jueves==0' disabled="true"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Viernes</ion-label>
+        <ion-checkbox *ngIf='vendors.cuando_viernes==1' checked="true" disabled="true"></ion-checkbox>
+        <ion-checkbox *ngIf='vendors.cuando_viernes==0' disabled="true"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Sabado</ion-label>
+        <ion-checkbox *ngIf='vendors.cuando_sabado==1' checked="true" disabled="true"></ion-checkbox>
+        <ion-checkbox *ngIf='vendors.cuando_sabado==0' disabled="true"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Domingo</ion-label>
+        <ion-checkbox *ngIf='vendors.cuando_domingo==1' checked="true" disabled="true"></ion-checkbox>
+        <ion-checkbox *ngIf='vendors.cuando_domingo==0' disabled="true"></ion-checkbox>
+      </ion-item>
     </ion-list>
   </ion-card>
   <ion-card>
