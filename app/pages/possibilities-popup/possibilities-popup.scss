@@ -1,3 +1,10 @@
 .possibilities-popup-page {
-
+  ion-thumbnail{
+    max-width:8rem;
+    max-height:8rem;
+    img{
+      object-fit: cover;
+      height:100%;
+    }
+  }
 }

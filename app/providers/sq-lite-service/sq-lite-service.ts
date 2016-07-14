@@ -140,13 +140,8 @@ export class SqLiteService {
     var results = [];
       for (let item of set){
         var contains=false;
-        console.log(list);
-        console.log(item);
-        console.log(item[list])
-        console.log(item.inputList)
         if(item[list]!=null) {
           var listArray=item[list].split(',');
-          console.log(listArray)
           for (let e of listArray){
             if (parseInt(e)==filterId){
               contains=true;
@@ -158,6 +153,24 @@ export class SqLiteService {
       }
       }
       return(results)
+  }
+
+  //function to return lists from masterData
+  getInputs(inputList){
+    var inputMeta=[];
+    if(inputList!=null){
+      inputList=inputList.split(',');
+      for (let inputId of inputList){
+        for (let allInput of this.jsonData.allInputs){
+          if(allInput.input_id==inputId){
+            inputMeta.push(allInput)
+          }
+        }
+      }
+      console.log(inputMeta);
+    }
+    else{console.log('no inputs associated')}
+    return inputMeta;
   }
 
 }
