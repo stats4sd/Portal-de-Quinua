@@ -38,4 +38,14 @@ export class InputsPopupPage {
   pushVendors() {
     this.nav.push(VendorsPage,{item:"input",id:this.inputs.input_id,nombre:this.inputs.pnombre})
   }
+  returnBool(x){
+    if(x==0){return 'close-circle'}
+    else if(x==1){return 'checkmark-circle'}
+    else{return 'No Conocida'}
+  }
+  colourClass(x){
+    if(x==0){return 'False'}
+    else if(x==1){return 'True'}
+    else{return 'help-circle'}
+  }
 }

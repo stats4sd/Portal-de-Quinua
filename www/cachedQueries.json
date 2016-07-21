@@ -295,7 +295,9 @@
       "ultimvez": "2016-04-15",
       "file_url": null,
       "inputList": "1,2,3,5,6",
-      "varietyList": null
+      "varietyList": null,
+      "latitude":-15.290154,
+      "longitude":-64.588653
     },
     {
       "vendor_id": 2,
@@ -317,7 +319,9 @@
       "ultimvez": "2020-04-15",
       "file_url": null,
       "inputList": "1,2,3,5,6",
-      "varietyList": null
+      "varietyList": null,
+      "latitude":-15.290154,
+      "longitude":-63.588653
     },
     {
       "vendor_id": 3,
@@ -339,7 +343,9 @@
       "ultimvez": "2016-05-20",
       "file_url": null,
       "inputList": "1,2,3,5,6",
-      "varietyList": null
+      "varietyList": null,
+      "latitude":-16.290154,
+      "longitude":-62.588653
     },
     {
       "vendor_id": 4,
@@ -361,7 +367,9 @@
       "ultimvez": "20/05/2016",
       "file_url": null,
       "inputList": null,
-      "varietyList": "3,6,15,21,22,23,28,33,35,36,37,39,40,45"
+      "varietyList": "3,6,15,21,22,23,28,33,35,36,37,39,40,45",
+      "latitude":-16.290154,
+      "longitude":-64.588653
     },
     {
       "vendor_id": 5,
@@ -383,7 +391,9 @@
       "ultimvez": "20/05/2016",
       "file_url": null,
       "inputList": null,
-      "varietyList": "2,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,24,25,26,27,28,29,30,31,32,34,38,41,44,46,47,48,49"
+      "varietyList": "2,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,24,25,26,27,28,29,30,31,32,34,38,41,44,46,47,48,49",
+      "latitude":-17.290154,
+      "longitude":-63.588653
     }
   ],
   "allPossibilities": [

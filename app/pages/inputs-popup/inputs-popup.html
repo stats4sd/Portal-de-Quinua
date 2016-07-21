@@ -12,9 +12,9 @@
     <img class="largeImage" src="{{inputs.file_url}}" image-fallback>
   <div>
     <ul>
-      <li><span class='bold'>¿Es orgánico?</span> {{inputs.porgValue}}</li>
-      <li><span class='bold'>¿Es químico?</span>  {{inputs.pquiValue}}</li>
-      <li><span class='bold'>¿Es permitido para producción orgánica?</span> {{inputs.ppermValue}}</li>
+      <li><span><strong>¿Es orgánico? </strong></span> <ion-icon name={{returnBool(inputs.porg)}} [ngClass]="colourClass(inputs.porg)"></ion-icon></li>
+      <li><span><strong>¿Es químico? </strong></span>  <ion-icon name={{returnBool(inputs.pqui)}} [ngClass]="colourClass(inputs.pqui)"></ion-icon></li>
+      <li><span><strong>¿Es permitido para producción orgánica? </strong></span><ion-icon name= {{returnBool(inputs.pperm)}} [ngClass]="colourClass(inputs.pperm)"></ion-icon></li>
     </ul>
   </div>
   <h4>Características</h4>
@@ -43,7 +43,7 @@
           </ion-row>
       </ion-scroll>
   </div>-->
-  <br>
+ <!-- <br>
   <ion-list>
       <ion-item (click)="pushVendors()">
           <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
@@ -52,5 +52,5 @@
           </ion-thumbnail>
           Vendedores
       </ion-item>
-    </ion-list>
+    </ion-list>-->
 </ion-content>

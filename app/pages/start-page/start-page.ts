@@ -3,6 +3,7 @@ import {NavController} from 'ionic-angular';
 import {Platform} from 'ionic-angular';
 import {StageList} from '../stage-list/stage-list'
 import {CatalogueIndexPage} from '../catalogue-index/catalogue-index'
+import {MapPopupPage} from '../map-popup/map-popup'
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 import {JsonCacheService} from '../../providers/json-cache-service/json-cache-service'
 
@@ -69,8 +70,8 @@ export class StartPage {
               //run multiple promise statement - waits for all async calls to finish and returns one object with all in
               Promise.all(allQueries).then((res) => {
                 console.log('executed all queries');
-                console.log(results)
-                this.SQLDbLoaded=true
+                console.log(results);
+                this.SQLDbLoaded=true;
                 //save results in correct key-value pair in sql service
                 for(let res in results){
                   this.sql.setValue(res,results[res])
@@ -85,5 +86,9 @@ export class StartPage {
 
   catalogueButtonClick() {
     this.nav.push(CatalogueIndexPage)
+  }
+
+  mapButtonClick() {
+    this.nav.push(MapPopupPage)
   }
 }
