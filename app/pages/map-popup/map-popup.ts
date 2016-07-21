@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {MapService} from '../../providers/map-provider/map-provider';
 import {SqLiteService} from "../../providers/sq-lite-service/sq-lite-service";
+import {NavParams} from "ionic-angular/index";
 
 
 @Component({
@@ -9,9 +10,15 @@ import {SqLiteService} from "../../providers/sq-lite-service/sq-lite-service";
 })
 export class MapPopupPage {
   vendors:any;
-  constructor(public nav: NavController, private mapService:MapService, private sql:SqLiteService) {
+  params:any;
+  inputVendors:any;
+  constructor(public nav: NavController, private mapService:MapService, private sql:SqLiteService, private params:NavParams) {
     this.mapService=mapService;
     this.vendors=sql.getValue('allVendors');
+    this.params=params.data;
+    console.log(this.params)
+    this.inputVendors=sql.getInputVendors(this.params.input.input_id);
+
   }
   ionViewLoaded() {
     var map = new L.Map('map', {
@@ -42,13 +49,29 @@ export class MapPopupPage {
       prefix:'fa'
     });
 
-    for(let vendor of this.vendors){
+    var greyMarker = L.AwesomeMarkers.icon({
+      icon: '',
+      markerColor: 'black',
+      prefix:'fa'
+    });
+//add different markers for vendors that have and that doesn't have - probably better way to do this
+    for(let vendor of this.inputVendors.has){
+      console.log(vendor)
       var marker = L.marker([vendor.latitude, vendor.longitude],{icon:redMarker}).addTo(map);
      marker.bindPopup(
          "<h3>"+vendor.vquien+"</h3>"
          +"<p>"+vendor.vdonde+"</p>"
          +"<p><strong>"+vendor.vtel+"</strong></p>"
      );
+    }
+    for(let vendor of this.inputVendors.hasnt){
+      console.log(vendor)
+      var marker = L.marker([vendor.latitude, vendor.longitude],{icon:greyMarker}).addTo(map);
+      marker.bindPopup(
+          "<h3>"+vendor.vquien+"</h3>"
+          +"<p>"+vendor.vdonde+"</p>"
+          +"<p><strong>"+vendor.vtel+"</strong></p>"
+      );
     }
     this.mapService.map = map;
   }
@@ -65,3 +88,7 @@ var myIcon = L.icon({
   shadowAnchor: [22, 94]
 });
 
+function getMarkerColour(input){
+  console.log(input);
+  console.log(input.input_id);
+}

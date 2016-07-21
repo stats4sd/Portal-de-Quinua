@@ -12,7 +12,6 @@ export class SqLiteService {
   platform:Platform;
   window:any;
   db:any;
-  dbLoaded:boolean;
   cachedQueries:any;
   jsonData:any = null
 
@@ -171,6 +170,23 @@ export class SqLiteService {
     }
     else{console.log('no inputs associated')}
     return inputMeta;
+  }
+
+  getInputVendors(inputId){
+    var allVendors=this.getValue('allVendors')
+    console.log(allVendors);
+    var vendorsArray={has:[],hasnt:[]}
+    for(let vendor of allVendors){
+      if(vendor.inputList) {
+        var inputsArray = vendor.inputList.split(",");
+        if (inputsArray.indexOf(inputId.toString()) >= 0) {
+          vendorsArray.has.push(vendor)
+        }
+      }
+      else{vendorsArray.hasnt.push(vendor)}
+    }
+    console.log(vendorsArray);
+    return vendorsArray;
   }
 
 }

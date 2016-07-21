@@ -3,7 +3,6 @@ import {NavController} from 'ionic-angular';
 import {Platform} from 'ionic-angular';
 import {StageList} from '../stage-list/stage-list'
 import {CatalogueIndexPage} from '../catalogue-index/catalogue-index'
-import {MapPopupPage} from '../map-popup/map-popup'
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 import {JsonCacheService} from '../../providers/json-cache-service/json-cache-service'
 
@@ -86,9 +85,5 @@ export class StartPage {
 
   catalogueButtonClick() {
     this.nav.push(CatalogueIndexPage)
-  }
-
-  mapButtonClick() {
-    this.nav.push(MapPopupPage)
   }
 }

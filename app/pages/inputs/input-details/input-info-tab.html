@@ -1,15 +1,5 @@
-<!--
-  Generated template for the InputsPopupPage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-navbar *navbar>
-  <ion-title>{{inputs.pnombre}}</ion-title>
-</ion-navbar>
-
 <ion-content padding class="inputs-popup">
-    <img class="largeImage" src="{{inputs.file_url}}" image-fallback>
+  <img class="largeImage" src="{{inputs.file_url}}" image-fallback>
   <div>
     <ul>
       <li><span><strong>¿Es orgánico? </strong></span> <ion-icon name={{returnBool(inputs.porg)}} [ngClass]="colourClass(inputs.porg)"></ion-icon></li>
@@ -33,24 +23,4 @@
   <div [innerHTML]="inputs.dinsumo"></div>
   <h4>¿Se puede elaborar en artesanalmente?</h4>
   <div [innerHTML]="inputs.pmanart"></div>
-  <!--<h4>Image Gallery</h4>
-  <div class="ionScroller">
-      <ion-scroll scrollX="true">
-          <ion-row >
-              <ion-col width-25 *ngFor="let image of imageTest">
-                  <img class="sliderImage" src="{{image.src}}" (click)="imageClick(image)">
-              </ion-col>
-          </ion-row>
-      </ion-scroll>
-  </div>-->
- <!-- <br>
-  <ion-list>
-      <ion-item (click)="pushVendors()">
-          <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
-          <ion-thumbnail item-left>
-              <img class="viewImage" src="wp-content/covers/InputCover.png">
-          </ion-thumbnail>
-          Vendedores
-      </ion-item>
-    </ion-list>-->
 </ion-content>

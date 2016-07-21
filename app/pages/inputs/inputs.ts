@@ -3,13 +3,8 @@ import {NavController, NavParams, Modal} from 'ionic-angular';
 import {Platform} from 'ionic-angular';
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 import {ImageFallback} from '../../directives/image-fallback'
-import {InputsPopupPage} from '../inputs-popup/inputs-popup'
-/*
-  Generated class for the InputsPage page.
+import {InputDetailsPage} from './input-details/tabs'
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   templateUrl: 'build/pages/inputs/inputs.html',
   directives: [ImageFallback],
@@ -37,7 +32,8 @@ export class InputsPage {
 
   inputClick(i) {
     this.sql.setValue('inputIndex',i);
-    this.nav.push(InputsPopupPage,{inputId:i, input:this.inputs[i]});
+    console.log('input: '+i)
+    this.nav.push(InputDetailsPage,{inputId:i, input:this.inputs[i]});
   }
 
 
