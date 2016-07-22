@@ -2,8 +2,6 @@ import {Component} from '@angular/core';
 import {NavController, Modal, ViewController, NavParams} from 'ionic-angular';
 import {ImagePopup} from '../image-popup/image-popup';
 import {ImageFallback} from '../../directives/image-fallback'
-import {InputsPopupPage} from '../inputs-popup/inputs-popup';
-import {ImageFallback} from '../../directives/image-fallback'
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
 
 

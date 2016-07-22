@@ -4,7 +4,7 @@ import {SqLiteService} from '../../../providers/sq-lite-service/sq-lite-service'
 import {ImageFallback} from '../../../directives/image-fallback'
 import {PossibilitiesPopupPage} from '../../possibilities-popup/possibilities-popup'
 import {VarietiesPopupPage} from '../../varieties-popup/varieties-popup';
-import {InputsPopupPage} from '../../inputs-popup/inputs-popup';
+
 
 
 /*
