@@ -500,7 +500,7 @@ var masterQueries=
        ON a.`tvolca` = o.`id` \
        LEFT JOIN `media_variety` p \
        ON a.`variety_id` = p.`variety_id` \
-       LEFT JOIN `doc_variety` q \
+       LEFT JOIN `jnc_documents_variety` q \
        ON a.`variety_id` = q.`variety_id` \
        LEFT JOIN `jnc_vendor_variety` r \
        ON a.`variety_id` = r.`variety_id` \
