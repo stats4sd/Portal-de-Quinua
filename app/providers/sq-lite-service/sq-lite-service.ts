@@ -13,7 +13,7 @@ export class SqLiteService {
   window:any;
   db:any;
   cachedQueries:any;
-  jsonData:any = null
+  jsonData:any = null;
 
   constructor(public http:Http, platform:Platform) {
     this.platform = platform;
@@ -308,7 +308,7 @@ var infoMapping=[
   {id:3,name:'diseases',masterQuery:'allDiseases'},
   {id:4,name:'pests',masterQuery:'allPests'},
   {id:5,name:'varieties',masterQuery:'allVarieties'},
-]
+];
 
 //queries to be executed within the app
 var masterQueries=
