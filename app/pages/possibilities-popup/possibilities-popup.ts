@@ -3,6 +3,7 @@ import {NavController, Modal, ViewController, NavParams} from 'ionic-angular';
 import {ImagePopup} from '../image-popup/image-popup';
 import {ImageFallback} from '../../directives/image-fallback'
 import {SqLiteService} from '../../providers/sq-lite-service/sq-lite-service'
+import {InputDetailsPage} from "../inputs/input-details/tabs";
 
 
 @Component({
@@ -23,6 +24,6 @@ export class PossibilitiesPopupPage {
 
   pushInputs(input) {
     console.log(input);
-    this.nav.push(InputsPopupPage,{inputId:input.input_id, input:input});
+    this.nav.push(InputDetailsPage,{inputId:input.input_id, input:input});
   }
 }
