@@ -54,25 +54,31 @@ export class MapPopupPage {
       markerColor: 'black',
       prefix:'fa'
     });
+
+    var markersClusterGroup=L.markerClusterGroup({
+      showCoverageOnHover:false,
+    });
 //add different markers for vendors that have and that doesn't have - probably better way to do this
     for(let vendor of this.inputVendors.has){
-      console.log(vendor)
-      var marker = L.marker([vendor.latitude, vendor.longitude],{icon:redMarker}).addTo(map);
+      var marker = L.marker([vendor.longitude, vendor.latitude],{icon:redMarker});
+      markersClusterGroup.addLayer(marker);
      marker.bindPopup(
          "<h3>"+vendor.vquien+"</h3>"
          +"<p>"+vendor.vdonde+"</p>"
          +"<p><strong>"+vendor.vtel+"</strong></p>"
      );
     }
-    for(let vendor of this.inputVendors.hasnt){
-      console.log(vendor)
-      var marker = L.marker([vendor.latitude, vendor.longitude],{icon:greyMarker}).addTo(map);
+    //include greyed out markers of vendors who don't sell
+    /*for(let vendor of this.inputVendors.hasnt){
+      var marker = L.marker([vendor.longitude, vendor.latitude],{icon:greyMarker});
+      markersClusterGroup.addLayer(marker);
       marker.bindPopup(
           "<h3>"+vendor.vquien+"</h3>"
           +"<p>"+vendor.vdonde+"</p>"
           +"<p><strong>"+vendor.vtel+"</strong></p>"
       );
-    }
+    }*/
+    map.addLayer(markersClusterGroup);
     this.mapService.map = map;
   }
 }

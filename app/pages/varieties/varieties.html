@@ -6,7 +6,7 @@
   <div *ngIf="variety.length>0">
     <ion-searchbar [(ngModel)]="searchQuery" (ionInput)="getItems($event)"></ion-searchbar>
     <ion-list padding>
-      <ion-item *ngFor="let item of items; let i=index" (click)="varietyClick(i)">
+      <ion-item *ngFor="let item of items" (click)="varietyClick(item)">
         <ion-row wrap>
           <ion-col width-33>
             <img src="{{item.file_url}}" image-fallback >

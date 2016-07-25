@@ -24,8 +24,8 @@ export class VarietiesPopupPage {
     console.log(this.variety);
 
     //split onombres into array;
-    this.onombres = this.variety.onombre.split(",");
-    console.log(this.onombres);
-
+    if(this.onombres){
+      this.onombres = this.variety.onombre.split(",");
+    }
   }
 }

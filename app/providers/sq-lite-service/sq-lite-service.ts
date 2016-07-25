@@ -156,6 +156,7 @@ export class SqLiteService {
 
   //function to return lists from masterData
   getInputs(inputList){
+    console.log('input list: '+inputList)
     var inputMeta=[];
     if(inputList!=null){
       inputList=inputList.split(',');

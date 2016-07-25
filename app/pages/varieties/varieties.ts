@@ -50,8 +50,9 @@ export class VarietiesPage {
     })
   }
 
-  varietyClick(i) {
-    this.sql.setValue('varietyIndex',i);
-    this.nav.push(VarietiesPopupPage, {varietyId:i, variety:this.variety[i]});
+  varietyClick(item) {
+    console.log(item);
+    this.sql.setValue('varietyIndex',item.variety_id);
+    this.nav.push(VarietiesPopupPage, {varietyId:item.variety_id, variety:item});
   }
 }

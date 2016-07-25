@@ -38,12 +38,12 @@
       <span item-right>{{variety.pref}}</span>
     </ion-item>
     <ion-item>
-      <h4>Lugares de siembra</h4>
+      <ion-note>Lugares de siembra</ion-note>
       <p [innerHTML]="variety.lugsiem"></p>
     </ion-item>
   </ion-list>
   <ion-list>
-    <ion-list-header>Sowing Season</ion-list-header>
+    <ion-list-header>Época de siembra</ion-list-header>
     <ion-item>
       <ion-note>Epoca de siembra:</ion-note>
       <span item-right>{{variety.epocaif1Value}} {{variety.epocames1Value}}</span>
@@ -72,7 +72,7 @@
     </ion-item>
   </ion-list>
   <ion-list>
-    <ion-list-header>Tolerences</ion-list-header>
+    <ion-list-header>Tolerancias</ion-list-header>
     <ion-item *ngIf="variety.theladaValue!='NULL'">
       <ion-note>Tolerancia a las heladas</ion-note>
       <span item-right>{{variety.theladaValue}}</span>
@@ -95,17 +95,17 @@
     </ion-item>
   </ion-list>
   <ion-list>
-    <ion-list-header>Uses of Variety</ion-list-header>
+    <ion-list-header>Usos de la variedad</ion-list-header>
     <ion-item>
-      <h4>Consumo tradicional</h4>
+      <ion-note>Consumo tradicional</ion-note>
       <p [innerHTML]="variety.consut"></p>
     </ion-item>
     <ion-item>
-      <h4>Agroindustria</h4>
+      <ion-note>Agroindustria</ion-note>
       <p [innerHTML]="variety.agroind"></p>
     </ion-item>
     <ion-item>
-      <h4>Medicina</h4>
+      <ion-note>Medicina</ion-note>
       <p [innerHTML]="variety.medicina"></p>
     </ion-item>
   </ion-list>
