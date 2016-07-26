@@ -13,7 +13,7 @@
             <ion-item  *ngFor="let input of inputs" (click)="pushInputs(input)">
                 <ion-icon name="arrow-round-forward" clear item-right></ion-icon>
                 <ion-thumbnail item-left>
-                    <img class="viewImage" src="{{input.file_url}}">
+                    <img class="viewImage" src="{{input.file_url}}" image-fallback>
                 </ion-thumbnail>
                 {{input.pnombre}}
             </ion-item>
